@@ -1,0 +1,315 @@
+<div id="search_popup_layers"></div>
+<div id="content" style="display:none;" >
+	<div id="hs_cluster" >
+		<div class="hs_block">
+			<div class="hs_theme"><i class="fa fa-calendar"></i>集群监控</div>
+		</div>
+		<div class="hs_block hs_bg_white hs_margin_top_10">
+			<div class="hs_title">
+				<div class="hs_title_txt"><i class="glyphicon glyphicon-stats"  style="margin-right:10px;"></i>集群监控</div>
+			</div>
+			<div id="cluster_summary" class="hs_bg_white">
+				<div class="hs_block" id="cluster_distribute_txt">
+					<!-- <div style="padding-left:20px">Elasticsearch集群状态:</div> -->
+					<ul style="padding-left:80px">
+						<li style="color:green"><b>{{cluster.name}}&nbsp;&nbsp;{{cluster.version}}</b></li>
+						<li><canvas id="dashboard_health"></canvas>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+						<li style="color:#e55955"><b>节点:&nbsp;&nbsp;&nbsp;{{cluster.nodes}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></li>
+						<li style="color:#e55955"><b>分片:&nbsp;&nbsp;&nbsp;{{cluster.shards}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></li>
+						<li style="color:#e55955"><b>数据:&nbsp;&nbsp;&nbsp;{{cluster.usedstore}}<span style="color:black">/</span>{{cluster.store}}</b></li>
+						<li style="float:right;margin-right:30px;" ><button type="button"class="btn btn-default btn-xs" ng-click="refresh()"><i class="fa fa-refresh"></i></button></li>
+					</ul> 
+				</div>
+				<div class="hs_block" id="cluster_summary_info">
+							<table width="96%" align="center">
+								<tr style="background-color:#FAFAFA" align="center">
+									<td width="8%" height="28">序号</td>
+									<td width="17%">节点</td>
+									<td width="10%">负载</td>
+									<td width="10%">CPU</td>
+									<td width="10%">内存</td>
+									<td width="10%">存储空间</td>
+									<td width="10%">分片总数</td>
+									<td width="10%">主要的分片</td>
+									<td width="10%">备份的分片</td>
+								</tr>
+								<tr ng-repeat="(key,node) in cluster.nodesList" align="center" ng-class="{node_list_sel : $index%2 == 1}" 
+									ng-click="showNodeDetail(key)" onmouseover="style.backgroundColor='#f7ebe3';style.cursor='pointer'"
+									onmouseout="style.backgroundColor='';">
+									<td height="30">{{($index+1)+(cluster.node_pagination.currentPage-1)*cluster.node_pagination.pageSize}}</td>
+									<td align="center">&nbsp;{{node.name}}--{{node.ip[0]}}</td>
+									<td>
+										<div easypiechart options="per_load_opt" percent="sysarr[$index].per_load" class="easy-pie-chart">
+											<span class="cluster_percent" ng-bind="sysarr[$index].per_load"></span>
+										</div>
+									</td>
+									<td>
+										<div easypiechart options="per_cpu_opt" percent="sysarr[$index].per_cpu" class="easy-pie-chart">
+											<span class="cluster_percent" ng-bind="sysarr[$index].per_cpu"></span>
+										</div>
+									</td>
+									<td>
+										<div easypiechart options="per_mem_opt" percent="sysarr[$index].per_mem" class="easy-pie-chart">
+											<span class="cluster_percent" ng-bind="sysarr[$index].per_mem"></span>
+										</div>
+									</td>
+									<td style="float:none">
+										<div easypiechart options="per_disk_opt" percent="sysarr[$index].per_disk" class="easy-pie-chart">
+											<span class="cluster_percent" ng-bind="sysarr[$index].per_disk"></span>
+										</div>
+									</td>
+									<td >
+										<div>
+											<span  style="color:#e55955" ng-bind="sysarr[$index].per_count"></span>
+										</div>
+									</td>
+									<td >
+										<div>
+											<span  style="color:#e55955" ng-bind="sysarr[$index].per_countP"></span>
+										</div>
+									</td>
+									<td >
+										<div>
+											<span  style="color:#e55955"ng-bind="sysarr[$index].per_countR"></span>
+										</div>
+									</td>
+								</tr>
+							</table>
+							<ul class="pagination">
+								<li ng-if="cluster.node_pagination.currentPage > 1">
+									<a href="javascript:" ng-click="showNodeList(cluster.node_pagination.currentPage > 1 ? cluster.node_pagination.currentPage-1 : 1)" title="上一页">&laquo;</a>
+								</li>
+								<li ng-repeat="page in cluster.node_pagination.pages" ng-show="page > cluster.node_pagination.currentPage-5 && page < cluster.node_pagination.currentPage + 5">
+									<a href="javascript:" title="第{{page}}页" ng-show="page==cluster.node_pagination.currentPage" style="color:#000">{{page}}</a>
+									<a href="javascript:" ng-click="showNodeList(page)" title="第{{page}}页" ng-show="page!=cluster.node_pagination.currentPage">{{page}}</a>
+								</li>
+								<li ng-if="cluster.node_pagination.currentPage < cluster.node_pagination.pageNum">
+									<a href="javascript:" ng-click="showNodeList(cluster.node_pagination.currentPage < cluster.node_pagination.pageNum ? cluster.node_pagination.currentPage+1:cluster.node_pagination.pageNum)" title="下一页">&raquo;</a>
+								</li>
+							</ul>
+					<div>
+				</div>
+			<div id="cluster_indices" class="hs_block">
+				<div class="cluster_indices_title">索引状态<button ng-click="showCloseIndex()" type="button" class="button gray small" style="float:right">
+									查看关闭的index
+								</button></div>
+				<table width="96%" align="center" cellspacing="0" cellpadding="0">
+					<tr class="indices_title">
+						<td width="5%">序号</td>
+						<td width="12%">indices</td>
+						<td width="12%">文档数</td>
+						<td width="12%">健康状态</td>
+						<td width="12%">主分片数</td>
+						<td width="12%">删除的文档数</td>
+						<td width="12%">占用的空间</td>
+						<!-- <td width="13%">主要的占用空间</td> -->
+						<td width="19%">其它操作</td>
+					</tr>
+					<tr ng-repeat="indices in cluster.indicesList" id="indices_txt" >
+						<td height="30" style="text-align:center">{{($index+1)+(cluster.indices_pagination.currentPage-1)*cluster.indices_pagination.pageSize}}</td>
+						<td style="text-align:center">{{indices.index}}</td>
+						<td style="text-align:center">{{indices.count}}</td>
+						<td style="text-align:center">
+							<div style=" width: 20px; height: 20px; background: {{indices.health}};-moz-border-radius: 10px; -webkit-border-radius: 10px;border-radius: 10px;margin-left:auto; margin-right:auto;"> 
+							</div></td>
+						<td style="text-align:center">{{indices.pri}}</td>
+						<td style="text-align:center">{{indices.deleted}}</td>
+						<td style="text-align:center">{{indices.size}}</td>
+						<td style="text-align:center">
+						<div class="input-group hidden-mobile" style="width:10%" >
+							<div class="input-group-btn"> 
+								<!-- <button ng-click="toggle(indices.index,$event)" type="button" class="button gray small" id="{{$index+1}}" style="margin-left:15px">
+									状态信息<span class="caret"></span>
+								</button> -->
+								<button ng-click="oprationIndex(indices.index,$event)" type="button" class="button gray small" style="margin-left:70px">
+									操作<span class="caret"></span>
+								</button>
+	    					</div> 
+	    					<div  class="dropdown-menu" id="show_{{indices.index}}" style="margin-left:15px;width:230px ; height:130px;">
+						    	<ul style="width:90px ; float:left;">
+									<li><a href="javascript:" ng-click="showIndexStatistics('get',indices.index,$index+1)">get</a></li>
+									<li><a href="javascript:" ng-click="showIndexStatistics('completion',indices.index,$index+1)">completion</a></li>
+									<li><a href="javascript:" ng-click="showIndexStatistics('fielddata',indices.index,$index+1)">fielddata</a></li>
+									<li><a href="javascript:" ng-click="showIndexStatistics('flush')">flush</a></li>
+									<li><a href="javascript:" ng-click="showIndexStatistics('merge')">merge</a></li>
+									<li><a href="javascript:" ng-click="showIndexStatistics('query_cache')">query_cache</a></li>
+								</ul>  
+								<ul style="width:100px ; float:left;">
+									<li><a href="javascript:" ng-click="showIndexStatistics('refresh')">refresh</a></li>
+									<li><a href="javascript:" ng-click="showIndexStatistics('suggest')">suggest</a></li>
+									<li><a href="javascript:" ng-click="showIndexStatistics('warmer')">warmer</a></li>
+									<li><a href="javascript:" ng-click="showIndexStatistics('fields')">fields</a></li>
+									<li><a href="javascript:" ng-click="showIndexStatistics('completion_fields')">completion_fields</a></li>
+									<li><a href="javascript:" ng-click="showIndexStatistics('fielddata_fields')">fielddata_fields</a></li>
+								</ul> 
+								<!-- <table style="border:0;margin-left:10px;">
+									<tr>
+										<td><a href="javascript:" ng-click="showIndexStatistics('get',indices.index,$index+1)">get</a></td>
+										<td><a href="javascript:" ng-click="showIndexStatistics('completion',indices.index,$index+1)">completion</a></td>
+										
+									</tr>
+								</table> -->
+							</div>
+							<div  class="dropdown-menu" id="opration_{{indices.index}}" style="margin-left:70px;width:50px">
+						    	<ul>
+									<li><a href="javascript:" ng-click="closeIndex(indices.index)">close</a></li>
+									<li><a href="javascript:" ng-click="optimizeIndex($event,indices.index)">optimize</a></li>
+									<!-- <li><a href="javascript:" ng-click="deleteIndex(indices.index)">delete</a></li> -->
+								</ul> 
+							</div>
+							
+							</div>
+					 	</td>
+						<!-- <td style="text-align:center;">{{indices.prisize}}</td> -->
+					</tr>
+				</table>
+					<div class="dropdown-menu" id="get" style="width:80%;postion:fixed;left:30px;top:150px;
+	       				background: -moz-linear-gradient(center top , rgba(84, 84, 84, 0.75), rgba(54, 54, 54, 0.75), rgba(64, 64, 64, 0.75)) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  						border: 1px solid #666;
+    					box-shadow: -1px 2.5px 4px -3px black, -1px -2.5px 4px -3px black, 3px 2.5px 4px -3px black, 3px -2.5px 4px -3px black;
+   						padding: 1px 0 2px;position: absolute;margin-left:90px; " >
+  						<div class="uiPanel-titleBar">
+  								<button class="uiPanel-close"  ng-click="close()" type="button"><i class="fa fa-times"></i></button>
+  								<p><span class="uiJsonPretty-string">统计信息:</span></p>
+  						</div>
+	      				<div style="width:90%;margin-left:30px;overflow-y:auto;">
+	        				<table  id="get" class="table table-bordered">
+	     						<tr>
+	     			   				<th  width="12%"><span class="uiJsonPretty-name">总数据</span></th>
+	     							<th  width="12%"><span class="uiJsonPretty-name">时长（总）</span></th>
+	     							<th  width="12%"><span class="uiJsonPretty-name">存在的数据</span></th>
+	     							<th  width="12%"><span class="uiJsonPretty-name">时长（存在）</span></th>
+	     							<th  width="12%"><span class="uiJsonPretty-name">丢失的数据</span></th>
+	     							<th  width="12%"><span class="uiJsonPretty-name">时长（丢失）</span></th>
+	     							<th  width="12%"><span class="uiJsonPretty-name">当前</span></th>
+	     						</tr>
+	     						<tr>
+	     			    			<td><span class="uiJsonPretty-number">{{indexStatistics.get.total}}</span></td>
+	     							<td><span class="uiJsonPretty-number">{{indexStatistics.get.time_in_millis}}</span></td>
+	     							<td><span class="uiJsonPretty-number">{{indexStatistics.get.exists_total}}</span></td>
+	     							<td><span class="uiJsonPretty-number">{{indexStatistics.get.exists_time_in_millis}}</span></td>
+	     							<td><span class="uiJsonPretty-number">{{indexStatistics.get.missing_total}}</span></td>
+	     							<td><span class="uiJsonPretty-number">{{indexStatistics.get.missing_time_in_millis}}</span></td>
+	     							<td><span class="uiJsonPretty-number">{{indexStatistics.get.current}}</span></td>
+	     						</tr>
+	     					</table>
+	     				</div>	
+	   				</div> 
+	   				<div class="dropdown-menu" id="fielddata" style="width:80%;postion:fixed;left:30px;top:150px;
+	       						background: -moz-linear-gradient(center top , rgba(84, 84, 84, 0.75), rgba(54, 54, 54, 0.75), rgba(64, 64, 64, 0.75)) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  								border: 1px solid #666;
+    							box-shadow: -1px 2.5px 4px -3px black, -1px -2.5px 4px -3px black, 3px 2.5px 4px -3px black, 3px -2.5px 4px -3px black;
+   							 	padding: 1px 0 2px;position: absolute;margin-left:90px; " >
+  						<div class="uiPanel-titleBar">
+  							<button class="uiPanel-close"  ng-click="close()" type="button"><i class="fa fa-times"></i></button>
+  							<p><span class="uiJsonPretty-string">字段数据统计:</span></p>
+  						</div>
+	      				<div style="width:90%;margin-left:30px;overflow-y:auto;">
+	        				<table  id="fielddata" class="table table-bordered">
+	     						<tr>
+	     			   				<th  width="12%"><span class="uiJsonPretty-name">占用内存</span></th>
+	     							<th  width="12%"><span class="uiJsonPretty-name">赶出的</span></th>
+	     						</tr>
+	     						<tr>
+	     			    			<td><span class="uiJsonPretty-number">{{indexStatistics.fielddata.memory_size_in_bytes}}</span></td>
+	     							<td><span class="uiJsonPretty-number">{{indexStatistics.fielddata.evictions}}</span></td>
+	     						</tr>
+	     					</table>
+	     				</div>	
+	   			     </div>
+	   			     <div class="dropdown-menu" id="closedIndex" style="width:60%;postion:fixed;left:200px;top:150px;
+	       						background: -moz-linear-gradient(center top , rgba(84, 84, 84, 0.75), rgba(54, 54, 54, 0.75), rgba(64, 64, 64, 0.75)) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  								border: 1px solid #666;
+     							box-shadow: -1px 2.5px 4px -3px black, -1px -2.5px 4px -3px black, 3px 2.5px 4px -3px black, 3px -2.5px 4px -3px black;
+    							padding: 1px 0 2px;position: absolute;" >
+  						<div class="uiPanel-titleBar">
+  							<button class="uiPanel-close"  ng-click="close()" type="button"><i class="fa fa-times"></i></button>
+  							<p><span class="uiJsonPretty-string">已关闭的index:</span></p>
+  						</div>
+	      				<div style="width:90%;margin-left:30px;overflow-y:auto;">
+	        				<table  id="closedIndexTable" class="table table-bordered">
+	     						<tr >
+	     			   				<th  width="12%"><span class="uiJsonPretty-name">indices</span></th>
+	     							<th  width="12%"><span class="uiJsonPretty-name">操作</span></th>
+	     						</tr>
+	     						<tr ng-repeat="(key,value) in indices">
+	     			    			<td><span class="uiJsonPretty-number">{{key}}</span></td>
+	     							<td>
+	     								<button ng-click="openIndex(key)" type="button" class="button blue small" style="margin-left:30px">
+											开启
+										</button>
+									</td>
+	     						</tr>
+	     					</table>
+	     				</div>	
+	   			     </div>
+	   			     <div class="dropdown-menu" id="optimizeIndex" style="width:50%;postion:fixed;left:250px;top:150px;
+	       						background: -moz-linear-gradient(center top , rgba(84, 84, 84, 0.75), rgba(54, 54, 54, 0.75), rgba(64, 64, 64, 0.75)) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    							/* border: 1px solid #666; */
+   								box-shadow: -1px 2.5px 4px -3px black, -1px -2.5px 4px -3px black, 3px 2.5px 4px -3px black, 3px -2.5px 4px -3px black;
+   								position: absolute;" >
+  						<div class="uiPanel-titleBar">
+  							<button class="uiPanel-close"  ng-click="close()" type="button"><i class="fa fa-times"></i></button>
+  							<p><span class="uiJsonPretty-string">index优化(</span><span id="optimize_index" class="uiJsonPretty-number"></span><span style="color:white">):</span></p>
+  						</div>
+	   			    	<div style="width:90%;margin-left:40px;overflow-y:auto;" id="checkbox">
+	   			    	 	<label class="uiPanelForm-field">
+								<div class="uiPanelForm-label"><span class="uiJsonPretty-number">
+									Maximum # Of Segments
+									*</span>
+								</div>
+								<div class="uiField uiTextField">
+									<input type="text" name="max_num_segments" value="1" id="segments">
+								</div>
+							</label>
+							<label class="uiPanelForm-field">
+								<div class="uiPanelForm-label"><span class="uiJsonPretty-number">Only Expunge Deletes</span></div>
+								<div class="uiCheckField">
+									<input type="checkbox" name="only_expunge_deletes">
+								</div>
+							</label>
+							<label class="uiPanelForm-field">
+								<div class="uiPanelForm-label"><span class="uiJsonPretty-number">refresh</span></div>
+								<div class="uiCheckField">
+									<input type="checkbox" name="refresh" checked="checked">
+								</div>
+							</label>
+							<label class="uiPanelForm-field">
+								<div class="uiPanelForm-label"><span class="uiJsonPretty-number">Wait For Merge</span></div>
+								<div class="uiCheckField">
+									<input type="checkbox" name="wait_for_merge">
+								</div>
+							</label>
+	   			    	   <!--  <ul>
+	   			    	      <li><span class="uiJsonPretty-number">段数优化:</span><input type="text"></input></li>
+	   			    	      <li><span class="uiJsonPretty-number">Only Expunge Deletes:</span><input type="checkbox"></input></li>
+	   			    	      <li><span class="uiJsonPretty-number">refresh:</span><input type="checkbox"></input></li>
+	   			    	      <li><span class="uiJsonPretty-number">Wait For Merge:</span><input type="checkbox"></input></li>
+	   			    	    </ul> -->
+	   			    	</div>
+	   			    	<div class="pull-right">
+	   			    	  	<button  type="button" class="button blue small" ng-click="optimize()">
+									ok
+								</button>
+	   			    	  	<button ng-click="close()" type="button" class="button blue small">
+									cancel
+								</button>
+	   			    	</div>
+	   			    </div>
+				<ul class="pagination">
+					<li ng-if="cluster.indices_pagination.currentPage > 1">
+						<a href="javascript:" ng-click="showIndicesList(cluster.indices_pagination.currentPage > 1 ? cluster.indices_pagination.currentPage-1 : 1)" title="上一页">&laquo;</a>
+					</li>
+					<li ng-repeat="page in cluster.indices_pagination.pages" ng-show="page > cluster.indices_pagination.currentPage-5 && page < cluster.indices_pagination.currentPage + 5">
+						<a href="javascript:" title="第{{page}}页" ng-show="page==cluster.indices_pagination.currentPage" style="color:#000">{{page}}</a>
+						<a href="javascript:" ng-click="showIndicesList(page)" title="第{{page}}页" ng-show="page!=cluster.indices_pagination.currentPage">{{page}}</a>
+					</li>
+					<li ng-if="cluster.indices_pagination.currentPage < cluster.indices_pagination.pageNum">
+						<a href="javascript:" ng-click="showIndicesList(cluster.indices_pagination.currentPage < cluster.indices_pagination.pageNum ? cluster.indices_pagination.currentPage+1:cluster.indices_pagination.pageNum)" title="下一页">&raquo;</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

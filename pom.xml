@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.hansight.kunlun</groupId>
+	<artifactId>kunlun</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+
+	<name>kunlun</name>
+	<url>http://www.hansight.com</url>
+
+	<modules>
+		<module>kunlun-common</module>
+		<module>kunlun-web</module>
+		<module>kunlun-logger</module>
+		<module>kunlun-analysis</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<junit.version>4.11</junit.version>
+		<jdk.version>1.7</jdk.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>${jdk.version}</source>
+						<target>${jdk.version}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.4</version>
+					<configuration>
+						<descriptors><!--描述文件路径 -->
+							<descriptor>assembly.xml</descriptor>
+						</descriptors>
+					</configuration>
+					<executions><!--执行器 mvn assembly:assembly -->
+						<execution>
+							<id>make-assembly</id>
+							<!--名字任意 -->
+							<phase>package</phase>
+							<!-- 绑定到package生命周期阶段上 -->
+							<goals>
+								<goal>single</goal>
+								<!-- 只运行一次 -->
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

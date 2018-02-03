@@ -1,0 +1,21 @@
+<div id="hs_menu">
+	<div ng-repeat="menu in menus">
+		<div onmouseover="this.className='menu_mouseover'" onmouseout="this.className='menu_mouseout'"
+		  id="menu{{menu.id}}" class="the_menu">
+			<span ng-click="showSubMenu(menu)" class="the_menu_span">&nbsp;&nbsp;<i class="fa fa-lg fa-fw {{menu.iconCSS}}" ng-mouseover="showFloatSubMenu(menu)"></i>&nbsp;<span class="menu_span">{{menu.menuName}}</span></span>
+		</div>
+		<div class="submenu" id="menu_{{menu.id}}" style="display:none">	
+			<ul>
+				<li ng-repeat="subMenu in menu.subMenus" ng-click="openSubMenu(subMenu)"
+					onmouseover="this.className='menu_mouseover'" onmouseout="this.className='menu_mouseout'">
+					<span class="menu_span">{{subMenu.menuName}}</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="menu_pan" id="menu_pan" ng-click="toggleMenu()"><i id="menu_pan_i" class="fa fa-arrow-circle-left hit"></i><div>
+
+
+
+

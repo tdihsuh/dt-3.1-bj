@@ -1,0 +1,84 @@
+<style>
+  .noarrow>a:after {
+    display: none !important;
+  }
+</style>
+
+<li ng-repeat="pulldown in dashboard.current.nav" ng-controller="PulldownCtrl" ng-show="pulldown.enable"><kibana-simple-panel type="pulldown.type" ng-cloak></kibana-simple-panel></li>
+
+<li ng-if="dashboard.current.loader.show_home !== false"><a bs-tooltip="'跳转到缺省仪表盘'" data-placement="bottom" ng-click="goto_default()" href='#/dashboard'><i class='icon-home'></i></a></li>
+<li class="dropdown" ng-show="showDropdown('load')" >
+  <a href="#" bs-tooltip="'打开'" data-placement="bottom" class="dropdown-toggle" data-toggle="dropdown" ng-click="elasticsearch_dblist('title:'+elasticsearch.query+'*')">
+    <i class='icon-folder-open'></i>
+  </a>
+
+
+  <ul class="dropdown-menu" style="padding:10px">
+    <li ng-if='dashboard.current.loader.load_elasticsearch != false'>
+      <form class="nomargin">
+        <input type="text" ng-model="elasticsearch.query" ng-change="elasticsearch_dblist('title:'+elasticsearch.query+'*')" placeholder="Type to filter"/>
+      </form>
+      <h6 ng-hide="elasticsearch.dashboards.length">找不到匹配的仪表盘</h6>
+      <table class="table table-condensed table-striped">
+        <tr bindonce ng-repeat="row in elasticsearch.dashboards | orderBy:['_id']">
+          <td><a confirm-click="elasticsearch_delete(row._id)" confirmation="Are you sure you want to delete the {{row._id}} dashboard"><i class="icon-remove"></i></a></td>
+          <td><a href="#/dashboard/elasticsearch/{{row._id}}" bo-text="row._id"></a></td>
+          <td><a><i class="icon-share" ng-click="share = dashboard.share_link(row._id,'elasticsearch',row._id)" bs-modal="'app/partials/dashLoaderShare.html'"></i></a></td>
+        </tr>
+      </table>
+    </li>
+
+    <li class="dropdown-submenu noarrow" ng-show="dashboard.current.loader.load_gist || dashboard.current.loader.load_local">
+      <a tabindex="-1" class="small" style="padding:0"><i class="icon-caret-left"></i> 高级</a>
+      <ul class="dropdown-menu" style="padding:10px">
+        <li ng-show='dashboard.current.loader.load_local'>
+          <h5>本地文件 <tip>从本地读入JSON格式的仪表盘文件</tip></h5>
+          <form>
+            <input type="file" id="dashupload" dash-upload /><br>
+          </form>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+
+</li>
+<li class="dropdown"ng-show="showDropdown('save')">
+  <a href="#"  bs-tooltip="'保存'" data-placement="bottom" class="dropdown-toggle" data-toggle="dropdown">
+    <i class='icon-save'></i>
+  </a>
+
+
+  <ul class="dropdown-menu" style="padding:10px">
+
+    <li ng-show="dashboard.current.loader.save_elasticsearch != false">
+      <form class="input-prepend nomargin">
+        <button class="btn" ng-click="elasticsearch_save('dashboard')"><i class="icon-save"></i></button>
+        <input class='input-medium' ng-model="dashboard.current.title" type="text" ng-model="elasticsearch.title"/>
+      </form>
+    </li>
+
+    <li class="dropdown-submenu noarrow" ng-show="dashboard.current.loader.save_local != false || dashboard.current.loader.save_gist != false || dashboard.current.loader.save_default != false">
+      <a tabindex="-1" class="small" style="padding:0"><i class="icon-caret-left"></i> 高级</a>
+      <ul class="dropdown-menu">
+
+        <li ng-show="dashboard.current.loader.save_default != false">
+          <a class="link" ng-click="set_default()">保存为主页</a>
+        </li>
+        <li ng-show="dashboard.current.loader.save_default != false">
+          <a class="link" ng-click="purge_default()">重置主页</a>
+        </li>
+        <li ng-show="dashboard.current.loader.save_local != false">
+          <a class="link" ng-click="dashboard.to_file()">导出为文件</a>
+        </li>
+
+      </ul>
+    </li>
+  </ul>
+
+
+</li>
+<li ng-show="showDropdown('share')"><a bs-tooltip="'分享'" data-placement="bottom" ng-click="elasticsearch_save('temp',dashboard.current.loader.save_temp_ttl)" bs-modal="'app/partials/dashLoaderShare.html'"><i class='icon-share'></i></a></li>
+
+<li ng-show="dashboard.current.editable" bs-tooltip="'配置仪表盘'" data-placement="bottom"><a class="link" config-modal="app/partials/dasheditor.html" kbn-model="dashboard"><i class='icon-cog'></i></a></li>
+

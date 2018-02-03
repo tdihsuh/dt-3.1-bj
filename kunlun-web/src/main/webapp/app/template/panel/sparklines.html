@@ -1,0 +1,52 @@
+<div id="subPanel" ng-init="initSparklines()">
+	<div class="panel_txt">标题<i class="fa fa-question-circle" ng-show="panel.title.description" title="{{panel.title.description}}"></i>：</div>
+	<div class="panel_val"><input type="text" ng-model="panel.form.title" class="form-control" placeholder="请输入面板标题" required/></div>
+	<div class="panel_pro"><span class="bar_span_radio"><i id="showTitle" class="{{panel.form.showTitle ? 'fa fa-check-square-o':'fa fa-square-o'}} hs_cursor" ng-click="clickShowTitle()">是否显示</i></span></div>
+	<div class="panel_txt">宽度<i class="fa fa-question-circle" ng-show="panel.columns.description" title="{{panel.columns.description}}"></i>：</div>
+	<div class="panel_val">
+		<select ng-options="c.value for c in panel.columns.value" ng-model='panel.form.column' class="form-control" required>
+			<option value="">请选择列数</option>
+		</select>
+	</div>
+	<div class="panel_txt">高度</div>
+	<div class="panel_val"><input type="text" ng-model="panel.form.height" class="form-control" required/></div>
+	<div class="panel_txt">统计<i class="fa fa-question-circle" ng-show="panel.aggs1.description" title="{{panel.aggs1.description}}"></i>：</div>
+	<div class="panel_val">
+		<select ng-options="a.value for a in panel.aggs1.value" class="form-control" ng-model="panel.form.aggs1.type" required></select>
+	</div>
+	<div class="panel_pro">
+		<!-- 
+		<div ng-show="panel.form.aggs1.type.key == 'time'">
+			<input class="form-control hs_input_datepicker hs_left input_space" type="text" id="datepicker_sparklines_from" maxlength="10" placeholder="yyyy-MM-dd" ng-model="panel.form.datepicker_sparklines_from">
+			<input class="form-control hs_input_datepicker hs_left input_space" type="text" id="datepicker_sparklines_time_from" maxlength="8" placeholder="HH:mm:ss" ng-model="panel.form.datepicker_sparklines_time_from">
+		</div>
+		 -->
+		<div ng-show="panel.form.aggs1.type.key == 'field'">
+			<input class="form-control panel_pro_width hs_left input_space" type="text" placeholder="请输入字段名称" ng-model="panel.form.aggs1.field"/>
+			<input class="form-control panel_pro_width hs_left input_space" type="text" placeholder="请输入字段值" ng-model="panel.form.aggs1.fieldValue"/>
+		</div>
+	</div>
+	<div class="panel_txt">统计范围<i class="fa fa-question-circle" title="默认显示近5分钟的数据"></i>：</div>
+	<div class="panel_pro">
+		<input class="form-control panel_pro_width hs_left" type="text" ng-model="panel.form.aggs1.range.value"/>
+		<select ng-options="p.value for p in panel.aggs.value[0].properties" class="form-control panel_pro_width hs_left input_space" ng-model="panel.form.aggs1.range.type" required></select>
+	</div>
+	<div class="panel_txt">统计单位<i class="fa fa-question-circle" title="每隔多少时间统计一次"></i>：</div>
+	<div class="panel_val">
+		<input class="form-control panel_pro_width hs_left" type="text" ng-model="panel.form.refresh"/>
+		<select ng-options="p.value for p in panel.aggs.value[0].properties" class="form-control panel_pro_width hs_left input_space" ng-model="panel.form.aggs1.range.unit" required></select>
+	</div>
+	<div class="panel_txt">图例<i class="fa fa-question-circle" ng-show="panel.legend.description" title="{{panel.legend.description}}"></i>：</div>
+	<div class="panel_val">
+		<select ng-options="l.value for l in panel.legend.value" class="form-control" ng-model="panel.form.legend"></select>
+	</div>
+	<div class="panel_pro">
+		<span class="bar_span_radio"><i id="xAxis" class="{{panel.form.xAxis ? 'fa fa-check-square-o':'fa fa-square-o'}} hs_cursor" ng-click="clickXAxis()">X轴</i></span>
+		<span class="bar_span_radio"><i id="yAxis" class="{{panel.form.yAxis ? 'fa fa-check-square-o':'fa fa-square-o'}} hs_cursor" ng-click="clickYAxis()">Y轴</i></span>
+		<span class="bar_span_color_txt">X轴文本倾斜度：</span>
+		<span class="bar_span_color_input"><input type="number" class="form-control" ng-model="panel.form.xRotate"/></span>
+		<span class="bar_span_color_txt">颜色</span>
+		<span class="bar_span_color_input"><input type="text" id="colorpicker" name="color" class="form-control"/></span>
+	</div>
+</div>
+<script>

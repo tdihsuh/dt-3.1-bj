@@ -1,0 +1,55 @@
+<div id="subPanel" ng-init="initHistogram()">
+	<div class="panel_txt">标题<i class="fa fa-question-circle" ng-show="panel.title.description" title="{{panel.title.description}}"></i>：</div>
+	<div class="panel_val"><input type="text" ng-model="panel.form.title" class="form-control" placeholder="请输入面板标题" required/></div>
+	<div class="panel_pro"><span class="bar_span_radio"><i id="showTitle" class="{{panel.form.showTitle ? 'fa fa-check-square-o':'fa fa-square-o'}} hs_cursor" ng-click="clickShowTitle()">是否显示</i></span></div>
+	<div class="panel_txt">宽<i class="fa fa-question-circle" ng-show="panel.columns.description" title="{{panel.columns.description}}"></i>：</div>
+	<div class="panel_val">
+		<select ng-options="c.value for c in panel.columns.value" ng-model='panel.form.column' class="form-control" required>
+			<option value="">请选择列数</option>
+		</select>
+	</div>
+	<div class="panel_txt">高度</div>
+	<div class="panel_val"><input type="number" ng-model="panel.form.height" class="form-control" required/></div>
+	<div class="panel_txt">统计<i class="fa fa-question-circle" ng-show="panel.aggs.description" title="{{panel.aggs.description}}"></i>：</div>
+	<div class="panel_val">
+		<select ng-options="a.value for a in panel.aggs.value" class="form-control" ng-model="panel.form.aggs.type" required>
+			<option value="">请选择统计方式</option>
+		</select>
+	</div>
+	<div class="panel_pro">
+		<input type="text" class="form-control panel_pro_width" placeholder="请输入字段名称" ng-show="panel.form.aggs.type.key == 'field'" ng-model="panel.form.aggs.value" required/>
+		<div ng-show="panel.form.aggs.type.key == 'time'">
+			<select ng-options="p.value for p in panel.form.aggs.type.properties" class="form-control panel_pro_width" ng-model="panel.form.aggs.value" required></select>
+		</div>
+	</div>
+	<div class="panel_txt">样式<i class="fa fa-question-circle" ng-show="panel.style.description" title="{{panel.style.description}}"></i>：</div>
+	<div class="panel_val">
+		<select ng-options="s.value for s in panel.style.value" class="form-control" ng-model="panel.form.style" required>
+			<option value="">请选择视图样式</option>
+		</select>
+	</div>
+	<div class="panel_pro">
+		<div ng-show="panel.form.style.key == 'bar' || panel.form.style.key == 'stacked_bar'">
+			<span class="bar_span_radio"><i id="xAxis" class="{{panel.form.xAxis ? 'fa fa-check-square-o':'fa fa-square-o'}} hs_cursor" ng-click="clickXAxis()">X轴</i></span>
+			<span class="bar_span_radio"><i id="yAxis" class="{{panel.form.yAxis ? 'fa fa-check-square-o':'fa fa-square-o'}} hs_cursor" ng-click="clickYAxis()">Y轴</i></span>
+			<span class="bar_span_color_txt">X轴文本倾斜度：</span>
+			<span class="bar_span_xRotate_input"><input type="number" class="form-control" ng-model="panel.form.xRotate"/></span>
+			<span class="bar_span_color_txt">颜色</span>
+			<span class="bar_span_color_input"><input type="text" id="colorpicker" name="color" class="form-control"/></span>
+			<span ng-show="panel.form.style.key == 'stacked_bar'" class="bar_span_aggs_input"><input type="text" class="form-control panel_pro_width" ng-model="panel.form.aggs.aggsField"/></span>
+		</div>
+	</div>
+	<div ng-show="panel.form.style.key == 'bar'">
+		<div class="panel_txt">排序<i class="fa fa-question-circle" ng-show="panel.sortterm.description" title="{{panel.sortterm.description}}"></i>：</div>
+		<div class="panel_val">
+			<select ng-options="s.value for s in panel.sortterm.value" class="form-control" ng-model="panel.form.sortterm"></select>
+		</div>
+		<div class="panel_pro">
+			<select ng-options="s.value for s in panel.sort.value" class="form-control" ng-model="panel.form.sort" style="width:15%"></select>
+		</div>
+	</div>
+	<div class="panel_txt">图例<i class="fa fa-question-circle" ng-show="panel.legend.description" title="{{panel.legend.description}}"></i>：</div>
+	<div class="panel_val">
+		<select ng-options="l.value for l in panel.legend.value" class="form-control" ng-model="panel.form.legend"></select>
+	</div>
+</div>

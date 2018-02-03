@@ -1,0 +1,69 @@
+<div id="aggstats" data-ng-init="initAggStats()">
+	<div style="clear:both;width:15%;font-weight:bold;font-size:20px;padding-left:9px;padding-top:16px">Beta</div>
+	<div class="panel_txt1 editor-option">
+		<label >标题</label><input name="title" type="text" class="form-control" ng-model="panel.form.title" required></input>
+	</div>
+	<div class="panel_pro4 editor-option">
+		<label>宽</label> 
+		<select class="form-control" ng-options="c.value for c in panel.columns.value" ng-model='panel.form.column' required>
+			<option value="">请选择列数</option>
+		</select>
+	</div>
+	<div class="panel_pro3 editor-option">
+        <label>查看查询语句 <i class="fa fa-question-circle hs_cursor" title="允许点击查看查询语句" ></i>
+        </label>
+        <input type="checkbox" ng-model="panel.form.spyable" ng-checked="panel.form.spyable">
+    </div>
+	<div style="clear:both;width:15%;font-weight:bold;font-size:20px;padding-left:9px;padding-top:16px">详细</div>
+	<div class="panel_txt1 editor-option">
+      <label>统计类型</label>
+      <select class="form-control" ng-options="c for c in panel.stats" ng-model='panel.form.statsShow' required>
+		<option value="">请选择统计类型</option>
+	  </select>	
+	</div>
+    <div class="panel_pro4 editor-option">
+      <label>字段 <i class="fa fa-question-circle hs_cursor" title="字段类型"></i></label>
+        <input placeholder="请输入字段" type="text" class="form-control" ng-model="panel.form.field" required>
+    </div>
+    <div class="panel_pro3 editor-option">
+      <label>单位</label>
+        <input type="text" class="form-control" ng-model="panel.form.unit">
+    </div>
+	<div style="clear:both;width:15%;font-weight:bold;font-size:20px;padding-left:9px;padding-top:16px">列</div>
+	<div class="editor-option" style="clear:both;padding:9px;" ng-repeat="stat in panel.stats">
+      <label>{{stat}}</label><input type="checkbox" ng-model="panel.stats[stat]" ng-checked="panel.stats[stat]">
+    </div>
+	<div style="clear:both;width:15%;font-weight:bold;font-size:20px;padding-left:9px;padding-top:16px">显示格式</div>
+    <div class="panel_txt1 editor-option">
+      <label>值类型</label>
+      <select ng-change="" class="form-control" ng-model="panel.format" ng-options="f for f in ['number','float','money','bytes']">
+      	<option value="">请选择值类型</option>
+      </select>
+    </div>
+    <div class="panel_pro3 editor-option" style="width:7%">
+      <label>字号</label>
+      <select class="form-control" ng-model="panel.form.fontsize" ng-options="f.value for f in panel.fontsize.value" required>
+      </select></span>
+    </div>
+    <div class="panel_pro3 editor-option">
+      <label>显示分割</label>
+      <select class="form-control" ng-model="panel.display_breakdown" ng-options="f for f in ['yes', 'no']">
+      	<option value="">是否显示分割</option>
+      </select></span>
+    </div>
+    <div class="panel_pro4 editor-option">
+      <label>查询列名</label>
+        <input type="text" class="form-control" ng-model="panel.label_name" >
+    </div>
+	<div style="clear:both;width:15%;font-weight:bold;font-size:20px;padding-left:9px;padding-top:16px">查询</div>
+	<div class="panel_txt1 editor-option input-group">
+		<label style="width:85%;float:left;">查询</label><label style="width:15%;float:right;">确定</label>
+		<input type="text" class="form-control" ng-model="panel.form.query" style="width:85%"></input>
+		<span class="input-group-addon fa fa-map-marker hs_cursor" ng-click="showAggStatsConfirm()" style="clear:both;width:15%;min-height:34px;height:34px"></span>
+	</div>
+	<div class="panel_pro4 editor-option input-group" ng-repeat="confirm in panel.confirms">
+		<label style="width:85%;float:left;">确认条件</label><label style="width:15%;float:right;">取消</label>
+		<input type="text" class="form-control" pattern="[A-Za-z0-9_*]" ng-value="confirm.value" style="width:85%"  readonly/></input>
+		<span class="input-group-addon fa fa-times hs_cursor" ng-click="delAggStatsConfirm(confirm.value)" style="clear:both;width:15%;min-height:34px;height:34px"></span>
+	</div>
+</div>

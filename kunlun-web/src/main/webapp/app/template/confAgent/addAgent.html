@@ -1,0 +1,53 @@
+<style>
+	.ds_fm_lf {float:left; width:10%; min-width:100px; max-width:100px;  line-height:34px;}
+	.ds_fm_ct {float:left; width:89%;}
+	.ds_fm_in {float:left; width:250px;}
+	.ds_fm_tips {width:300px; float:left; line-height:34px;}
+</style>
+<div id="content">
+	<div id="conf_datasource">
+		<div class="theme"><i class="fa fa-cogs" style="margin-right:10px;"></i>添加采集器配置</div>
+		<div class="usermanager">
+			<div class="panelboard">
+				<form name="agentForm">
+					<div class="row">
+						<div class="ds_fm_lf">采集器名称</div>
+						<div class="ds_fm_ct">
+							<div class="input-group ds_fm_in">
+								  <span class="input-group-addon"><i class="fa fa-cogs fa-fw"></i></span>
+								   <input class="form-control" type="text" name="name" ng-change="agentChange(agent.name)" ng-model="agent.name"  required placeholder="采集器名称" style="font-size:12px">
+							</div>
+							<div  id="nameError" class="ds_fm_tips"></div>
+						 </div>
+					</div>
+					<div class="row">
+					<div class="ds_fm_lf">主机</div>
+						 	<div class="ds_fm_ct">
+								<div class="input-group ds_fm_in">
+								  <span class="input-group-addon"><i class="fa fa-desktop fa-fw"></i></span>
+								   <input class="form-control" type="text" name="ip" ng-model="agent.ip"  required ng-change="ipChange(agent.ip)" placeholder="ip地址" style="font-size:12px">
+								</div>
+								<div  id="ipError" class="ds_fm_tips"></div>
+							</div>
+					</div>
+					<div class="row">
+						<div class="ds_fm_lf">描述</div>
+						 	<div class="ds_fm_ct">
+								<div class="input-group ds_fm_in">
+									  <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+									   <input class="form-control" type="text" name="description" ng-model="agent.description" placeholder="采集器信息"  style="font-size:12px">
+								</div>
+								<div class="ds_fm_tips" id="descriptionError"></div>
+							</div>
+					</div>
+					<div class="row">
+						<div class="ds_fm_lf">
+					          <button class="btn btn-default btn-xs" type="submit" ng-click="addConfAgent(agent)" > 添加</button >
+					          <button class="btn btn-default btn-xs" type="button" ng-click="confAgentList()"> 取消</button >
+		       			</div>
+					</div>
+		        </form >
+			</div>
+		</div>
+	</div>
+</div>

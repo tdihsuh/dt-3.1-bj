@@ -1,0 +1,23 @@
+<div class="editor-row">
+  <div class="section">
+    <h5>值</h5>
+    <div class="editor-option">
+      <label class="small">图表值</label>
+      <select ng-change="set_refresh(true)" class="input-small" ng-model="panel.mode" ng-options="f for f in ['count','min','mean','max','total']"></select>
+    </div>
+    <div class="editor-option">
+      <label class="small">时间字段</label>
+      <input ng-change="set_refresh(true)" placeholder="Start typing" bs-typeahead="fields.list" type="text" class="input-small" ng-model="panel.time_field">
+    </div>
+    <div class="editor-option" ng-show="panel.mode != 'count'">
+      <label class="small">值字段 <tip>本字段类型必须是数值</tip></label>
+        <input ng-change="set_refresh(true)" placeholder="Start typing" bs-typeahead="fields.list" type="text" class="input-large" ng-model="panel.value_field">
+    </div>
+  </div>
+  <div class="section">
+    <h5>序列转换</h5>
+    <div class="editor-option">
+      <label class="small">导数 <tip>图标上画序列值的变化</tip></label><input type="checkbox" ng-model="panel.derivative" ng-checked="panel.derivative" ng-change="set_refresh(true)">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div id="content">
+	<div id="report">
+		<div class="theme"><i class="fa-fw fa fa-home"></i>Top 5最严重时间同比柱状图</div>
+		<div class="clearfix">
+			<table class="report_img">
+				<tr class="title">
+					<td colspan="8"><i class="fa fa-map-marker"></i>&nbsp;TOP 5安全威胁事件</td>
+				</tr>
+				<tr>
+					<td width="10%" align="right">时间段：</td>
+					<td width="20%">
+						<select style="width: 100%" id="timeInterval" class="form-control">
+							<option value="1">一天</option>
+							<option value="7">一周</option>
+							<option value="14">两周</option>
+							<option value="21">三周</option>
+							<option value="30">一个月</option>
+						</select>
+					</td>
+					<td width="12%" align="right">指定日期：从
+					</td>
+					<td width="20%">
+						<div class="input-group">  
+						    <input id="datepicker_from" type="text" placeholder="开始日期" class="form-control"></input>  
+						    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						</div>
+					</td>
+					<td width="3%" align="center">到</td>
+					<td width="22%">
+						<div class="input-group">
+							<input type="text" id="datepicker_to" placeholder="结束日期" class="form-control" onblur="checkDate()">
+							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						</div>
+					</td>
+					<td width="6%" align="right">样式：
+					</td>
+					<td width="10%">
+						<img class="charttype" src="images/icons/chartbar.png" data-value="bar" title="柱状图" />
+						<img class="charttype" src="images/icons/chartarea_gray.png" data-value="area" title="瀑布图" />
+						<img class="charttype" src="images/icons/chartline_gray.png" data-value="line" title="线形图" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8" align="center">
+						<div id="reportContainer">
+							<!--<svg></svg>-->
+						</div>
+						<!--<img src="images/report/topSecurity.png" width="700" height="400"/>-->
+					</td>
+				</tr>
+			</table>
+			<table class="report_desc">
+				<tr class="title">
+					<td colspan="8"><i class="fa fa-map-marker"></i>&nbsp;报表详细分析</td>
+				</tr>
+				<tr>
+					<td>
+						<ul>
+							<li>本周与上周严重事件对比，以上周的数据为基础，Top 5安全事件在本周的变化情况如下：</li>
+							<li>1. Injection； 与上周同期相比，减少了近1/3</li>
+							<li>2. mis-configuration；本周比上周增加超过1000个</li>
+							<li>3. DDoS；本周比上周遭受到的DDoS攻击下降近1/4</li>
+							<li>4. XSS；本周比上周遭受到XSS攻击有所增加</li>
+							<li>5. CSRF；本周与上周相比，遭受的跨站请求伪造有明显改善</li>
+						</ul>
+						<button type="button" class="btn btn-default" ng-click="exportReport()">
+							导出PDF格式
+						</button>
+					</td>
+				</tr>
+			</table>
+			</br></br>
+		</div>
+	</div>
+</div>

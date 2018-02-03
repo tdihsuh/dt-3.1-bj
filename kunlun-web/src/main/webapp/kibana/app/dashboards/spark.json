@@ -1,0 +1,231 @@
+{
+  "title": "spark",
+  "services": {
+    "query": {
+      "list": {
+        "0": {
+          "query": "_type:weblogs",
+          "alias": "",
+          "color": "#7EB26D",
+          "id": 0,
+          "pin": true,
+          "type": "lucene",
+          "enable": true
+        },
+        "1": {
+          "id": 1,
+          "color": "#E24D42",
+          "alias": "",
+          "pin": true,
+          "type": "lucene",
+          "enable": true,
+          "query": "_type:anormal"
+        }
+      },
+      "ids": [
+        0,
+        1
+      ]
+    },
+    "filter": {
+      "list": {
+        "0": {
+          "from": "2013-12-08T16:01:01.000Z",
+          "to": "2013-12-21T15:59:59.000Z",
+          "type": "time",
+          "field": "datetime",
+          "mandate": "must",
+          "active": true,
+          "alias": "",
+          "id": 0
+        }
+      },
+      "ids": [
+        0
+      ]
+    }
+  },
+  "rows": [
+    {
+      "title": "访问量",
+      "height": "500px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "span": 4,
+          "editable": true,
+          "type": "hits",
+          "loadingEditor": false,
+          "style": {
+            "font-size": "48pt"
+          },
+          "arrangement": "horizontal",
+          "chart": "total",
+          "counter_pos": "above",
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "spyable": false,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              0
+            ]
+          },
+          "title": "日志总数"
+        },
+        {
+          "error": false,
+          "span": 12,
+          "editable": true,
+          "type": "spark_shell",
+          "loadingEditor": false,
+          "title": "Spark Shell"
+        },
+        {
+          "error": false,
+          "span": 12,
+          "editable": true,
+          "type": "spark_result",
+          "loadingEditor": false,
+          "size": 100,
+          "pages": 5,
+          "offset": 0,
+          "sort": [
+            "_score",
+            "desc"
+          ],
+          "overflow": "min-height",
+          "fields": [],
+          "highlight": [],
+          "sortable": true,
+          "header": true,
+          "paging": true,
+          "field_list": true,
+          "all_fields": false,
+          "trimFactor": 300,
+          "localTime": false,
+          "timeField": "@timestamp",
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              0
+            ]
+          },
+          "style": {
+            "font-size": "9pt"
+          },
+          "normTimes": true,
+          "title": "Spark Result"
+        }
+      ],
+      "notice": false
+    },
+    {
+      "title": "服务器监控",
+      "height": "250px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [],
+      "notice": false
+    },
+    {
+      "title": "匹配的日志",
+      "height": "650px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [],
+      "notice": false
+    }
+  ],
+  "editable": true,
+  "index": {
+    "interval": "day",
+    "pattern": "[logs_]YYYYMMDD,[anormal]",
+    "default": "_all",
+    "warm_fields": false
+  },
+  "style": "light",
+  "failover": false,
+  "panel_hints": true,
+  "loader": {
+    "save_gist": false,
+    "save_elasticsearch": true,
+    "save_local": true,
+    "save_default": true,
+    "save_temp": true,
+    "save_temp_ttl_enable": true,
+    "save_temp_ttl": "30d",
+    "load_gist": true,
+    "load_elasticsearch": true,
+    "load_elasticsearch_size": 20,
+    "load_local": true,
+    "hide": false
+  },
+  "pulldowns": [
+    {
+      "type": "query",
+      "title": "查询",
+      "collapse": false,
+      "notice": false,
+      "query": "*",
+      "pinned": true,
+      "history": [
+        "_type:anormal",
+        "_type:weblogs",
+        "*"
+      ],
+      "remember": 10,
+      "enable": true
+    },
+    {
+      "type": "filtering",
+      "title": "过滤",
+      "collapse": true,
+      "notice": false,
+      "enable": true
+    }
+  ],
+  "nav": [
+    {
+      "type": "timepicker",
+      "title": "时间段",
+      "collapse": false,
+      "notice": false,
+      "status": "Stable",
+      "time_options": [
+        "5分钟",
+        "15分钟",
+        "1小时",
+        "6小时",
+        "12小时",
+        "24小时",
+        "2天",
+        "7天",
+        "30天"
+      ],
+      "refresh_intervals": [
+        "5秒",
+        "10秒",
+        "30秒",
+        "1分钟",
+        "5分钟",
+        "15分钟",
+        "30分钟",
+        "1小时",
+        "2小时",
+        "1天"
+      ],
+      "timefield": "datetime",
+      "enable": true,
+      "now": false,
+      "filter_id": 0
+    }
+  ],
+  "refresh": false
+}

@@ -1,0 +1,53 @@
+#conf_warning .theme{
+	width:50%;
+	font-size:20px;
+	font-weight:bold;
+	height:40px;
+	color:#666;
+}
+
+#conf_warning .input-group{
+}
+#conf_warning .pagination{
+	float:left;
+	margin-right:8px;
+	margin-top:5px;
+}
+#conf_warning .delbutton{
+	float:right;
+	margin-right:8px;
+	margin-top:5px;
+}
+#conf_warning .tablediv{
+	float:left;
+	width:100%;
+}
+#conf_warning .paginationdiv{
+	float:left;
+	width:100%;
+}
+#conf_warning #conf_warning_div table{
+	margin-top:1px;
+	border-left:1px solid #C2C2C2;
+	border-top:1px solid #C2C2C2;
+	border-right-color: #CCC!important;
+	border-bottom-color: #CCC!important;
+	border-left-color: #CCC!important;
+	padding: 13px 13px 0;
+	overflow: visible;
+	background-color:#fff;
+}
+#conf_warning .indices_title{
+	height:40px;
+	text-align:center;
+	font-weight:bold;
+	background-color:#FAFAFA;
+}
+#conf_warning #indices_txt:hover{
+	background-color:#FAFAFA;
+}
+#conf_warning #indices_txt td{
+	height:40px;
+	text-align:left;
+	padding-right:5px;
+}

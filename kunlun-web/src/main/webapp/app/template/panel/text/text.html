@@ -1,0 +1,30 @@
+<div id="textPanel" data-ng-init="initText()">
+    
+   <div style="clear:both;width:15%;font-weight:bold;font-size:20px;padding-left:9px;padding-top:16px">Stable</div>
+	<div class="panel_txt1 editor-option">
+		<label >标题</label><input name="title" type="text" class="form-control" ng-model="panel.form.title" required></input>
+	</div>
+	<div class="panel_pro4 editor-option">
+		<label>宽</label> 
+		<select class="form-control" ng-options="c.value for c in panel.columns.value" ng-model='panel.form.column' required>
+			<option value="">请选择列数</option>
+		</select>
+	</div>
+	<div class="panel_txt1 editor-option" style="clear:both;padding-top:16px">
+      <label>模式</label>
+      <select ng-options="m for m in ['html','markdown','text']" class="form-control" ng-model="panel.mode">
+		</select>
+    </div>
+    <div class="panel_pro3 editor-option" style="width:7%;padding-top:16px">
+      <div ng-show="panel.mode == 'text'">
+      	<label>字号</label>
+		<select ng-options="f.value for f in panel.fontsize.value" class="form-control panel_pro_width" ng-model="panel.form.fontsize" required>
+        </select>
+	  </div>
+    </div>
+    <div class="panel_txt1 editor-option" style="clear:both;width:60%;padding-top:16px">
+      <label>内容<i class="fa fa-question-circle"></i>：</label>
+      <textarea cols="120" rows="10" class="form-control" ng-model="panel.form.comment" placeholder="请输入文本内容"></textarea>
+    </div>
+	
+</div>

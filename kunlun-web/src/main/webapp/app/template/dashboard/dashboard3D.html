@@ -1,0 +1,70 @@
+<div id="hs_dashboard">
+	<div class="hs_block">
+		<div class="hs_left hs_theme"><i class="fa fa-dashboard"></i>仪表盘</div>
+		<div class="hs_right hs_margin_right_10"><table cellpadding="0" cellspacing="0" border="0" class="event_title">
+			<tr>
+				<td class="txt">日志计数</td>
+				<td rowspan="2" class="splitline">
+					<span id="logContainer" style="min-width: 80px; height: 30px; margin: 0 auto;width:80px;"></span>
+				</td>
+				<td class="txt">事件计数</td>
+				<td rowspan="2" class="splitline">
+					<span id="eventContainer" style="min-width: 80px; height: 30px; margin: 0 auto;width:80px;"></span>
+				</td>
+				<td class="txt">系统健康度</td>
+			</tr>
+			<tr>
+				<td class="num1">{{logNum | number}}</td>
+				<td class="num2">{{eventNum | number}}</td>
+				<td align="center"><canvas id="dashboard_health"></canvas></td>
+			</tr>
+		</table></div>
+	</div>
+	<div class="hs_block hs_bg_white">
+		<div class="hs_title">
+			<div class="hs_title_txt"><i class="fa fa-bar-chart-o"></i>安全态势分析</div>
+			<div class="hs_title_zoom btn-group">
+				<!--<span class="btn btn-default btn-sm"><i class="fa fa-minus"></i></span>
+				<span class="btn btn-default btn-sm"><i class="fa fa-resize-full"></i></span>-->
+			</div>
+		</div>
+		<div id="times" class="hs_block">
+			<table class="report_img">
+				<tr>
+					<td width="10%" align="right">时间段：</td>
+					<td width="20%">
+						<select style="width: 100%" class="form-control">
+							<option value="day">一天</option>
+							<option value="week">一周</option>
+							<option value="month">一月</option>
+						</select>
+					</td>
+					<td width="12%" align="right">指定日期：从</td>
+					<td width="20%">
+						<div class="input-group">
+							<input type="text" name="mydate" placeholder="起始日期" class="form-control datepicker" data-dateformat="yyyy-MM-dd">
+							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						</div>
+					</td>
+					<td width="3%" align="center">到</td>
+					<td width="22%">
+						<div class="input-group">
+							<input type="text" name="mydate" placeholder="结束日期" class="form-control datepicker" data-dateformat="yyyy-MM-dd">
+							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						</div>
+					</td>
+					<td width="13%">
+						<button type="submit" class="btn btn-default" ng-click="query()" title="查询">
+							<i class="fa fa-fw fa-search fa-lg"></i>
+						</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="charts" class="hs_block">
+			<div id="eventsColumn" class="hs_left"></div>
+			<div class="splitline hs_left" id="splitline"></div>
+			<div id="eventsPie" class="hs_right"></div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,31 @@
+[
+	{
+		"id":"1",
+		"name":"MySQL数据库",
+		"fqdn":"db1.hansight.com",
+		"port":"3306",
+		"num":"5",
+		"description":"MySQL数据库服务器"
+	},{
+		"id":"2",
+		"name":"演示终端",
+		"fqdn":"db3.hansight.com",
+		"port":"80",
+		"num":"4",
+		"description":"产品演示服务器"
+	},{
+		"id":"3",
+		"name":"交换机",
+		"fqdn":"db2.hansight.com",
+		"port":"8000",
+		"num":"5",
+		"description":"Cisco"
+	},{
+		"id":"4",
+		"name":"SQLServer数据库",
+		"fqdn":"db6.hansight.com",
+		"port":"8200",
+		"num":"7",
+		"description":"SQLServer数据库服务器"
+	}
+]

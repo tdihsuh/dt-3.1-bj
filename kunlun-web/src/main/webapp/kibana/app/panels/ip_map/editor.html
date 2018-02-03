@@ -1,0 +1,15 @@
+  <div class="editor-row">
+    <div class="editor-option">
+      <form>
+        <h6>字段 <tip>2字母缩写国家或者地区名</tip></h6>
+        <input bs-typeahead="fields.list" type="text" class="input-small" ng-model="panel.field" ng-change="set_refresh(true)">
+      </form>
+    </div>
+    <div class="editor-option">
+      <h6>最多 <tip>要画的最多国家或者地区数量</tip></h6>
+      <input class="input-mini" type="number" ng-model="panel.size" ng-change="set_refresh(true)">
+    </div>
+    <div class="editor-option"><h6>地图</h6>
+      <select ng-change="$emit('render')" class="input-small" ng-model="panel.map" ng-options="f for f in ['world', 'china', 'europe','usa']"></select>
+    </div>
+  </div>

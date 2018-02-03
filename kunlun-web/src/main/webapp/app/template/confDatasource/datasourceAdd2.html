@@ -1,0 +1,435 @@
+		<!-- NEW WIDGET START -->
+		<article class="col-sm-12 col-md-12 col-lg-12">
+
+			<!-- Widget ID (each widget will need unique ID)-->
+			<div class="jarviswidget" id="wid-id-2" data-widget-editbutton="false" data-widget-deletebutton="false">
+				<!-- widget options:
+				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+				data-widget-colorbutton="false"
+				data-widget-editbutton="false"
+				data-widget-togglebutton="false"
+				data-widget-deletebutton="false"
+				data-widget-fullscreenbutton="false"
+				data-widget-custombutton="false"
+				data-widget-collapsed="true"
+				data-widget-sortable="false"
+
+				-->
+				<header>
+					<h2><i class="fa fa-database" style="margin-right:10px;"></i>添加数据源</h2>
+
+				</header>
+
+				<!-- widget div-->
+				<div>
+
+					<!-- widget edit box -->
+					<div class="jarviswidget-editbox">
+						<!-- This area used as dropdown edit box -->
+
+					</div>
+					<!-- end widget edit box -->
+
+					<!-- widget content -->
+					<div class="widget-body fuelux">
+
+						<div class="wizard">
+							<ul class="steps">
+								<li data-target="#step1" class="active">
+									<span class="badge badge-info">1</span>第一步<span class="chevron"></span>
+								</li>
+								<li data-target="#step2">
+									<span class="badge">2</span>第二步<span class="chevron"></span>
+								</li>
+								<li data-target="#step3">
+									<span class="badge">3</span>第三步<span class="chevron"></span>
+								</li>
+								<li data-target="#step4">
+									<span class="badge">4</span>第四步<span class="chevron"></span>
+								</li>
+							</ul>
+							
+						</div>
+						<div class="step-content">
+							<form class="form-horizontal" id="fuelux-wizard" name="datasourceForm" novalidate >
+
+								<div class="step-pane active" id="step1">
+									<h3><strong>选择数据源类型</strong></h3>
+
+									<!-- wizard form starts here -->
+									<fieldset>
+										<div class="form-group">
+											<label class="col-md-2 control-label">数据源名称</label>
+											<div class="col-md-4">
+												<div class="input-group">
+													<span class="input-group-addon"><i class="fa fa-database fa-fw"></i></span>
+													<input class="form-control input-sm" id ="datasourceName"  type="text" name="datasourceName" ng-model="datasource.datasourceName" placeholder="数据源名称"  ng-change="dNChange(datasource.datasourceName)" required>
+													</div>
+												</div>
+												<span class="control-label" id="datasourceNameError" style="float:left;"></span>
+											</div>
+										<div class="form-group">
+											<label class="col-md-2 control-label">数据源类型</label>
+											<div class="col-md-4">
+												<div class="input-group">
+												  <span class="input-group-addon"><i class="fa fa-database  fa-fw"></i></span>
+														<select align="center" id="category" name="category" class="form-control input-sm"  ng-model="datasource.categoryId" ng-options="m.id as m.name for m in category " ng-change="selChange(datasource.categoryId)">
+							                                 <option value="" onmouseover="style.backgroundColor='#CCCCFF';" onmouseout="style.backgroundColor=''">--请选择---</option>
+													    </select>
+												</div>
+											</div>
+											<span id="categoryError"></span>
+										</div>
+
+										<div id="categoryType" style="display:none">
+											<div class="form-group">
+											<label class="col-md-2 control-label">日志类型</label>
+											<div class="col-md-4">
+												<div class="input-group">
+												  <span class="input-group-addon"><i class="fa fa-folder    fa-fw"></i></span>
+												    <select align="center" class="form-control input-sm" id="type" name="type" ng-model="datasource.type"  ng-change="typeChange(datasource.type)">
+												    	<option  value="" onmouseover="style.backgroundColor='#CCCCFF';" onmouseout="style.backgroundColor=''">--请选择---</option>
+												    	<option>log</option>
+												    	<option>event</option>
+												     </select>
+											    </div>
+											</div>
+											<span id="typeError"></span>
+											</div>
+											
+											<div class="form-group">
+											<label class="col-md-2 control-label">日志名称</label>
+											<div class="col-md-4">
+												<div class="input-group">
+													<span class="input-group-addon"><i class="fa fa-folder fa-fw"></i></span>
+													<input class="form-control input-sm" id ="categoryName"  type="text" name="categoryName" ng-model="categoryName" placeholder="日志名称"  ng-change="cNChange(categoryName)" required>
+													<input id ="type1"  type="hidden" name="type" >
+													<input id ="category1"  type="hidden" name="category1" >
+													</div>
+												</div>
+												<span id="categoryNameError"></span>
+											</div>
+										</div>
+										<div id="error">
+											<span id="agentError"></span><br>
+											<span id="forwarderError"></span>
+										</div>
+										
+									</fieldset>
+
+								</div>
+
+<!-- 								<div class="step-pane" id="step2"> -->
+<!-- 								<h3><strong>填写数据源信息 </strong> </h3> -->
+<!-- 								<fieldset> -->
+<!-- 									<div class="form-group" > -->
+<!-- 											<label class="col-md-2 control-label">协议</label> -->
+<!-- 											<div class="col-md-4"> -->
+<!-- 												<div class="input-group"> -->
+<!-- 													<span class="input-group-addon"><i class="fa fa-code-fork fa-fw"></i></span> -->
+<!-- 															<select class="form-control input-sm" id="protocol" name="protocol" ng-model="datasource.protocol" ng-change="proChange(datasource.protocol)"> -->
+<!-- 																<option value=""  onmouseover="style.backgroundColor="#CCCCFF";" onmouseout="style.backgroundColor=""">--请选择---</option> -->
+<!-- 																<option>file</option> -->
+<!-- 																<option>syslog-tcp</option> -->
+<!-- 																<option>syslog-udp</option> -->
+<!-- 																<option>snmp-trap</option> -->
+<!-- 																<option>snmp</option> -->
+<!-- 																<option>ftp</option> -->
+<!-- 																<option>nfs</option> -->
+<!-- 														 </select> -->
+<!-- 												</div> -->
+<!-- 											</div> -->
+<!-- 											<span id="protocolError"></span> -->
+<!-- 										</div> -->
+<!-- 											<div class="form-group"> -->
+<!-- 												<label class="col-md-2 control-label">采集器解析</label> -->
+<!-- 												<div class="col-md-4"> -->
+<!-- 													<div class="input-group"> -->
+<!-- 														<span class="input-group-addon"><i class="fa fa-cogs fa-fw"></i></span> -->
+<!-- 															<select align="center" id="agentParser" name="agentParser" class="form-control input-sm"  ng-model="datasource.agentParser"  ng-change="agentParserChange(datasource.agentParser)"> -->
+<!-- 								                                 <option value="" onmouseover="style.backgroundColor="#CCCCFF";" onmouseout="style.backgroundColor=""">--请选择---</option> -->
+<!-- 								                                  <option>default</option> -->
+<!-- 								                                  <option>tomcat</option> -->
+<!-- 								                                  <option>winevt</option> -->
+<!-- 								                                  <option>syslog_tcp</option> -->
+<!-- 								                                  <option>syslog_udp</option> -->
+<!-- 								                                  <option>snmp_tcp</option> -->
+<!-- 								                                  <option>snmp_udp</option> -->
+<!-- 								                                  <option>json</option> -->
+<!-- 								                                  <option>hdfs-line</option> -->
+<!-- 								                                  <option>hdfs-json</option> -->
+<!-- 														    </select> -->
+<!-- 													</div> -->
+<!-- 												</div> -->
+<!-- 												<span id="agentParserError"></span> -->
+<!-- 											</div> -->
+<!-- 										<div class="form-group"> -->
+<!-- 											<label class="col-md-2 control-label">转发器解析</label> -->
+<!-- 											<div class="col-md-4"> -->
+<!-- 												<div class="input-group"> -->
+<!-- 													<span class="input-group-addon"><i class="fa fa-share-square-o fa-fw"></i></span> -->
+<!-- 														<select align="center" id="forwarderParser" name="forwarderParser" class="form-control input-sm"  ng-model="datasource.forwarderParser"  ng-change="forwarderParserChange(datasource.forwarderParser)"> -->
+<!-- 							                                 <option value="" onmouseover="style.backgroundColor="#CCCCFF";" onmouseout="style.backgroundColor=""">--请选择---</option> -->
+<!-- 							                                 <option>regex</option> -->
+<!-- 							                                 <option>xml</option> -->
+<!-- 							                                 <option>json</option> -->
+<!-- 							                                 <option>delimit</option> -->
+<!-- 							                                 <option>cef</option> -->
+<!-- 													    </select> -->
+<!-- 												</div> -->
+<!-- 											</div> -->
+<!-- 											<span id="forwarderParserError"></span> -->
+<!-- 										</div> -->
+<!-- 									  </fieldset> -->
+											
+								
+								
+<!-- 								</div> -->
+
+								<div class="step-pane" id="step2">
+								<fieldset>
+										<h3><strong>添加路径和日志预读 </strong> </h3>
+											  <div class="form-group">
+											  <label class="col-md-2 control-label">路径</label>
+											  <div class="col-md-5">
+											    <div class="input-group">
+											     <span class="input-group-addon"><i class="fa fa-square-o fa-fw"></i></span>
+											     <input class="form-control input-sm" id="url" value ="路径"  type="text" name="url" ng-model="datasource.url" placeholder="路径"  ng-change="urlChange(datasource.url)" placeholder="正则"  style="font-size:12px">
+											    </div>
+											  </div>
+											  <span id="urlError"></span>
+											  </div>
+										</fieldset>
+									</div>
+									<div id="step32"  ng-show="2 == showLine">
+										<h3><strong>添加预定义</strong></h3>
+										<fieldset>
+										 <div class="form-group">
+										 <label class="col-md-2 control-label">主机</label>
+										  <div class="col-md-5">
+										    <div class="input-group">
+										     <span class="input-group-addon"><i class="fa fa-desktop fa-fw"></i></span>
+										     <input class="form-control input-sm" id="host" value="ipv4" type="text" name="host" ng-model="datasource.host" ng-change="hostChange(datasource.host)">
+										    </div>
+										  </div>
+										  <span class="control-label" id="hostError" style="float:left;"></span>
+										  </div>
+										  <div class="form-group">
+										  <label class="col-md-2 control-label">端口</label>
+										  <div class="col-md-5">
+										    <div class="input-group">
+										     <span class="input-group-addon"><i class="fa fa-adjust fa-fw"></i></span>
+										     <input class="form-control input-sm" id="port" value="80"  type="text" name="port" ng-model="datasource.port" ng-change="portChange(datasource.port)">
+										    </div>
+										  </div>
+										   <span class="control-label" id="portError"  style="float:left;"></span>
+										  </div>
+										  </fieldset>
+								</div>
+								<fieldset>
+										<h3><strong>添加预定义 </strong> </h3>
+											  <div class="form-group">
+											  <label class="col-md-2 control-label">路径</label>
+											  <div class="col-md-5">
+											    <div class="input-group">
+											     <span class="input-group-addon"><i class="fa fa-square-o fa-fw"></i></span>
+											     <input class="form-control input-sm" id="url" value ="路径"  type="text" name="url" ng-model="datasource.url" placeholder="路径"  ng-change="urlChange(datasource.url)" placeholder="正则"  style="font-size:12px">
+											    </div>
+											  </div>
+											  <span id="urlError"></span>
+
+											  </div>
+								       <div class="form-group">
+											 <label class="col-md-2 control-label">解析规则</label>
+											  <div class="col-md-5">
+											    <div class="input-group">
+<!-- 											     <span class="input-group-addon"><i class="fa fa-files-o fa-fw"></i></span> -->
+<!-- 											     <input class="form-control" id="pattern"  type="text" name="pattern" ng-model="datasource.pattern" placeholder="正则"  ng-change="patternChange(datasource.pattern)"> -->
+											   <textarea class="form-control input-sm"  id="pattern" type="text" name="pattern" value="正则"  ng-model="datasource.pattern"  ng-change="patternChange(datasource.pattern)"  placeholder="正则" cols="119" rows="6" style="float:left; margin:2px;font-size:12px;"></textarea>
+
+											    </div>
+											  </div>
+									 		 <span id="patternError"></span>
+									 	 </div>
+
+									 <div class="form-group">
+									  <label class="col-md-2 control-label">日志预读</label>
+									  <div class="col-md-5">
+									    <div class="input-group">
+<!-- 									 	<input ng-file-select type="file"/> -->
+
+									     <textarea class="form-control" id="log" name="log" class="form-control input-sm"  ng-model="log"  ng-change="logBrowse(datasource,log)" cols="119" rows="6" style="float:left; margin:2px;font-size:12px;" placeholder="预读前两行"></textarea>
+									    </div>
+									  </div>
+<!-- 									  <button type="button" class="btn btn-primary btn-xs"  ng-click="logBrowse(datasource,log)">预读</button> -->
+									</div>
+									<div class="form-group">
+									<label class="col-md-2 control-label"></label>
+											<div class="col-md-5">
+<!-- 												<div class="input-group"> -->
+<!-- 													 <span class="reportList" ng-repeat="log in logList" class="event_list"  ng-class="{event_list_selected : $index == selectedRow}"> -->
+<!-- 															<input  type="hidden"/>{{log.id}}&nbsp;&nbsp;&nbsp;{{log.logName}}&nbsp;&nbsp;{{log.logValue}}<br> -->
+<!-- 													</span> -->
+													<table class="table-bordered" style=" width:100%;">
+														<thead>
+															<tr>
+																<td width="20%" style="text-align:center;">编号</td>
+																<td width="40%" style="text-align:center;">字段名</td>
+																<td width="40%" style="text-align:center;">属性值</td>
+																
+															</tr>
+															</thead>
+															<tbody  ng-repeat="log in logList" class="event_list"  ng-class="{event_list_selected : $index == selectedRow}" >
+															<tr  ng-click="tog($index,$event)" onmouseover="style.cursor='pointer'" onmouseout="style.backgroundColor=''" style="height:2px">
+																<td  style="text-align:center; height:5px; width:20%;">{{log.id}}</td>
+																<td style=" height:5px; width:40%;">{{log.logName}}</td>
+																<td style=" height:5px; width:40%;">{{log.logValue}}</td>
+																</td>  
+															</tr>
+															</tbody>
+															</table>
+<!-- 												</div> -->
+											</div>
+									</div>
+								</fieldset>
+								</div>
+
+								<div class="step-pane" id="step3">
+									<h3><strong>选择采集和转发</strong> </h3>
+									<fieldset>
+									<div class="form-group">
+											 <label class="col-md-2 control-label">编码</label>
+											  <div class="col-md-4">
+											    <div class="input-group">
+											     <span class="input-group-addon"><i class="fa fa-dot-circle-o fa-fw"></i></span>
+												    <select align="center" id="encoding" name="encoding" class="form-control input-sm"  ng-model="datasource.encoding"  required ng-change="encodingChange(datasource.encoding)"> 
+	 							                           <option value="" onmouseover="style.backgroundColor="#CCCCFF";" onmouseout="style.backgroundColor=""">--请选择---</option>
+															<option >utf-8</option>
+															<option >gbk</option>
+													</select>
+											    </div>
+											  </div>
+										 <span id="encodingError"></span>
+									</div>
+										<div class="form-group">
+										<label class="col-md-2 control-label">采集器</label>
+										<div class="col-md-4">
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-cogs fa-fw"></i></span>
+	                                           	 <select id ="agent2" name="agent" class="form-control input-sm"  ng-model="datasource.agentId" ng-options="m.id as m.name for m in agent " ng-change="agentChange2(datasource.agentId)">
+													<option value="" onmouseover="style.backgroundColor="#CCCCFF";" onmouseout="style.backgroundColor=""">--请选择---</option>
+												 </select> 
+												</div>
+											</div>
+											 <span id="agent2Error"></span>
+										</div>
+									</fieldset>	
+								</div>
+
+								<div class="step-pane" id="step4">
+									<h3><strong>查看添加信息</strong></h3>
+									<table class="table table-bordered "  style="height:80%;width:80%">
+								<thead>
+									<tr>
+									<th width="20%" class="table-details-field" >字段</th>
+									<th width="30%"class="table-details-value" >属性值</th>
+									<th width="20%" class="table-details-field" >字段</th>
+									<th width="30%"class="table-details-value" >属性值</th>
+									</tr>
+								</thead>
+									<tbody>
+									<tr>
+									<td>数据源名称</td>
+									<td><div id ="dataName"></div></td>
+									<td>日志类型</td>
+									<td><div id ="typ"></div></td>
+									</tr>
+									<tr>
+									<td >类型</td>
+									<td ><div id="cate"></div></td>
+
+									<td>编码</td>
+									<td><div id="encod"></div></td>
+									</tr>
+									
+									<tr>
+										<td >路径</td>
+										<td><div id="ur"></div></td>
+										<td>解析规则</td>
+										<td><div id="patt" ng-mouseover="pattern()" ng-mouseleave = "pattern2()" style='word-wrap:break-word; word-break:break-all;display:block;width:100%;'>
+										</div>
+										</td>
+									</tr>
+									<tr>
+										<td>采集器</td>
+										<td><div id="agen2"></div></td>
+										<td>转发器</td>
+										<td><div id="forwarder2"></div></td>
+									<td>协议</td>
+									<td><div id="pro"></div></td>
+									</tr>
+									<tr>
+									<td >采集器解析</td>
+									<td><div id="agen"></div></td>
+									<td >转发器解析</td>
+									<td><div id="forward"></div></td>
+									</tr>
+									<tr ng-show="1 == protoc">
+									<td >路径</td>
+									<td><div id="ur"></div></td>
+									<td>解析规则</td>
+									<td><div id="patt" ng-mouseover="pattern()" ng-mouseleave = "pattern2()" style='word-wrap:break-word; word-break:break-all;display:block;width:100%;'>
+									</div>
+									</td>
+									</tr>
+									
+									<tr ng-show="2 == protoc">
+									<td>主机</td>
+									<td><div id="ipv4"></div></td>
+									<td>端口</td>
+									<td><div id="port1"></div></td>
+									</tr>
+									<tr>
+									<tr>
+									<td>采集器</td>
+									<td><div id="agen2"></div></td>
+									<td>转发器</td>
+									<td><div id="forwarder2"></div></td>
+									</tr>
+									<tr>
+									<td>编码</td>
+									<td><div id="encod"></div></td>
+									</tr>
+									</tbody>
+								</table>
+								<div id = "datasourceError" style="text-align:left;"></div>
+								</div>
+								<div class="actions"  style = "text-align:right;">
+									<button id ="showData1" ng-click="datasource()" type="button" class="btn btn-sm btn-primary btn-prev" ng-show = "1 == showData1">
+										<i class="fa fa-arrow-left"></i>取消
+									</button>
+									<button id ="showDrevious1" ng-click="previous()" type="button" class="btn btn-sm btn-primary btn-prev" ng-show = "2 == showDrevious1">
+										<i class="fa fa-arrow-left"></i>回退
+									</button>
+										<button id ="next1" ng-click="nextDS()" type="button" class="btn btn-sm btn-success btn-next" data-last="Finish" ng-show = "1 == showNext1">
+											下一步<i class="fa fa-arrow-right"></i>
+										</button>
+										<button id ="determine1" type="submit" ng-click="datasourceAdd(datasource,categoryName)" data-last="Finish" class="btn btn-sm btn-success btn-next" ng-disabled="Form.$invalid"  ng-show = "2 == showDetermine1">
+										确定<i class="fa fa-arrow-right"></i>
+										</button>
+								</div>
+							</form>
+						</div>
+
+					</div>
+					<!-- end widget content -->
+
+				</div>
+				<!-- end widget div -->
+
+			</div>
+			<!-- end widget -->
+
+		</article>
+		<!-- WIDGET END -->

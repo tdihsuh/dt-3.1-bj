@@ -1,0 +1,77 @@
+<div id="content">
+	<div id="systemlog">
+		<div class="theme"><i class="fa fa-pencil-square-o" style="margin-right:10px;"></i>系统日志管理</div>
+		<div class="input-group-m">
+				<div style="float: left;">
+				  <div class="input-group-addon-m"style="float: left;">从</div>
+				  <div style="float: left;margin-right:10px;"><input class="form-control-m" type="text" id="datepicker_from" maxlength="10" placeholder="yyyy-MM-dd"/></div>
+				  <div style="float: left;"><input class="form-control-m" type="text" id="datepicker_time_from" maxlength="8" placeholder="00:00:00"/></div>
+				  </div>
+				  <div style="float: left;">
+				  <div class="input-group-addon-m" style="float: left;">至</div>
+				  <div style="float: left;margin-right:10px;"><input class="form-control-m" type="text" id="datepicker_to" maxlength="10" placeholder="yyyy-MM-dd"/></div>
+				  <div style="float: left;"><input class="form-control-m" type="text" id="datepicker_time_to" maxlength="8" placeholder="23:59:59"/></div>
+				  </div>
+		</div>
+		<div class="input-group-m hidden-mobile" style="float: right;" id="systemlog_search_group">
+			<input class="form-control-m" type="text" placeholder="输入关键词..." ng-model="pager.summary" value="pager.summary" id="summary">
+			<div class="input-group-btn">
+				<button type="submit" class="btn btn-default" ng-click="search(pager.summary)">
+					&nbsp;&nbsp;&nbsp;<i class="fa fa-fw fa-search fa-lg"></i>&nbsp;&nbsp;&nbsp;
+				</button>
+			</div>
+		</div>
+		<div id="systemlog_div">
+			
+			<div class="paginationdiv">
+				<div class="delbutton"><button type="button" class="btn btn-default" ng-click="del()">批量删除</button></div>
+			</div>
+			
+			<div class="tablediv"><table class="table table-bordered">
+				<thead>
+					<tr class="indices_title">
+						<th width="8%" style="text-align: center;">序号</th>
+						<th width="10%" style="text-align: center;">操作用户</th>
+						<th width="10%" style="text-align: center;">用户IP</th>
+						<th width="38%" style="text-align: center;">日志描述</th>
+						<th width="11%" style="text-align: center;">操作结果</th>
+						<th width="14%" style="text-align: center;">记录时间</th>
+						<th width="9%" style="text-align: center;"><input class="checkbox-m" type="checkbox" id="checkboxAll" ng-model="selectAll" ng-change="checkAll()" />全选</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in pager.logs" class="event_list"
+						ng-class="{event_list_selected : $index == selectedRow}"
+						onmouseover="style.backgroundColor='#FAFAFA';style.cursor='pointer'"
+						onmouseout="style.backgroundColor='';">
+						<td style="text-align: center;">{{$index+(1+pager.pageSize*(pager.currentPageNum-1)) +events.offset}}</td>
+						<td>{{item.name}}</td>
+						<td>{{item.ip}}</td>
+						<td style="word-wrap:break-word;">{{item.description}}</td>
+						<td style="text-align: center;">{{item.result}}</td>
+						<td style="text-align: center;" class="hs_font_11">{{item.createtime}}</td>
+						<td style="text-align: center;">
+							<input class="checkbox-m" type="checkbox" ng-model="item.selected" name="delbox"  ng-change="checkOne(item)"/>
+						</td>
+					</tr>
+					<tr ng-if="!pager.logs">
+						<td colspan="5" height="120" align="center">无数据</td>
+					</tr>
+				</tbody>
+			</table></div>
+			<div class="paginationdiv">
+			<ul class="pagination">
+				<li ng-if="pager.currentPageNum > pager.showPagesMax">
+					<a href="javascript:" ng-click="queryByShowOrder(pager.showPagesOrder > 1 ? pager.showPagesOrder-1 : 1)" title="上{{pager.showPagesMax}}页">&laquo;</a>
+				</li>
+				<li ng-repeat="page in pager.showPagesNum">
+					<a href="javascript:" title="第{{page}}页" ng-show="page==pager.currentPageNum" style="color:#000">{{page}}</a>
+					<a href="javascript:" ng-click="queryByShowNum(page)" title="第{{page}}页" ng-show="page!=pager.currentPageNum">{{page}}</a>
+				</li>
+				<li ng-if="pager.showPagesMax * pager.showPagesOrder < pager.totalPages">
+					<a href="javascript:" ng-click="queryByShowOrder(pager.showPagesOrder * pager.showPagesMax < pager.totalPages ? pager.showPagesOrder+1:pager.showPagesOrder)" title="下{{pager.showPagesMax}}页">&raquo;</a>
+				</li>
+			</ul></div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,37 @@
+
+2014-10-13 by tao_zhang 更新hansight数据库
+		1、给CONF_AGENT表和CONF_FORWARDER表中添加CREATE_DATE字段
+		2、修改CONF_DATASOURCE表中的CONFIGINFO字段大小
+	 	ALTER TABLE `CONF_AGENT` ADD COLUMN `CREATE_DATE` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '时间';
+		ALTER TABLE `CONF_FORWARDER` ADD COLUMN `CREATE_DATE` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '时间';
+		ALTER TABLE `CONF_DATASOURCE` MODIFY COLUMN CONFIGINFO VARCHAR(1024) ;
+	 
+2014－10－08 by guanyi_ning 新增Spark集群监控：
+			修改原【集群监控】为【集群监控】之ES集群监控
+			并添加【集群监控】之【Spark集群监控】
+			global.properties.template添加spark集群:
+				spark.master.metrics：Spark Master节点的WebUI信息，IP和端口
+				spark.worker.metrics：Spark Worker节点的WebUI信息，IP和端口
+
+
+2014-09-26 by shuyu_zhang 新增功能模块：【系统管理】之【系统日志管理】
+			目前可以记录：1、用户登录信息
+						2、agent的添加删除信息
+						3、forwarder的添加删除信息
+
+						
+2014-09-28 add by shuyu_zhang 完善【系统日志管理】模块
+           1.增加记录agent修改日志记录
+           2.增加forwarder修改日志记录
+           3.增加datasource新增，修改，删除日志记录
+           
+
+
+2014-09-29 add by shuyu_zhang 完善【系统日志管理】模块
+			1.增加用户的增加、删除、修改日志记录
+			2.增加日志记录异常时的处理
+			
+			
+2014-09-29 15:06 add by shuyu_zhang 完善【系统日志管理】模块
+			1.完善日期搜索
+			2.完善批量删除

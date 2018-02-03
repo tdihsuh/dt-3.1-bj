@@ -1,0 +1,183 @@
+#hs_analyse #dashboard_nav .theme{
+	width:40%;
+	font-size:24px;
+	font-weight:bold;
+	height:50px;
+	color:#666;
+	float:left;
+}
+#hs_analyse .container1{
+	float:right;
+	margin-right:10px;
+}
+#hs_analyse .container1 td{
+	text-align:center;
+	padding-left:5px;
+	padding-right:5px;
+}
+#hs_analyse .container1 .txt1,#hs_analyse .container1 .txt2,#hs_analyse .container1 .txt3{
+	color:#999;
+}
+#hs_analyse .container1 .num1{
+	color: #57889C;
+	font-size:16px;
+	font-weight:bold;
+}
+#hs_analyse .container1 .num2{
+	color: #6E587A;
+	font-size:16px;
+	font-weight:bold;
+}
+#hs_analyse #dashboard_pannel{
+	clear:both;
+	width:100%;
+}
+#hs_analyse #webserver{
+	clear:both;
+	width:18%;
+	float:left;
+}
+#hs_analyse .title_{
+	font-size:14px;
+	color:#666;
+	margin-bottom:5px;
+}
+#hs_analyse #dashboard_pannel #webserver .title{
+	font-weight:bold;
+	border:1px solid #C2C2C2;
+	height:39px;
+	background-color:#CCC;
+	font-size:14px;
+	text-align:center;
+}
+#hs_analyse #dashboard_pannel #webserver .event_type{
+	border-left:1px solid #C2C2C2;
+	border-right:1px solid #C2C2C2;
+	border-bottom:1px solid #C2C2C2;
+	height:39px;
+	background-color:#fafafa;
+	padding-left:5px;
+	cursor:pointer;
+}
+#hs_analyse #dashboard_pannel #webserver a{
+	color:#000;
+	text-decoration: none;
+}
+#hs_analyse #dashboard_pannel #webserver span{
+	margin-right:5px;
+}
+#hs_analyse #securityContainer{
+	margin:0px;
+	height:250px;
+}
+#hs_analyse #event_{
+	width:82%;
+	float:right;
+}
+#hs_analyse #event_ table{
+	width:98%;
+	background-color:#fafafa;
+	border:1px solid #C2C2C2;
+	table-layout: fixed;
+	word-wrap:break-word;
+	word-break:break-all;
+}
+#hs_analyse #event_ .table_title{
+	height:40px;
+	text-align:center;
+	border-bottom:1px solid #C2C2C2;
+	font-size:14px;
+}
+#hs_analyse #event_ .table_title1{
+	height:40px;
+	text-align:left;
+	padding-left:10px;
+	border-bottom:1px solid #C2C2C2;
+	font-size:14px;
+}
+#hs_analyse #event_ .event_list td{
+	height:30px;
+	padding-left:2px;
+	word-wrap:break-word;
+	word-break:break-all;
+	cursor:pointer;
+}
+#hs_analyse #event_ .event_list_selected{
+	background-color:#f7ebe3;
+}
+#hs_analyse #event_ .log_list td{
+	padding:5px;
+}
+#dashboard_pannel .pagination{
+	float:right;
+	margin-right:8px;
+	margin-top:5px;
+}
+#dashboard_pannel table{
+	clear:both;
+}
+#hs_analyse #dashboard_health{
+	height:20px;
+}
+#hs_analyse #db_set_time span{
+	height:35px;
+	float:left;
+}
+#hs_analyse #db_set_time .db_time_title{
+	font-size:14px;
+	font-weight:bold;
+}
+#hs_analyse #db_set_time .db_time_input{
+	width:60px;
+	padding:4px 5px 0px 5px;
+}
+#hs_analyse #db_set_time .db_time_input_{
+	text-align:right;
+	height:28px;
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+#hs_analyse #db_set_time .db_time_comm{
+	padding:8px 5px 0px 5px;
+}
+#hs_analyse #db_set_time .db_time_button{
+	width:100px;
+	padding:4px 5px 0px 5px;
+}
+#hs_analyse #db_set_time .db_time_button_{
+	height:28px;
+	line-height:16px;
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+#hs_analyse .log_show{
+	list-style:none;
+	margin-left:-36px;
+}
+#hs_analyse .log_show li{
+	float:left;
+	border-right:1px solid #CCCCCC;
+	display:block;
+	padding-left:5px;
+	padding-right:5px;
+	padding-top:10px;
+	height:40px;
+}
+#hs_analyse #log_status{
+	height:300px;
+}
+#hs_analyse .aggs_url_td{
+	padding:5px;
+}
+#hs_analyse #aggs_url table{
+	border:1px solid #CCC;
+}
+#hs_analyse #db_set_time .db_time_select_{
+	height:28px;
+	line-height:16px;
+}
+#hs_analyse #db_set_time .db_time_select{
+	width:118px;
+	padding:4px 5px 0px 5px;

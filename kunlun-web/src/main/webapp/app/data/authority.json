@@ -1,0 +1,15 @@
+{
+	"/dashboard":["ROLE_ADMIN","ROLE_USER"],
+	"/analyse":["ROLE_ADMIN","ROLE_USER"],
+	"/search":["ROLE_ADMIN","ROLE_USER"],
+	"/topSecurityReport":["ROLE_ADMIN","ROLE_USER"],
+	"/securityReport":["ROLE_ADMIN","ROLE_USER"],
+	"/serverReport":["ROLE_ADMIN","ROLE_USER"],
+	"/trendLine":["ROLE_ADMIN","ROLE_USER"],
+	"/complexReport":["ROLE_ADMIN","ROLE_USER"],
+	"/cluster":["ROLE_ADMIN","ROLE_USER"],
+	"/usermng":["ROLE_ADMIN","ROLE_USER"],
+	"/confAgent":["ROLE_ADMIN","ROLE_USER"],
+	"/forwarder":["ROLE_ADMIN","ROLE_USER"],
+	"/datasource":["ROLE_ADMIN","ROLE_USER"]
+}

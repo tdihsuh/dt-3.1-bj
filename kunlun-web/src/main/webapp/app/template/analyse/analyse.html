@@ -1,0 +1,136 @@
+<div id="content" >
+	<div id="hs_analyse">
+		<div id="dashboard_nav">
+			<span class="theme"><i class="fa fa-sitemap"></i>智能分析</span>
+		</div>
+		<div class="hs_block hs_bg_white">
+			<div id="db_set_time" class="hs_title">
+				<span class="db_time_comm"><i class="fa fa-clock-o" style="margin-right:10px;"></i>时间设置</span>
+				<span class="db_time_input"><input type="text" class="form-control db_time_input_" ng-model="analyse.systemTimeRange.timeValue" value="{{analyse.systemTimeRange.timeValue}}"/></span>
+				<span class="db_time_select"><select ng-model="analyse.timeUnitSelected" ng-options="t.val for t in analyse.timeUnits" class="db_time_select_"></select></span>
+				<span class="db_time_button"><input type="button" class="btn btn-default db_time_button_" value="确定" ng-click="saveTimeRange()"/></span>
+			</div>
+		</div>
+		<div class="hs_bottom"></div>
+		<div id="dashboard_pannel" class="hs_margin_top_10">
+			<div id="webserver">
+				<table width="98%" align="center"cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td class="title">威胁类别</td>
+				</tr>
+				<tr ng-repeat="et in categorys">
+					<td class="event_type" onmouseover="style.backgroundColor='#FFFF99'" onmouseout="style.backgroundColor=''"
+							ng-click="showEvents(analyse.indices,et.name,1)">
+						<span class="fa fa-square"></span>{{et.nameShow}}&nbsp;({{et.num}})
+					</td>
+				</tr>
+				<tr>
+					<td><div id="securityContainer"></div></td>
+				</tr>
+				</table>
+			</div>
+			
+			<div id="event_">
+				<table width="98%" align="center" cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td width="5%" class="table_title"><i class="fa fa-exclamation-circle"></i></td>
+						<td width="20%" class="table_title">开始时间</td>
+						<td width="15%" class="table_title">客户端IP</td>
+						<td width="40%" class="table_title">描述</td>
+						<td width="10%" class="table_title">数量</td>
+						<td width="10%" class="table_title">操作</td>
+					</tr>
+					<tr ng-repeat="eve in events.items" class="event_list" 
+							ng-class="{event_list_selected : $index == selectedRow}" 
+							ng-click="showLogDetail($index,eve)"
+							onmouseover="style.backgroundColor='#f7ebe3';"
+							onmouseout="style.backgroundColor=''">
+							<!--ng-mouseover="showEventDesc($event,eve._source)" -->
+						<td align="center">{{$index+1+events.offset}}</td>
+						<td align="center">{{eve._source["@timestamp"] | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+						<td align="center">{{eve._source.c_ip}}</span></td>
+						<td align="left">
+							<span ng-show="{{eve._source.eventType == 'sc404'}}">{{eve._source.url}}</span>
+							<span ng-show="{{eve._source.eventType == 'sc500'}}">服务器内部错误</span>
+							<span ng-show="{{eve._source.category == 'DDoS'}}">URL高频次访问</span>
+							<span ng-show="{{eve._source.category == 'SQL Injection'}}" ng-if="eve._source.url_query.length>50">{{eve._source.url_query | limitTo:50}}...</span>
+							<span ng-show="{{eve._source.category == 'SQL Injection'}}" ng-if="eve._source.url_query.length<=50">{{eve._source.url_query }}</span>
+						</td>
+						<td align="center">{{eve._source.counter}}</td>
+						<td align="center"><span ng-show="{{eve._source.eventType == 'sc404'}}"><button class='btn btn-small' type='button' ng-click="falseAlarm(eve._source.url,eve._source.category,events.currentPage,analyse.indices)" style="font-size:12px;width:80%;height:30px;">标记为误报</button></span></td>
+					</tr>
+					<tr ng-if="!events">
+						<td colspan="5" height="120" align="center">无数据</td>
+					</tr>
+				</table>
+				<!--<div id="popup" style="position:absolute;display:none;"></div>-->
+				<ul class="pagination">
+					<li ng-if="events.currentPage > 1">
+						<a href="javascript:" ng-click="showEvents(analyse.indices,category,events.currentPage > 1 ? events.currentPage-1 : 1)" title="上一页">&laquo;</a>
+					</li>
+					<li ng-repeat="page in eventPages" ng-show="page > events.currentPage-5 && page < events.currentPage + 5">
+						<a href="javascript:" title="第{{page}}页" ng-show="page==events.currentPage" style="color:#000">{{page}}</a>
+						<a href="javascript:" ng-click="showEvents(analyse.indices,category,page)" title="第{{page}}页" ng-show="page!=events.currentPage">{{page}}</a>
+					</li>
+					<li ng-if="events.currentPage < events.pageNum">
+						<a href="javascript:" ng-click="showEvents(analyse.indices,category,events.currentPage < events.pageNum ? events.currentPage+1:events.pageNum)" title="下一页">&raquo;</a>
+					</li>
+				</ul>
+				
+				<br/>
+				<table width="98%" style="table-layout: fixed;word-wrap:break-word;word-break:break-all;" align="center" cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td width="100%" class="table_title1">日志详情</td>
+					</tr>
+					<tr ng-repeat="log in logs.items" class="log_list" 
+						ng-show="analyse.logModule == 'detail'" 
+						style="cursor:pointer"
+						ng-click="showDetailFields1(log._id)">
+						<td width="97%">{{log._source}}
+							<ul id="log_{{log._id}}" style="display:none">
+								<li ng-repeat="(fk,fs) in log._source">
+									<span style="width:120px;display:block;float:left;">{{fk}}</span><span style=="display:block;overflow:auto;">{{fs}}</span>
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr ng-if="!logs">
+						<td height="120" align="center">无数据</td>
+					</tr>
+					<tr ng-show="analyse.logModule == 'status'">
+						<td id="log_status"></td>
+					</tr>
+					
+				</table>
+				
+				<ul class="pagination" ng-show="analyse.logModule == 'detail'">
+					<li ng-if="logs.currentPage > 1">
+						<a href="javascript:" ng-click="showLogs(logs.currentPage > 1 ? logs.currentPage-1 : 1)" title="上一页">&laquo;</a>
+					</li>
+					<li ng-repeat="page in analyse.log.pages" ng-show="page > logs.currentPage-5 && page < logs.currentPage + 5">
+						<a href="javascript:" title="第{{page}}页" ng-show="page==logs.currentPage" style="color:#000">{{page}}</a>
+						<a href="javascript:" ng-click="showLogs(page)" title="第{{page}}页" ng-show="page!=logs.currentPage">{{page}}</a>
+					</li>
+					<li ng-if="logs.currentPage < logs.pageNum">
+						<a href="javascript:" ng-click="showLogs(logs.currentPage < logs.pageNum ? logs.currentPage+1:logs.pageNum)" title="下一页">&raquo;</a>
+					</li>
+				</ul>
+				<div class="hs_margin_top_10"></div>
+			</div>
+		</div>
+		<!-- <div id="aggs_url" class="hs_block">
+			<table width="98%" align="center" border="0" cellpadding="0" cellspacing="0" class="hs_bg_white">
+				<tr>
+					<th height="40" class="aggs_url_td">URL地址</th>
+					<th class="aggs_url_td">URL总数</th>
+					<th class="aggs_url_td">C_IP总数</th>
+				</tr>
+				<tr ng-repeat="url in aggsUrls" onmouseover="style.backgroundColor='#f7ebe3';" onmouseout="style.backgroundColor=''">
+					<td height="30" class="aggs_url_td">{{url.key}}</td>
+					<td class="aggs_url_td">{{url.doc_count}}</td>
+					<td class="aggs_url_td">{{url.ips.buckets.length}}</td>
+				</tr>
+			</table>
+		</div> -->
+	</div>
+</div>

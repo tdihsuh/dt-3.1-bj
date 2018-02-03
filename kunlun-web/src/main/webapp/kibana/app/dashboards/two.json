@@ -1,0 +1,225 @@
+{
+  "title": "New Dashboard",
+  "services": {
+    "query": {
+      "list": {
+        "1": {
+          "id": 1,
+          "color": "#1F78C1",
+          "alias": "日志",
+          "pin": true,
+          "type": "lucene",
+          "enable": true,
+          "query": "_type:weblogs"
+        },
+        "2": {
+          "id": 2,
+          "color": "#E24D42",
+          "alias": "异常",
+          "pin": true,
+          "type": "lucene",
+          "enable": true,
+          "query": "_type:anormal"
+        }
+      },
+      "ids": [
+        1,
+        2
+      ]
+    },
+    "filter": {
+      "list": {
+        "0": {
+          "from": "2013-07-19T02:07:45.632Z",
+          "to": "now",
+          "type": "time",
+          "field": "datetime",
+          "mandate": "must",
+          "active": true,
+          "alias": "",
+          "id": 0
+        }
+      },
+      "ids": [
+        0
+      ]
+    }
+  },
+  "rows": [
+    {
+      "title": "dummy",
+      "height": "150px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "span": 4,
+          "editable": true,
+          "type": "hits",
+          "loadingEditor": false,
+          "style": {
+            "font-size": "10pt"
+          },
+          "arrangement": "horizontal",
+          "chart": "bar",
+          "counter_pos": "above",
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              1
+            ]
+          },
+          "title": "AADP"
+        },
+        {
+          "span": 4,
+          "editable": true,
+          "type": "hits",
+          "loadingEditor": false,
+          "style": {
+            "font-size": "10pt"
+          },
+          "arrangement": "horizontal",
+          "chart": "bar",
+          "counter_pos": "above",
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              2
+            ]
+          },
+          "title": "ANORMAL"
+        },
+        {
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "category",
+          "exclude": [],
+          "missing": false,
+          "other": false,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "bar",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              2
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "CATEGORY"
+        }
+      ],
+      "notice": false
+    }
+  ],
+  "editable": true,
+  "failover": false,
+  "index": {
+    "interval": "day",
+    "pattern": "[logs_]YYYYMMDD,[anormal]",
+    "default": "_all",
+    "warm_fields": false
+  },
+  "style": "light",
+  "panel_hints": true,
+  "pulldowns": [
+    {
+      "type": "query",
+      "title": "查询",
+      "collapse": false,
+      "notice": false,
+      "enable": true,
+      "query": "*",
+      "pinned": true,
+      "history": [
+        "_type:anormal",
+        "_type:weblogs",
+        "*",
+        "eventType:*",
+        "sc_bytes:*"
+      ],
+      "remember": 10
+    },
+    {
+      "type": "filtering",
+      "title": "过滤",
+      "collapse": false,
+      "notice": false,
+      "enable": true
+    }
+  ],
+  "nav": [
+    {
+      "type": "timepicker",
+      "collapse": false,
+      "notice": false,
+      "enable": true,
+      "status": "Stable",
+      "time_options": [
+        "5分钟",
+        "15分钟",
+        "1小时",
+        "6小时",
+        "12小时",
+        "24小时",
+        "2天",
+        "7天",
+        "30天"
+      ],
+      "refresh_intervals": [
+        "5秒",
+        "10秒",
+        "30秒",
+        "1分钟",
+        "5分钟",
+        "15分钟",
+        "30分钟",
+        "1小时",
+        "2小时",
+        "1天"
+      ],
+      "timefield": "datetime",
+      "now": true,
+      "filter_id": 0
+    }
+  ],
+  "loader": {
+    "save_gist": false,
+    "save_elasticsearch": true,
+    "save_local": true,
+    "save_default": true,
+    "save_temp": true,
+    "save_temp_ttl_enable": true,
+    "save_temp_ttl": "30d",
+    "load_gist": false,
+    "load_elasticsearch": true,
+    "load_elasticsearch_size": 20,
+    "load_local": false,
+    "hide": false
+  },
+  "refresh": false
+}

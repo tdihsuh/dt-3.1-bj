@@ -1,0 +1,6 @@
+#all log separate by line can process by this
+line=com.hansight.kunlun.collector.reader.LineFileLogReader
+#for json by separate line start '{' end with '}'
+json=com.hansight.kunlun.collector.reader.JSONFileLogReader
+#for windows event log .evt or .evtx files process
+winevt=com.hansight.kunlun.collector.reader.WinEvtFileLogReader

@@ -1,0 +1,43 @@
+<h4>图表</h4>
+<div ng-include src="'app/partials/querySelect.html'"></div>
+
+<div class="editor-row">
+  <h4>记号</h4>
+
+  <div class="small">
+    可以把一个查询在图表上标为记号。把鼠标悬浮在此记号上能显示指定的字段名。
+  </div>
+  <style>
+    .querySelect .query {
+      margin-right: 5px;
+    }
+    .querySelect .selected {
+      border: 3px solid;
+    }
+    .querySelect .unselected {
+      border: 0px solid;
+    }
+  </style>
+  <p>
+  <div class="editor-option">
+    <label class="small">允许</label>
+    <input type="checkbox" ng-change="set_refresh(true)" ng-model="panel.annotate.enable" ng-checked="panel.annotate.enable">
+  </div>
+  <div class="editor-option" ng-show="panel.annotate.enable">
+    <label class="small">标注查询为记号</label>
+    <input type="text" ng-change="set_refresh(true)" class="input-large" ng-model="panel.annotate.query"/>
+  </div>
+  <div class="editor-option" ng-show="panel.annotate.enable">
+    <label class="small">记号字段</label>
+    <input type="text" class="input-small" ng-model="panel.annotate.field" bs-typeahead="fields.list"/>
+  </div>
+  <div class="editor-option" ng-show="panel.annotate.enable">
+    <label class="small">最多 <tip>图标最多记号数</tip></label>
+    <input type="number" class="input-mini" ng-model="panel.annotate.size" ng-change="set_refresh(true)"/>
+  </div>
+  <div class="editor-option" ng-show="panel.annotate.enable">
+    <label class="small">排序 <tip>选择最相关的记号</tip></label>
+    <input type="text" class="input-small" bs-typeahead="fields.list" ng-model="panel.annotate.sort[0]" ng-change="set_refresh(true)" />
+    <i ng-click="panel.annotate.sort[1] = _.toggle(panel.annotate.sort[1],'desc','asc');set_refresh(true)" ng-class="{'icon-chevron-up': panel.annotate.sort[1] == 'asc','icon-chevron-down': panel.annotate.sort[1] == 'desc'}"></i>
+  </div>
+</div>

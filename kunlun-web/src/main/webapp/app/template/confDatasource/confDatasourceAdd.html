@@ -1,0 +1,98 @@
+<div id="content">
+	<div id="usermng">
+		<div class="theme" style="margin:0px 15px;" ><i class="fa-fw fa fa-comments-o"></i>添加数据源配置</div>
+		<div class="usermanager">
+			<div class="panelboard">
+				<form name="myForm">
+				<fieldset>
+					<div class="row">
+						<div class="input-group">
+						  <span class="input-group-addon"><i class="fa fa-columns fa-fw"></i></span>
+<!--						   <input class="form-control" type="text" name="category" ng-model="datasource.categoryId" placeholder="category">-->
+							 <select name="category" class="form-control input-sm" 
+							 ng-model="datasource.categoryId" ng-options="m.id as m.name for m in category " ng-change="selChange(datasource.categoryId)">
+							<option value="" onmouseover="style.backgroundColor='#CCCCFF';"
+							onmouseout="style.backgroundColor=''">--请选择---</option>
+						 </select> 
+						</div>
+						<div class="input-group">
+						  <span class="input-group-addon"><i class="fa fa-columns fa-fw"></i></span>
+                            <!--<div id='divId'>-->
+						   <input class="form-control" value="{{cate.type}}" type="text" name="type" ng-model="datasource.type" placeholder="类型" required>
+                           <!--</div>-->
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group">
+						  <span class="input-group-addon"><i class="fa fa-columns fa-fw"></i></span>
+							 <select name="agent" class="form-control input-sm" 
+							 ng-model="datasource.agentId" ng-options="m.id as m.name for m in agent " >
+							<option value="" onmouseover="style.backgroundColor='#CCCCFF';"
+							onmouseout="style.backgroundColor=''">--请选择---</option>
+						 </select> 
+						</div>
+						<span id="agentError"></span>
+						<div class="input-group">
+						  <span class="input-group-addon"><i class="fa fa-columns fa-fw"></i></span>
+						   <input class="form-control"   type="text" name="pattern" ng-model="datasource.pattern" placeholder="正则表达式" required>
+						</div>
+					</div>
+					<div class="row">
+						
+						<div class="input-group">
+						  <span class="input-group-addon"><i class="fa fa-columns fa-fw"></i></span>
+						   <input class="form-control" type="text" name="parser" ng-model="datasource.parser" placeholder="解析器">
+						</div>
+						<div class="input-group">
+						  <span class="input-group-addon"><i class="fa fa-columns fa-fw"></i></span>
+						   <input class="form-control" type="text" name="agentHost" ng-model="datasource.agentHost" placeholder="Agent" required>
+						</div>
+					</div>
+					<div class="row">
+						
+						<div class="input-group">
+						  <span class="input-group-addon"><i class="fa fa-columns fa-fw"></i></span>
+						   <input class="form-control" type="text" name="host" ng-model="datasource.host" placeholder="主机" required>
+						</div>
+						<div class="input-group">
+						  <span class="input-group-addon"><i class="fa fa-columns fa-fw"></i></span>
+						   <input class="form-control" type="text" name="port" ng-model="datasource.port" placeholder="端口" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group">
+						  <span class="input-group-addon"><i class="fa fa-columns fa-fw"></i></span>
+						   <input class="form-control" type="text" name="protocol" ng-model="datasource.protocol" placeholder="协议" required>
+						</div>
+							<div class="input-group">
+						  <span class="input-group-addon"><i class="fa fa-columns fa-fw"></i></span>
+						   <input class="form-control" type="text" name="url" ng-model="datasource.url" placeholder="路径" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-group">
+						  <span class="input-group-addon"><i class="fa fa-columns fa-fw"></i></span>
+						   <input class="form-control" type="text" name="encoding" ng-model="datasource.encoding" placeholder="编码格式" required>
+						</div>
+					</div>
+					<div class="clearfix" style="padding-left: 20px;" >
+							<h5>以下是forwarder所有信息</h5>
+								<ul class="reportList" ng-repeat="item in forwarder" class="event_list" 
+							ng-class="{event_list_selected : $index == selectedRow}" 
+							onmouseover="style.backgroundColor='#CCCCFF';"
+							onmouseout="style.backgroundColor=''">
+									<li>
+									<input   name="forwarderId"  type="checkbox" value="{{item.id}}"/>&nbsp;{{item.name}}
+									</li>
+								</ul>
+								<span id="forwarderError"></span>
+                    </div>
+				<footer>
+		        <button class="btn btn-primary" type="submit" ng-click="datasourceAdd(datasource)"> 添加</button >
+		       </footer>
+		        </fieldset>
+		        </form >
+			</div>
+		</div>
+	</div>
+</div>

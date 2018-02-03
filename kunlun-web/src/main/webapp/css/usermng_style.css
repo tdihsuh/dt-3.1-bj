@@ -1,0 +1,121 @@
+#usermng .theme{
+	width:50%;
+	font-size:20px;
+	font-weight:bold;
+	height:40px;
+	color:#666;
+}
+#usermng header{
+	color: #333;
+	border: 1px solid #C2C2C2;
+	background: #fafafa;
+	height: 34px;
+	padding: 0;
+	line-height: 40px;
+	font-size:14px;
+	padding-left:10px;
+}
+#usermng .panelboard{
+	float: left;
+	width: 100%;
+	position: relative;
+	font-size: 13px;
+	-moz-border-radius: 0;
+	-khtml-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	margin: 0;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #CCC;
+	padding: 13px 13px 0;
+	overflow: visible;
+	background-color:#fff;
+}
+#usermng .title{
+	font-size:14px;
+	border-bottom:1px dotted #999;
+	margin-bottom:10px;
+}
+#usermng .row{
+	margin-left:10px;
+	height:50px;
+}
+#usermng fieldset{
+	display: block;
+	padding: 25px 14px 5px;
+	border: 0;
+	background: rgba(255,255,255,.9);
+	position: relative;
+	border-bottom:1px solid #CCC;
+}
+#usermng .input-group{
+	width:300px;
+	float:left;
+	margin-right:20px;
+}
+#usermng footer{
+	display: block;
+	padding: 7px 14px;
+
+}
+
+#usermng .user_nav{
+	margin-bottom:5px;
+}
+
+#usermng .userAdd{
+	background-color:#FFF;
+	border:1px solid #C2C2C2;
+	overflow:auto;
+}
+#usermng .user_list_ul{
+	background-color:#FFF;
+}
+
+/***用户列表样式**/
+#usermng .user_list_ul{
+	list-style:none;
+	line-height:30px;
+}
+#usermng .user_list_ul li{
+	clear:both;
+	margin-left:-40px;
+}
+#usermng .user_list_ul li div{
+	float:left;
+}
+#usermng .user_list_userid,#usermng .user_list_usernick{
+	width:20%;
+	background-color:inherit;
+	padding-left:10px;
+}
+#usermng .user_list_email{
+	width:40%;
+	background-color:inherit;
+}
+#usermng .user_list_operater{
+	width:20%;
+	background-color:inherit;
+}
+/***新增用户***/
+#usermng .user_add_txt{
+	clear:both;
+	width:15%;
+	float:left;
+	margin-left:10px;
+	margin-top:15px;
+}
+#usermng .user_add_form{
+	width:70%;
+	float:left;
+	margin-top:10px;
+}
+/**********/
+#usermng .user_role_ul{
+	list-style:none;
+}
+#usermng .user_role_ul li{
+	line-height:23px;
+	margin-left:-40px;
+}

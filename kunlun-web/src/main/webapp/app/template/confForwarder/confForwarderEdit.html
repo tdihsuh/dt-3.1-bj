@@ -1,0 +1,56 @@
+<style>
+	.ds_fm_lf {float:left; width:10%; min-width:100px; max-width:100px;  line-height:34px;}
+	.ds_fm_ct {float:left; width:89%;}
+	.ds_fm_in {float:left; width:250px;}
+	.ds_fm_tips {width:300px; float:left; line-height:34px;}
+</style>
+<div id="content">
+	<div id="conf_datasource">
+		<div class="theme"><i class="fa-fw fa fa-share-square-o" style="margin-right:10px;"></i>修改转发器配置</div>
+		<div class="usermanager">
+			<div class="panelboard">
+				<form  name="forwarderForm">
+					<div class="row">
+						<div class="ds_fm_lf">转发器名称</div>
+						<div class="ds_fm_ct">
+							<div class="input-group ds_fm_in">
+							  <span class="input-group-addon"><i class="fa fa-share-square-o fa-fw"></i></span>
+							   <input class="form-control" value={{forwarder.name}} type="text" name="name" ng-model="forwarder.name"  ng-change="forwarderChange(forwarder.name)"  required placeholder="转发器名称" style="font-size:12px">
+							</div>
+							<div  id="nameError" class="ds_fm_tips"></div>
+						 </div>
+					</div>
+					<div class="row">
+					<div class="ds_fm_lf">主机</div>
+						 	<div class="ds_fm_ct">
+								<div class="input-group ds_fm_in">
+									  <span class="input-group-addon"><i class="fa fa-desktop fa-fw"></i></span>
+									   <input class="form-control" value={{forwarder.ip}}  type="text" name="ip" ng-model="forwarder.ip"  required ng-change="ipChange(forwarder.ip)" placeholder="ip地址" style="font-size:12px">
+								</div>
+								<div  id="ipError" class="ds_fm_tips"></div>
+							</div>
+					</div>
+					<div class="row">
+						<div class="ds_fm_lf">描述</div>
+						 	<div class="ds_fm_ct">
+								<div class="input-group ds_fm_in">
+									  <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+									   <input class="form-control" value={{forwarder.description}} type="text" name="description" ng-model="forwarder.description" placeholder="转发器信息" style="font-size:12px">
+								</div>
+								<div class="ds_fm_tips" id="descriptionError"></div>
+							</div>
+					</div>
+					 <input class="form-control" value={{forwarder.id}} type="hidden" name="id" ng-model="forwarder.id" >
+					<input class="form-control" value={{forwarder.state}} type="hidden" name="state" ng-model="forwarder.state" >
+					<input class="form-control" value={{forwarder.createDate}} type="hidden" name="createDate" ng-model="forwarder.createDate" >
+				<div class="row">
+						<div class="ds_fm_lf">
+							 <button class="btn btn-default btn-xs" type="submit" ng-click="forwarderEdit(forwarder)"> 修改</button >
+					         <button class="btn btn-default btn-xs" type="button" ng-click="forwarderList()"> 取消</button >
+		      			 </div>
+		       </div>
+		        </form >
+			</div>
+		</div>
+	</div>
+</div>

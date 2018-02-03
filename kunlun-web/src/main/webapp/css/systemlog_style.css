@@ -1,0 +1,119 @@
+#systemlog .theme {
+	width:50%;
+	font-size:20px;
+	font-weight:bold;
+	height:40px;
+	color:#666;
+}
+
+#systemlog .input-group {
+	
+}
+
+#systemlog .pagination {
+	float: left;
+	margin-right: 8px;
+	margin-top: 5px;
+}
+
+#systemlog .delbutton {
+	float: right;
+	margin-right: 8px;
+	margin-top: 5px;
+}
+
+#systemlog .tablediv {
+	float: left;
+	width: 100%;
+}
+
+#systemlog .paginationdiv {
+	float: left;
+	width: 100%;
+}
+
+#systemlog #systemlog_div table {
+	margin-top: 1px;
+	border-left: 1px solid #C2C2C2;
+	border-top: 1px solid #C2C2C2;
+	border-right-color: #CCC !important;
+	border-bottom-color: #CCC !important;
+	border-left-color: #CCC !important;
+	padding: 13px 13px 0;
+	overflow: visible;
+	background-color: #fff;
+	table-layout: fixed;
+}
+
+#systemlog .indices_title {
+	height: 40px;
+	text-align: center;
+	font-weight: bold;
+	background-color: #FAFAFA;
+}
+
+#systemlog #indices_txt:hover {
+	background-color: #FAFAFA;
+}
+
+#systemlog #indices_txt td {
+	height: 40px;
+	text-align: left;
+	padding-right: 5px;
+}
+
+#systemlog .input-group-addon-m {
+	padding: 6px 12px;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.42857143;
+	color: #555;
+	text-align: center;
+	/*background-color: #eee;
+	border: 1px solid #ccc;*/
+	border-radius: 4px;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#systemlog .input-group-m {
+	display: table;
+	margin-top: 8px;
+}
+
+#systemlog .form-control-m {
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 6px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 0px;
+	opacity: 1;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+#systemlog .form-control-m:focus {
+	border-color: #66afe9;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
+		rgba(102, 175, 233, .6);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
+		rgba(102, 175, 233, .6);
+}
+
+#systemlog .checkbox-m {
+	font-weight: normal;
+	background: #66afe9;
+	cursor: pointer;
+}

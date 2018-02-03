@@ -1,0 +1,92 @@
+#agentConf #agentConf_nav .theme{
+	width:40%;
+	font-size:24px;
+	font-weight:bold;
+	height:50px;
+	color:#666;
+	float:left;
+	margin-left:10px;
+	height:50px;
+}
+#agentConf .container1{
+	float:right;
+	margin-right:10px;
+}
+#agentConf .container1 td{
+	text-align:center;
+	padding-left:5px;
+	padding-right:5px;
+}
+#agentConf .container1 .txt1,#agentConf .container1 .txt2,#agentConf .container1 .txt3{
+	color:#999;
+}
+#agentConf .container1 .num1{
+	color: #57889C;
+	font-size:16px;
+	font-weight:bold;
+}
+#agentConf .container1 .num2{
+	color: #6E587A;
+	font-size:16px;
+	font-weight:bold;
+}
+#agentConf #agentConf_pannel{
+	clear:both;
+	width:100%;
+}
+#agentConf #webserver{
+	clear:both;
+	width:18%;
+	float:left;
+}
+#agentConf .title_{
+	font-size:12px;
+	color:#666;
+	margin-bottom:5px;
+}
+#agentConf #agentConf_pannel #webserver .title{
+	font-weight:bold;
+	border:1px solid #C2C2C2;
+	height:39px;
+	background-color:#CCC;
+	font-size:14px;
+	text-align:center;
+}
+#agentConf #agentConf_pannel #webserver .event_type{
+	border-left:1px solid #C2C2C2;
+	border-right:1px solid #C2C2C2;
+	border-bottom:1px solid #C2C2C2;
+	height:39px;
+	background-color:#fafafa;
+	padding-left:5px;
+	cursor:pointer;
+}
+#agentConf #agentConf_pannel #webserver a{
+	color:#000;
+	text-decoration: none;
+}
+#agentConf #agentConf_pannel #webserver span{
+	margin-right:5px;
+}
+#agentConf #securityContainer{
+	margin:0px;
+	height:250px;
+}
+
+#agentConf_pannel .pagination{
+	float:right;
+	margin-right:8px;
+	margin-top:5px;
+}
+#agentConf_pannel table{
+	clear:both;
+}
+#agentConf #agentConf_health{
+	height:20px;
+}
+#agentConf footer{
+	display: block;
+	padding: 7px 14px 15px;
+	border-top: 1px solid rgba(0,0,0,.1);
+	background: rgba(248,248,248,.9);
+}

@@ -1,0 +1,144 @@
+<div id="content">
+	<div id="usermng">
+		<div class="theme"><i class="fa fa-user" style="margin-right:10px;"></i>用户管理</div>
+		<div class="user_nav" ng-if="user.module == 'list' && user.isManager"><button type="button" class="btn btn-default" ng-click="user.add()">添加</button></div>
+		<div class="user_nav" ng-if="user.module != 'list' && user.isManager"><button type="button" class="btn btn-default" ng-click="user.module = 'list'">返回</button></div>
+		<div class="usermanager">
+			
+			<!-- 用户列表 -->
+			<div class="userlist" ng-show="user.module == 'list'">
+				<div class="user_list_ul">
+				<table width="96%" align="center" cellspacing="0" cellpadding="0" class="table table-bordered">
+					<thead>
+					<tr class="indices_title">
+						<th width="10%" style="text-align:center;">序号</th>
+						<th width="20%" style="text-align:center;">帐号</th>
+						<th width="20%" style="text-align:center;">昵称</th>
+						<th width="20%" style="text-align:center;">邮件地址</th>
+						<th width="30%" style="text-align:center;">操作</th>
+					</tr>
+					</thead>
+					<tr ng-repeat="u in user.list" class="event_list" 
+					ng-class="{event_list_selected : $index == selectedRow}" id="indices_txt">
+					<td>{{$index+1+events.offset}}</td>
+					<td>{{u.userId}}</td>
+					<td>{{u.nickName}}</td>
+					<td>{{u.email}}</td>
+					<td>
+					<button type="button"  class="btn btn-default btn-xs" ng-click="user.modify(u)">编辑</button>
+					<button type="button" class="btn btn-default btn-xs"  ng-click="user.del(u)">删除</button>
+					</td>
+					</tr>
+					</table>
+					</div>
+			</div>
+			<!-- 添加用户 -->
+			<div class="userAdd" ng-show="user.module == 'add'">
+				<form name="addForm" ng-submit="user.save()">
+				<fieldset>
+					<div class="user_add_txt">帐号</div>
+					<div class="user_add_form">
+						<div class="input-group">
+						  	<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+						  	<input class="form-control" type="text" name="userId" placeholder="用户帐号" required/>
+						</div>
+					</div>
+					<div class="user_add_txt">昵称</div>
+					<div class="user_add_form">
+						<div class="input-group">
+						  	<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+						  	<input class="form-control" type="text" name="nickName" placeholder="用户昵称" required/>
+						</div>
+					</div>
+					<div class="user_add_txt">密码</div>
+					<div class="user_add_form">
+						<div class="input-group">
+						  	<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+						  	<input class="form-control" type="password" name="password" placeholder="用户密码" required/>
+						</div>
+					</div>
+					<div class="user_add_txt">电子邮箱</div>
+					<div class="user_add_form">
+						<div class="input-group">
+						  	<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+						  	<input class="form-control" type="email" name="email" placeholder="邮件地址" required/>
+						</div>
+					</div>
+					<div class="user_add_txt">选择角色</div>
+					<div class="user_add_form">
+						<ul class="user_role_ul">
+							<li ng-repeat="r in user.roleList">
+								<i ng-click="user.selectRole(r)" ng-class="user.roleCheckList.indexOf(r) == -1 ? 'fa fa-square-o':'fa fa-check-square-o'" class="hs_cursor">{{r.name}}</i>
+							</li>
+						</ul>
+					</div>
+					<div class="user_add_txt"></div>
+					</fieldset>
+					
+						<footer>
+							<button type="submit" class="btn btn-default">保存</button>
+						</footer>
+				
+					
+				</form>
+			</div>
+			<!-- 编辑用户 -->
+			<div class="panelboard" ng-show="user.module == 'modify'">
+				<form name="modifyForm" ng-submit="user.update()">
+					<div class="title">基本信息维护</div>
+					<fieldset>
+						<div class="row">用户：<span id="user_modify_info"></span><input type="hidden" name="userId_"/><input type="hidden" name="id_"/></div>
+						<div class="row" ng-if="!user.isManager">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+							  <input class="form-control" type="password" name="old_password_" placeholder="原始密码" id="old_password_" required onchange="angular.element(this).scope().user.clearOldPasswordValidity()"/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+							  <input class="form-control" type="password" name="password_" placeholder="新密码" id="password_" onchange="angular.element(this).scope().user.clearPasswordValidity()"/>
+							</div>
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+							  <input class="form-control" type="password" name="re_password_" placeholder="密码确认" id="re_password_" onchange="angular.element(this).scope().user.clearPasswordValidity()"/>
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<div class="row">
+							<div class="input-group margin-bottom-sm">
+							  <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+							  <input class="form-control" type="email" name="email_" placeholder="邮件地址" required/>
+							</div>
+						</div>
+					</fieldset>
+					<fieldset ng-if="user.isManager">
+						<div class="row">
+							<ul class="user_role_ul">
+								<li ng-repeat="r in user.roleList"><i ng-click="user.selectRole(r)" class="{{user.roleCheckList.indexOf(r) == -1 ? 'fa fa-square-o':'fa fa-check-square-o'}} hs_cursor">{{r.name}}</i></li>
+							</ul>
+						</div>
+					</fieldset>
+					<fieldset>
+						<div class="row">
+							<label class="select">
+								<input id="iswarning" type="checkbox" ng-click="warning()"/> 严重事件是否邮件警告
+							</label>
+						</div>
+						<div class="row">
+							<input type="text" name="duration" id="duration" placeholder="告警周期" disabled="disabled"/>
+							<select id="durationunit" disabled="disabled">
+								<option value="hour">小时</option>
+								<option value="day">天</option>
+							</select>
+						</div>
+					</fieldset>
+					<footer>
+						<button type="submit" class="btn btn-default">更新</button>
+					</footer>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

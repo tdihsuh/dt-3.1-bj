@@ -1,0 +1,33 @@
+#trendLine .axis path,
+#trendLine .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+#trendLine .line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+#trendLine .theme{
+	width:50%;
+	font-size:24px;
+	font-weight:bold;
+	height:50px;
+	color:#666;
+}
+#trendLine .report_img,#trendLine .report_desc{
+	width:100%;
+	background-color:#FFF;
+	border:1px solid #C2C2C2;
+}
+#trendLine .report_img .title,#trendLine .report_desc .title{
+	height:40px;
+	font-size:14px;
+}
+#trendLine .report_img tr,#trendLine .report_desc tr{
+	border-top:1px solid #C2C2C2;
+}
+#trendLine .report_img tr td,#trendLine .report_desc tr td{
+	padding:5px;
+}

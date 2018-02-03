@@ -1,0 +1,75 @@
+<div id="content">
+	<div id="report">
+		<div class="theme"><i class="fa-fw fa fa-home"></i>指定时间范围内的严重威胁饼图</div>
+		<div class="clearfix">
+			<table class="report_img">
+				<tr class="title">
+					<td colspan="8"><i class="fa fa-map-marker"></i>&nbsp;安全威胁事件</td>
+				</tr>
+				<tr>
+					<td width="70" align="right">时间段：</td>
+					<td width="140">
+						<select style="width: 100%" class="form-control">
+							<option value="1">一天</option>
+							<option value="7">一周</option>
+							<option value="14">两周</option>
+							<option value="21">三周</option>
+							<option value="30">一个月</option>
+						</select>
+					</td>
+					<td>指定日期：从
+					</td>
+					<td width="200">
+						<div class="input-group">
+							<input type="text" name="mydate" placeholder="起始日期" class="form-control datepicker" data-dateformat="yyyy-MM-dd">
+							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						</div>
+					</td>
+					<td>到</td>
+					<td width="200">
+						<div class="input-group">
+							<input type="text" name="mydate" placeholder="结束日期" class="form-control datepicker" data-dateformat="yyyy-MM-dd">
+							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						</div>
+					</td>
+					<td>样式：
+					</td>
+					<td width="200">
+						<img class="charttype" src="images/icons/chartbar.png" data-value="bar" title="柱状图" />
+						<img class="charttype" src="images/icons/chartarea_gray.png" data-value="area" title="瀑布图" />
+						<img class="charttype" src="images/icons/chartline_gray.png" data-value="line" title="线形图" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8" align="center">
+						<div id="container"></div>
+						<!--<img src="images/report/security.png" width="700" height="400"/>-->
+					</td>
+				</tr>
+			</table>
+			<table class="report_desc">
+				<tr class="title">
+					<td colspan="8"><i class="fa fa-map-marker"></i>&nbsp;报表详细分析</td>
+				</tr>
+				<tr>
+					<td>
+						<ul>
+							<li>从4月8日开始，到5月7日，从受控的日志内发现严重的安全事件按数量的占比排列如下：</li>
+							<li>1. Injection异常；系统检测到占总安全事件比例达38%的威胁来自SQL Injection或Script Injection的攻击</li>
+							<li>2. mis-configuration；通过对访问状态码分析，发现有26%的威胁来自于黑客对服务器特殊文件（如index.php.bak, admin, index.rar, etc）或服务器错误配置导致访问到不存在的页面</li>
+							<li>3. DDoS；以客户访问的源始IP结合访问日志分析，找到了18%的访问属于DDoS攻击</li>
+							<li>4. XSS；Cross-Site Scripting, 跨站脚本攻击占比达8%</li>
+							<li>5. CSRF；跨站请求伪造占比达3%</li>
+							<li>6. Sensitive Data；来自于对敏感信息获取的请求异常占2%</li>
+							<li>其它类型的占比达到5%</li>
+						</ul>
+						<!--<button type="button" class="btn btn-default" ng-click="exportReport()">
+							导出PDF格式
+						</button>-->
+					</td>
+				</tr>
+			</table>
+			</br></br>
+		</div>
+	</div>
+</div>

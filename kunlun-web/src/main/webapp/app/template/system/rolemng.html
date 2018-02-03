@@ -1,0 +1,40 @@
+<div id="hs_role">
+	<div class="theme"><i class="fa-fw fa fa-home"></i>角色管理</div>
+	<div>
+		<header>
+			<span class="widget-icon"> <i class="fa fa-edit"></i> </span><span>角色管理</span>
+		</header>
+		<div class="rolemng">
+			<div class="role_add_txt hs_left">名称：</div>
+			<div class="role_add_form hs_left"><input type="text" name="name" class="form-control"/></div>
+			<div class="role_add_txt hs_left">描述：</div>
+			<div class="role_add_form hs_left"><input type="text" name="description" class="form-control"/></div>
+			<div class="role_add_form hs_left">
+				<button class="btn btn-default" type="submit" ng-click="role.clear()">重置</button>
+				<button class="btn btn-default" type="submit" ng-click="role.save()">保存</button>
+			</div>
+			<div><input type="hidden" name="id" class="form-control"/></div>
+		</div>
+	</div>
+	<div class="hs_block hs_height-6"></div>
+	<div>
+		<header>
+			<span class="widget-icon"> <i class="fa fa-edit"></i> </span><span>角色列表</span>
+		</header>
+		<ul class="role_list_ul">
+			<li>
+				<div class="role_list_name">名称</div>
+				<div class="role_list_description">描述</div>
+				<div class="role_list_operater">操作</div>
+			</li>
+			<li ng-repeat="r in role.list" class="hs_mouse_over">
+				<div class="role_list_name">{{r.name}}</div>
+				<div class="role_list_description">{{r.description}}</div>
+				<div class="role_list_operater">
+					<i class="fa fa-edit hs_cursor" ng-click="role.modify(r)" title="编辑"></i>
+					<i class="fa fa-times hs_cursor" ng-click="role.del(r)" title = "删除"></i>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>

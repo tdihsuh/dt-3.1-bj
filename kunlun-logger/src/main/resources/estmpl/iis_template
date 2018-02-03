@@ -1,0 +1,80 @@
+{
+    "iis_template" : {
+ 	"template" : "logs_*",
+	"order" : 1,
+    	"settings" : {
+        	"index" : {
+            		"number_of_shards" : 20,
+            		"number_of_replicas" : 1,
+          	  	"refresh_interval": "30s"
+        	}
+    	},
+    	"mappings": {
+        "_default_": {
+            "dynamic_templates": [
+               {
+                  "string_fields": {
+                     "mapping": {
+                        "index": "analyzed",
+                        "omit_norms": true,
+                        "type": "string",
+                        "fields": {
+                           "raw": {
+                              "index": "not_analyzed",
+                              "ignore_above": 256,
+                              "type": "string"
+                           }
+                        }
+                     },
+                     "match": "*",
+                     "match_mapping_type": "string"
+                  }
+               }
+            ],
+		"properties": {
+                        "c_ip": {
+                                "type": "ip"
+                        },
+
+                        "cs_bytes": {
+                                "type": "long"
+                        },
+			"s_port": {
+                                "type": "long"
+                        },
+                        "sc_bytes": {
+                                "type": "long"
+                        },
+			"sc_status": {
+                                "type": "long"
+                        },
+                        "sc_substatus": {
+                                "type": "long"
+                        },
+                        "sc_winstatus": {
+                                "type": "long"
+                        },
+                        "time_taken": {
+                                "type": "integer"
+                        },
+                        "cs_username": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                        },
+                        "s_computername": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                        },
+                        "s_ip": {
+                                "type": "ip"
+                        },
+                        "s_sitename": {
+                                "index": "not_analyzed",
+                                "type": "string"
+                        }
+            }	
+
+        }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+<div id="content">
+	<div id="report">
+		<div class="theme"><i class="fa-fw fa fa-home"></i>报表综合导出</div>
+		<div class="clearfix">
+			<table class="report_img">
+				<tr class="title">
+					<td colspan="8"><i class="fa fa-map-marker"></i>&nbsp;报表综合导出</td>
+				</tr>
+				<tr>
+					<td width="70" align="right">时间段：</td>
+					<td width="140">
+						<select style="width: 100%" class="form-control">
+							<option value="1">一天</option>
+							<option value="7">一周</option>
+							<option value="14">两周</option>
+							<option value="21">三周</option>
+							<option value="30">一个月</option>
+						</select>
+					</td>
+					<td>指定日期：从
+					</td>
+					<td width="200">
+						<div class="input-group">
+							<input type="text" name="mydate" placeholder="起始日期" class="form-control datepicker" data-dateformat="yyyy-MM-dd">
+							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						</div>
+					</td>
+					<td>到</td>
+					<td width="200">
+						<div class="input-group">
+							<input type="text" name="mydate" placeholder="结束日期" class="form-control datepicker" data-dateformat="yyyy-MM-dd">
+							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						</div>
+					</td>
+					<td>样式：
+					</td>
+					<td width="200">
+						<img class="charttype" src="images/icons/chartbar.png" data-value="bar" title="柱状图" />
+						<img class="charttype" src="images/icons/chartarea_gray.png" data-value="area" title="瀑布图" />
+						<img class="charttype" src="images/icons/chartline_gray.png" data-value="line" title="线形图" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="8">
+						<div class="clearfix" style="padding-left: 20px;">
+							<h5>将导出以下报表</h5>
+								<ul class="reportList">
+									<li><label><input type="checkbox" checked/>&nbsp;TOP5安全威胁事件</label>
+									<li><label><input type="checkbox" checked/>&nbsp;安全威胁事件</label>
+									<li><label><input type="checkbox" checked/>&nbsp;服务器</label>
+								</ul>
+                            </div>
+					</td>
+				</tr>
+			</table><br/>
+			<button type="button" class="btn btn-default" ng-click="exportReport()">
+				导出PDF格式
+			</button>
+			</br></br>
+		</div>
+	</div>
+</div>

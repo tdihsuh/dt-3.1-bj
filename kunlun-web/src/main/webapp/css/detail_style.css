@@ -1,0 +1,67 @@
+#detail .theme{
+	width:50%;
+	font-size:20px;
+	font-weight:bold;
+	height:40px;
+	color:#666;
+}
+
+#detail .title{
+	font-size:16px;
+	font-weight:bold;
+	color:#666;
+}
+#img-jvm-state {
+	height:200px
+}
+#img-os-state {
+	height:200px
+}
+#img-disk-state {
+	height:80px
+}
+#img-index-state {
+	height:80px
+}
+#img-network-state {
+	height:80px
+}
+
+#img-index-state table{
+	float:left;
+	background-color:#FFF;
+	border:1px solid #C2C2C2;
+	margin-top:-0px;
+}
+#img-index-state table tr{
+	border-top:1px solid #C2C2C2;
+}
+#img-index-state table tr td{
+	padding:5px;
+}
+
+#img-disk-state table{
+	float:left;
+	background-color:#FFF;
+	border:1px solid #C2C2C2;
+	margin-top:-0px;
+}
+#img-disk-state table tr{
+	border-top:1px solid #C2C2C2;
+}
+#img-disk-state table tr td{
+	padding:5px;
+}
+
+#img-network-state table{
+	float:left;
+	background-color:#FFF;
+	border:1px solid #C2C2C2;
+	margin-top:-0px;
+}
+#img-network-state table tr{
+	border-top:1px solid #C2C2C2;
+}
+#img-network-state table tr td{
+	padding:5px;
+}

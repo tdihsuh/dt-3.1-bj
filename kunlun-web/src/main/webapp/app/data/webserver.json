@@ -1,0 +1,31 @@
+[
+	{
+		"id":"1",
+		"name":"SERVER1",
+		"num":"321"
+	},{
+		"id":"2",
+		"name":"SERVER2",
+		"num":"64"
+	},{
+		"id":"3",
+		"name":"SERVER3",
+		"num":"52"
+	},{
+		"id":"4",
+		"name":"SERVER4",
+		"num":"0"
+	},{
+		"id":"5",
+		"name":"SERVER5",
+		"num":"102"
+	},{
+		"id":"6",
+		"name":"SERVER6",
+		"num":"305"
+	},{
+		"id":"7",
+		"name":"SERVER7",
+		"num":"89"
+	}
+]

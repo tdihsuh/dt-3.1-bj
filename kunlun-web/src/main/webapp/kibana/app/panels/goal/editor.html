@@ -1,0 +1,30 @@
+  <div class="editor-row">
+
+    <div class="section">
+      <h5>参数</h5>
+      <div class="editor-option">
+        <form style="margin-bottom: 0px">
+          <label class="small">Goal</label>
+          <input type="number" style="width:90%" ng-model="panel.query.goal" ng-change="set_refresh(true)">
+        </form>
+      </div>
+    </div>
+
+    <div class="section">
+      <h5>查看选项</h5>
+      <div class="editor-option">
+        <label class="small"> 圆环图 </label><input type="checkbox" ng-model="panel.donut" ng-checked="panel.donut">
+      </div>
+      <div class="editor-option">
+        <label class="small"> 倾斜 </label><input type="checkbox" ng-model="panel.tilt" ng-checked="panel.tilt">
+      </div>
+      <div class="editor-option">
+        <label class="small"> 图标 </label><input type="checkbox" ng-model="panel.labels" ng-checked="panel.labels">
+      </div>
+      <div class="editor-option">
+        <label class="small">图例</label>
+        <select class="input-small" ng-model="panel.legend" ng-options="f for f in ['above','below','none']"></select></span>
+      </div>
+    </div>
+
+  </div>

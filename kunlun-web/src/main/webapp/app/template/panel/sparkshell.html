@@ -1,0 +1,51 @@
+<div id="sparkshellPanel">
+    <div style="clear:both;width:15%;font-weight:bold;font-size:20px;padding-left:9px;padding-top:16px">Beta</div>
+	<div class="panel_txt1 editor-option">
+		<label >标题</label><input name="title" type="text" class="form-control" ng-model="panel.form.title" required></input>
+	</div>
+	<div class="panel_pro4 editor-option">
+		<label>宽</label> 
+		<select class="form-control" ng-options="c.value for c in panel.columns.value" ng-model='panel.form.column' required>
+			<option value="">请选择列数</option>
+		</select>
+	</div>
+	<div style="clear:both;width:15%;font-weight:bold;font-size:20px;padding-left:9px;padding-top:16px">时间范围</div>
+	<div data-ng-init="initSparkShell()">
+	<div class="panel_txt1 input-group">
+		<input name="datepicker_from1" id="datepicker_from1" type="text" placeholder="开始日期" ng-model="panel.form.starttime" class="form-control"></input>  
+		<span class="input-group-addon" ><i class="fa fa-calendar"></i></span>
+		
+	</div>
+	&nbsp;&nbsp;
+	<div class="panel_pro4 input-group">
+			<input type="text" id="datepicker_to1" placeholder="结束日期" ng-model="panel.form.endtime" class="form-control">
+			<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+	</div>
+	</div>
+	
+	<div style="clear:both;width:15%;font-weight:bold;font-size:20px;padding-left:9px;padding-top:16px">查询条件</div>
+	<div class="panel_txt1 editor-option input-group">
+		<label style="width:85%;float:left;">查询</label><label style="width:15%;float:right;">确定</label>
+		<input id="SparkShellCondition" type="text" class="form-control" ng-model="panel.form.condition" style="width:85%"></input>
+		<span class="input-group-addon fa fa-map-marker hs_cursor" ng-click="showCondition()" style="clear:both;width:15%;min-height:34px;height:34px"></span>
+	</div>
+	<div class="panel_pro4 editor-option input-group" ng-show="panel.form.sparkconditionshowflag == '1'">
+		<label style="width:85%;float:left;">确认条件</label><label style="width:15%;float:right;">取消</label>
+		<input type="text" class="form-control" ng-model="panel.form.condition" style="width:85%"  readonly/></input>
+		<span class="input-group-addon fa fa-times hs_cursor" ng-click="closeCondition()" style="clear:both;width:15%;min-height:34px;height:34px"></span>
+	</div>
+	<!--
+	<div class="panel_val input-group">
+		<input id="SparkShellCondition" type="text" ng-model="panel.form.condition" class="form-control" placeholder="请输入查询条件"/>
+		<span class="input-group-addon"><button class="fa fa-map-marker" ng-click="showCondition()"></button></span>
+		<span class="input-group-addon"><button class="fa fa-times" ng-click="closeCondition()"></button></span>
+	</div>
+	<div class="panel_pro2">
+		<div ng-show="panel.form.sparkconditionshowflag == '1'">
+			<input type="text" ng-model="panel.form.condition" class="form-control" readonly/>
+		</div>
+	</div>
+	-->
+</div>
+
+

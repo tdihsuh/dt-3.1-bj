@@ -1,0 +1,9 @@
+<div id="panel" ng-controller="panelCtrl">
+	<div class="hs_title">
+		<div class="title hs_left">控制面板</div>
+		<div class="title hs_right"><i class="fa fa-plus hs_cursor" ng-click="addPanel()" title="增加面板"></i></div>
+	</div>
+	<div id="panel_content" class="hs_block"></div>
+
+	<div ng-include="'app/template/panel/modify.html'"></div>
+</div>

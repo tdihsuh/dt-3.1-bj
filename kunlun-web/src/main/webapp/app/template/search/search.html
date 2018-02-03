@@ -1,0 +1,181 @@
+<div id="content">
+	<div id="search_popup_layers"></div>
+	<div id="search">
+		<div class="theme"><i class="fa-fw fa fa-search-plus" style="margin-right:10px;"></i>搜索</div>
+		<div class="input-group hidden-mobile" id="search_group">
+			<div class="input-group-btn">
+				<button ng-click="toggle(this)" type="button" class="btn btn-default" id="button_toggle">
+					展开预设<span class="caret"></span>
+				</button>
+			</div>
+			<input class="form-control" type="text" placeholder="输入关键词..." ng-model="search.keywords" id="s_key">
+			<div class="input-group-btn">
+				<button type="submit" class="btn btn-default" ng-click="query(1)">
+					&nbsp;&nbsp;&nbsp;<i class="fa fa-fw fa-search fa-lg"></i>&nbsp;&nbsp;&nbsp;
+				</button>
+			</div>
+			<div class="dropdown-menu" id="presetWrapper">
+				<div class="search_condi_list">
+					<ul class="unstyled presets-group">
+						<li>实时</li>
+						<li><a href="javascript:" ng-click="intervalSearch('30 秒窗口',30)">30 秒窗口</a></li>
+						<li><a href="javascript:" ng-click="intervalSearch('1 分钟窗口',60)">1 分钟窗口</a></li>
+						<li><a href="javascript:" ng-click="intervalSearch('5 分钟窗口',300)">5 分钟窗口</a></li>
+						<li><a href="javascript:" ng-click="intervalSearch('30 分钟窗口',1800)">30 分钟窗口</a></li>
+						<li><a href="javascript:" ng-click="intervalSearch('1 小时窗口',3600)">1 小时窗口</a></li>
+						<li><a href="javascript:" ng-click="intervalSearch('所有时间 (实时)',30)">所有时间 (实时)</a></li>
+					</ul>
+				</div>
+				<div class="presets-divider-wrap">
+					<div class="presets-divider"></div>
+				</div>
+				<div class="search_condi_list">
+					<ul class="unstyled presets-group">
+						<li>相对</li>
+						<li><a href="javascript:" ng-click="selectDay('今天',0)">今天</a></li>
+						<li><a href="javascript:" ng-click="selectDay('一周迄今',7)">一周迄今</a></li>
+						<li><a href="javascript:" ng-click="selectDay('一个月迄今',30)">一个月迄今</a></li>
+						<li><a href="javascript:" ng-click="selectDay('年度迄今',365)">年度迄今</a></li>
+						<li><a href="javascript:" ng-click="selectDay('昨天',1)">昨天</a></li>
+						<!--<li><a href="javascript:" ng-click="selectPreWeek('前一周')">前一周</a></li>-->
+						<li><a href="javascript:" ng-click="selectPreMonth('上月')">上月</a></li>
+						<!--<li><a href="javascript:" ng-click="selectPreYear('上一年')">上一年</a></li>-->
+					</ul>
+				</div>
+				<div class="search_condi_list">
+					<ul class="unstyled presets-group">
+						<li>&nbsp;</li>
+						<li><a href="javascript:" ng-click="selectDatetime('前 15 分钟',15)">前 15 分钟</a></li>
+						<li><a href="javascript:" ng-click="selectDatetime('前 60 分钟',60)">前 60 分钟</a></li>
+						<li><a href="javascript:" ng-click="selectDatetime('前 4 小时',4*60)">前 4 小时</a></li>
+						<li><a href="javascript:" ng-click="selectDatetime('前 24 小时',24*60)">前 24 小时</a></li>
+						<li><a href="javascript:" ng-click="selectDay('前 7 天',7)">前 7 天</a></li>
+						<li><a href="javascript:" ng-click="selectDay('前 30 天',30)">前 30 天</a></li>
+					</ul>
+				</div>
+				<div class="presets-divider-wrap">
+					<div class="presets-divider"></div>
+				</div>
+				<div style="width:50%">
+					<ul class="search_data_range_ul">
+						<li>日期和时间范围</li>
+						<li>
+							<div class="search_date_range">
+								<div class="search_date">
+									<div class="input-group">
+									  <span class="input-group-addon">从</span>
+									  <input class="form-control" type="text" id="datepicker_from" maxlength="10" placeholder="yyyy-MM-dd">
+									</div>
+									<div class="search_time">
+										<input class="form-control" type="text" id="datepicker_time_from" maxlength="8" placeholder="HH:mm:ss">
+									</div>
+								</div>
+								<div class="search_date">
+									<div class="input-group">
+									  <span class="input-group-addon">至</span>
+									  <input class="form-control" type="text" id="datepicker_to" maxlength="10" placeholder="yyyy-MM-dd">
+									</div>
+									<div class="search_time">
+										<input class="form-control" type="text" id="datepicker_time_to" maxlength="8" placeholder="HH:mm:ss">
+									</div>
+								</div>
+								<div class="search_apply">
+									<button type="submit" class="btn btn-default" ng-click="selectRange('日期和时间范围')">应用</button>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="log_summary">
+			<span>
+				<i class="fa fa-spinner fa-spin" ng-if="search.intervalId" title="搜索中..."></i>
+				<span><strong>{{search.logNum | number}}</strong> 条日志</span>
+				<span>耗时 <strong>{{search.tookValue}}</strong>{{search.tookUnit}}</span>
+				<span>时间范围：{{search.summary.datetime}}</span>
+			</span>
+		</div>
+		<div id="searchPar">
+			<ul>
+				<li><i class="{{search.aggs == 'week' ? 'fa fa-check-square-o':'fa fa-square-o'}}" ng-click="searchAggs('week')">每周</i></li>
+				<li><i class="{{search.aggs == 'day' ? 'fa fa-check-square-o':'fa fa-square-o'}}" ng-click="searchAggs('day')">每天</i></li>
+				<li><i class="{{search.aggs == '8h' ? 'fa fa-check-square-o':'fa fa-square-o'}}" ng-click="searchAggs('8h')">每8小时</i></li>
+				<li><i class="{{search.aggs == 'hour' ? 'fa fa-check-square-o':'fa fa-square-o'}}" ng-click="searchAggs('hour')">每小时</i></li>
+			</ul>
+		</div>
+		<div id="searchContainer"></div>
+		<div class="hs_block">
+			<div id="search_panel" ng-include="'app/template/panel/module.html'"></div>
+		</div>
+		<div id="search_area">
+			<div id="search_fields">
+				<div id="search_fields_title">字段</div>
+				<div id="search_fields_keywords"><input class="form-control" type="text" ng-model="fieldKey" placeholder="搜索字段"/></div>
+				<div class="search_fields_pagination" ng-show="search.fields.length > 0 && !fieldKey">
+					<span ng-show="search.fieldPages.currentPage > 1"><a href="javascript:" ng-click="search.fieldPages.currentPage = search.fieldPages.currentPage - 1" title = "上一页">&lt;</a></span>
+					<span>{{search.fieldPages.currentPage}}</span>
+					<span ng-show="search.fieldPages.currentPage < search.fieldPages.totalPage"><a href="javascript:" ng-click="search.fieldPages.currentPage = search.fieldPages.currentPage + 1;" title="下一页">&gt;</a></span>
+				</div>
+				<ul id="search_fields_list"  ng-show="search.fields.length > 0">
+					<li ng-repeat="field in search.fields | filter:fieldKey" class="search_field_li" ng-show="$index >= (search.fieldPages.currentPage-1)*search.fieldPages.pageSize && $index <= search.fieldPages.currentPage*search.fieldPages.pageSize || fieldKey">
+						<div id="field_area_{{$index}}" class="field_area hs_overflow_hidden hs_font_11">
+							<i class="{{search.list.title.indexOf(field) == -1 ? 'fa fa-square-o':'fa fa-check-square-o'}}" 
+								ng-click="modifyFieldTitle(field)"></i><a href="javascript:" ng-click="showFieldDetail(field,$index)" title="{{field}}" class="field_name">{{field}}</a>
+						</div>
+					</li>
+				</ul>
+				<div class="search_fields_pagination" ng-show="search.fields.length > 0 && !fieldKey">
+					<span ng-show="search.fieldPages.currentPage > 1"><a href="javascript:" ng-click="search.fieldPages.currentPage = search.fieldPages.currentPage - 1" title = "上一页">&lt;</a></span>
+					<span>{{search.fieldPages.currentPage}}</span>
+					<span ng-show="search.fieldPages.currentPage < search.fieldPages.totalPage"><a href="javascript:" ng-click="search.fieldPages.currentPage = search.fieldPages.currentPage + 1;" title="下一页">&gt;</a></span>
+				</div>
+			</div>
+			<div id="searchList">
+				<ul class="pagination">
+					<li ng-if="logs.currentPage > 1">
+						<a href="javascript:" ng-click="query(logs.currentPage > 1 ? logs.currentPage-1 : 1)" title="上一页">&laquo;</a>
+					</li>
+					<li ng-repeat="page in logPages">
+						<a href="javascript:" title="第{{page}}页" ng-show="page==logs.currentPage" style="color:#000">{{page}}</a>
+						<a href="javascript:" ng-click="query(page)" title="第{{page}}页" ng-show="page!=logs.currentPage">{{page}}</a>
+					</li>
+					<li ng-if="logs.currentPage < logs.pageNum">
+						<a href="javascript:" ng-click="query(logs.currentPage < logs.pageNum ? logs.currentPage+1:logs.pageNum)" title="下一页">&raquo;</a>
+					</li>
+				</ul>
+				<table width="100%" cellpadding="0" cellspacing="0" id="search_table">
+					<tr id="title" class="list_select">
+						<td width="13%" align="center" ng-show="search.list.title.length == 0">时间</td>
+						<td width="87%" align="center" ng-show="search.list.title.length == 0">详情</td>
+						<td ng-repeat="title in search.list.title">{{title}}</td>
+					</tr>
+					<tr ng-repeat="log in logs.items" style="cursor:pointer" on_finish_render_filters ng-class="{list_select:$index%2==1}" id="list_cont" ng-click="showDetailFields(log._id)">
+						<td class="hs_font_11" valign="top" ng-show="search.list.title.length == 0">{{log._source['@timestamp'] | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+						<td class="details hs_font_11"  ng-show="search.list.title.length == 0">
+							<span class="details_span">{{log.detail}}</span>
+							<ul id="log_{{log._id}}" class="detail_field">
+								<li ng-repeat="(fk,fs) in log._source">
+									<span class="detail_field_left">{{fk}}</span><span class="detail_field_right">{{fs}}</span>
+								</li>
+							</ul>
+						</td>
+						<td class="hs_font_11" ng-repeat="title in search.list.title">{{log._source[title]}}</td>
+					</tr>
+				</table>
+				<ul class="pagination">
+					<li ng-if="logs.currentPage > 1">
+						<a href="javascript:" ng-click="query(logs.currentPage > 1 ? logs.currentPage-1 : 1)" title="上一页">&laquo;</a>
+					</li>
+					<li ng-repeat="page in logPages">
+						<a href="javascript:" title="第{{page}}页" ng-show="page==logs.currentPage" style="color:#000">{{page}}</a>
+						<a href="javascript:" ng-click="query(page)" title="第{{page}}页" ng-show="page!=logs.currentPage">{{page}}</a>
+					</li>
+					<li ng-if="logs.currentPage < logs.pageNum">
+						<a href="javascript:" ng-click="query(logs.currentPage < logs.pageNum ? logs.currentPage+1:logs.pageNum)" title="下一页">&raquo;</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

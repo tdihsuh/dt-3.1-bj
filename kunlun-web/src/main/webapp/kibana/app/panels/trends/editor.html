@@ -1,0 +1,21 @@
+<div>
+  <h4>设置</h4>
+  <div class="row-fluid">
+    <div class="editor-option">
+       <label class="small">多长时间前 <tip>Elasticsearch时间格式（比如 1分钟, 5分钟, 1天, 2周, 1年）</tip></label>
+        <input type="text" class="input-small" ng-model="panel.ago" ng-change="set_refresh(true)">
+    </div>
+    <div class="editor-option">
+      <label class="small">字号</label>
+      <select class="input-small" ng-model="panel.style['font-size']" ng-options="f for f in ['7pt','8pt','9pt','10pt','12pt','14pt','16pt','18pt','20pt','24pt','28pt','32pt','36pt','42pt','48pt','52pt','60pt','72pt']"></select>
+    </div>
+    <div class="editor-option">
+      <label class="small">列表格式</label>
+      <select class="input-small" ng-model="panel.arrangement" ng-options="f for f in ['horizontal','vertical']"></select>
+    </div>
+    <div class="editor-option">
+      <label class="small">互换颜色<tip>绿色代表下降, 红色代表上升</tip></label>
+      <input type="checkbox" ng-model="panel.reverse" ng-checked="panel.reverse">
+    </div>
+  </div>
+</div>

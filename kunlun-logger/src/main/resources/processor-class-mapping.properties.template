@@ -1,0 +1,10 @@
+#all log separate by line can process by this
+file=com.hansight.kunlun.collector.processor.file.DirBaseLogProcessor
+#for hdfs
+hdfs=com.hansight.kunlun.collector.processor.file.HDFSBaseLogProcessor
+#for syslog
+syslog=com.hansight.kunlun.collector.processor.net.SyslogLogProcessor
+# for snmp
+snmp=com.hansight.kunlun.collector.processor.net.SnmpLogProcessor
+#for database
+jdbc=com.hansight.kunlun.collector.processor.jdbc.JDBCLogProcessor

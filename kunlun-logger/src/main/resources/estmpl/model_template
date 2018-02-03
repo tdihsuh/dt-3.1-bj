@@ -1,0 +1,41 @@
+{
+    "model_template" : {
+ 	"template" : "model_*",
+	"order" : 11,
+    	"settings" : {
+        	"index" : {
+            		"number_of_shards" : 20,
+            		"number_of_replicas" : 1,
+          	  	"refresh_interval": "30s"
+        	}
+    	},
+    	"mappings": {
+        "_default_": {
+            	"_all": {
+                	"enabled": false
+            	},
+            	"_source": {
+                	"compress": false
+            	},
+            	"properties": {
+                	"sc404": {
+                    		"index": "not_analyzed",
+                    		"type": "double"
+                	},
+                	"sc500": {
+                    		"index": "not_analyzed",
+                    		"type": "double"
+                	},
+                	"urlRate": {
+                   	 	"index": "not_analyzed",
+                    		"type": "double"
+                	},
+                	"date": {
+                    		"index": "not_analyzed",
+                    		"type": "string"
+                	}
+            	}
+        }
+    }
+  }
+}

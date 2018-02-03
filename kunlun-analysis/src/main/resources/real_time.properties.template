@@ -1,0 +1,42 @@
+#####################
+###########fetch reference
+fetch.reference.sleep=3600000
+fetch.reference.regex=(/[cC][mM][bB][bB][aA][nN][kK]_[\\d\\D]*)|([^\\.%'\"<>]*((\\.htc)|(\\.gif)|(\\.jpg)|(\\.js)|(\\.ico)|(\\.png)))
+
+#####################
+###########fetch raw 
+#fetch raw put, processor take
+message.queue.capacity=10000
+#unit:ms, data is large, time need short to avoid ES load much data to memory 
+rt.fetch.raw.log.step=1000000
+# unit:ms, per shard one time fetch size, total = size * shard_count
+rt.fetch.raw.log.size=1000
+# unit:minutes, scroll id keep time
+rt.fetch.raw.log.time=10
+# unit:s, log collector speed fast, we can set small 
+rt.fetch.raw.log.sleep=10
+# unit:ms, sometimes log delay current time 
+rt.fetch.raw.log.delay=10000
+
+#####################
+##processor
+ip.geo.database=GeoIPCity.dat
+
+#####################
+###########anomaly
+model.404.not.exists.as.anomaly=false
+
+#####################
+###########metrice 
+metrics.enable=false
+metrics.port=8030
+metrics.uri=/metrics
+
+
+#####################
+###IP white list file
+ip.white.list=ip.white
+
+#####################
+###url pattern list file
+url.pattern.list=url.pattern

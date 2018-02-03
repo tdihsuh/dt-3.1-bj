@@ -1,0 +1,59 @@
+<div id="content">
+	<div id="conf_datasource">
+			<div class="theme"><i class="fa fa-share-square-o" style="margin-right:10px;"></i>转发器配置</div>
+			<div class="pagination" style="text-align:left;"><button type="button" class="btn btn-default"  ng-click="addForwarder()">添加</button></div>
+			<div id="cluster_indices" class="hs_block"><div id = "confForwardrError" style="text-align:right;"></div>
+				<table  class="table table-bordered">
+				<thead>
+					<tr class="indices_title">
+						<th width="5%"  style="text-align:center;">序号</th>
+						<th width="20%" style="text-align:center;">名称</th>
+						<th width="20%" style="text-align:center;">ip</th>
+						<th width="20%" style="text-align:center;">描述</th>
+						<th width="15%" style="text-align:center;">状态</th>
+						<th width="20%" style="text-align:center;">操作</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="item in forwarder.list" class="event_list" 
+							ng-class="{event_list_selected : $index == selectedRow}" id="indices_txt">
+						<td width="5%" style="text-align:center;">{{$index+1+events.offset}}</td>
+						<td width="20%" >{{item.name}}</td>
+						<td width="20%">{{item.ip}}</span></td>
+						<td width="20%">{{item.description}}</td>
+<!-- 						<td width="15%">{{item.state}}</td> -->
+						<td width="15%" ng-if="item.state == 'UNKNOWN' "><font color="#888">未知</font></td>
+						<td width="15%" ng-if="item.state == 'STOPED' "><font color="red">停止</font></td>
+						<td width="15%" ng-if="item.state == 'PENDING' "><font color="purple">初始化</font></td>
+						<td width="15%" ng-if="item.state == 'RUNNING' "><font color="green">正常</font></td>
+						<td width="20%" style="text-align:center;">
+					    <button type="button"  class="btn btn-default btn-xs" ng-click="delForwarder(item.id)">删除</button>
+					    <button type="button" class="btn btn-default btn-xs"  ng-click="editForwarder(item.id)">修改</button>
+						<button type="button" class="btn btn-default btn-xs"  ng-click="loadForwarder(item.id)">下载</button>
+					</td>
+					</tr>  
+					<tr ng-if="!forwarder">
+						<td colspan="5" height="120" align="center">无数据</td>
+					</tr>
+					</tbody>
+				</table>
+				
+			<div id="searchList">
+			
+				<ul class="pagination">
+					<li ng-if="forwarder.currentPage > 1"> 
+ 						<a href="javascript:" ng-click="queryPage(forwarder.currentPage> 1 ? forwarder.currentPage-1 : 1)" title="上一页">&laquo;</a> 
+ 					</li> 
+ 					<li ng-repeat="page in forwarder.pageNum">
+ 						<a href="javascript:" title="第{{page}}页" ng-show="page==forwarder.currentPage" style="color:#000">{{page}}</a> 
+ 						<a href="javascript:" ng-click="queryPage(page)" title="第{{page}}页" ng-show="page!=forwarder.currentPage">{{page}}</a> 
+ 					</li> 
+ 					<li ng-if="forwarder.currentPage < forwarder.totalPages"> 
+ 						<a href="javascript:" ng-click="queryPage(forwarder.currentPage < forwarder.totalPages ? forwarder.currentPage+1:forwarder.totalPages)" title="下一页">&raquo;</a> 
+ 					</li> 
+ 				</ul>   
+				</div>
+			</div>
+			</div>
+	</div>
+</div>

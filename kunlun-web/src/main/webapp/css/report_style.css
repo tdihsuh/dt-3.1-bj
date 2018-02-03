@@ -1,0 +1,26 @@
+#report .theme{
+	width:50%;
+	font-size:20px;
+	font-weight:bold;
+	height:40px;
+	color:#666;
+}
+#report .report_img,#report .report_desc{
+	width:100%;
+	background-color:#FFF;
+	border:1px solid #C2C2C2;
+}
+#report .report_img .title,#report .report_desc .title{
+	height:40px;
+	font-size:14px;
+}
+#report .report_img tr,#report .report_desc tr{
+	border-top:1px solid #C2C2C2;
+}
+#report .report_img tr td,#report .report_desc tr td{
+	padding:5px;
+}
+#report ul{
+	list-style:none;
+	line-height:23px;
+}

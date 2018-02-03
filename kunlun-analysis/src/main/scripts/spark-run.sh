@@ -1,0 +1,2 @@
+#!/bin/sh
+SPARK_DRIVER_MEMORY="7g" ./spark/bin/spark-submit --executor-memory 8g  --master spark://yzh:7077  --class com.hansight.kunlun.analysis.statistics.spark.AnomalyDetection kunlun/kunlun-analysis-1.0-jar-with-dependencies.jar logs_*/log_iis kmeans

@@ -1,0 +1,49 @@
+<div id="column" data-ng-init="">
+	<div style="clear:both;width:15%;font-weight:bold;font-size:20px;padding-left:9px;padding-top:16px">
+		Stable //可加入其他子面板
+	</div>
+	<div class="panel_txt1 editor-option">
+		<label >标题</label><input name="title" type="text" class="form-control" ng-model="panel.form.title" required></input>
+	</div>
+	<div class="panel_pro4 editor-option">
+		<label>宽</label> 
+		<select class="form-control" ng-options="c.value for c in panel.columns.value" ng-model='panel.form.column' required>
+			<option value="">请选择列数</option>
+		</select>
+	</div>
+	<div style="clear:both;width:15%;font-weight:bold;font-size:20px;padding-left:9px;padding-top:16px">添加面板到列</div>
+	<div class="panel_txt1 editor-option">
+      <select class='form-control' ng-model='panel.column.type' ng-options="t.value for t in panel.ColPaneltype.value" name="panelColumnType">
+			<option value="">请选择面板类型</option>
+	  </select>
+	</div>
+	<div ng-include="panel.column.type.colurl"></div>
+	<div style="clear:both;width:15%;font-weight:bold;font-size:20px;padding-left:9px;padding-top:16px">
+		<button  class="btn btn-primary">创建面板</button><br>
+	</div>
+	<div class="row-fluid" style="clear:both;width:95%;padding-left:9px;padding-top:16px">
+    <div class="span12">
+      <h4>Panels</h4>
+      <table class="table table-condensed table-striped">
+        <thead>
+          <th>标题</th>
+          <th>类型</th>
+          <th>高</th>
+          <th>删除</th>
+          <th>移动</th>
+          <th></th>
+          <th>隐藏</th>
+        </thead>
+        <tr ng-repeat="app in panel.panels">
+          <td>{{app.title}}</td>
+          <td>{{app.type}}</td>
+          <td><input type="text"  ng-model="app.height" required></input></td>
+          <td><i ng-click="removeColumnPanel(app)" class="fa fa-times hs_cursor"></i></td>
+          <td><i ng-click="moveColumnPanel($index,$index-1)" ng-hide="$first" class="fa fa-arrow-up hs_cursor"></i></td>
+          <td><i ng-click="moveColumnPanel($index,$index+1)" ng-hide="$last" class="fa fa-arrow-down hs_cursor"></i></td>
+          <td><input type="checkbox" ng-model="app.hide" ng-checked="app.hide"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

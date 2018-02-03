@@ -1,0 +1,3 @@
+es=com.hansight.kunlun.collector.writer.ElasticSearchLogWriter
+kafka=com.hansight.kunlun.collector.writer.KafkaLogWriter
+es_actor=com.hansight.kunlun.collector.writer.ElasticSearchLogWithActorWriter

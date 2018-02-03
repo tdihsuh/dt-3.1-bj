@@ -1,0 +1,58 @@
+define(['app'],function(app){
+	app.config(['$routeProvider',function ($routeProvider) {
+		$routeProvider.when('/',{
+		templateUrl:'app/template/dashboard/dashboard.html',
+			controller:'dashboardCtrl'
+		}).when('/dashboard', {
+			templateUrl: 'app/template/dashboard/dashboard.html',
+			controller:'dashboardCtrl'
+		}).when('/analyse', {
+			templateUrl: 'app/template/analyse/analyse.html',
+			controller:'analyseCtrl'
+		}).when('/dashboard3D', {
+			templateUrl: 'app/template/dashboard/dashboard3D.html',
+			controller:'dashboard3DCtrl'
+		}).when('/search', {
+			templateUrl: 'app/template/search/search.html',
+			controller:'searchCtrl'  
+		}).when('/search/:param', {
+			templateUrl: 'app/template/search/search.html',
+			controller:'searchCtrl'  
+		}).when('/usermng',{
+			templateUrl:'app/template/system/usermng.html',
+			controller:'usermngCtrl'
+		}).when('/assets',{
+			templateUrl:'app/template/assets/assets.html',
+			controller:'assetsCtrl'
+		}).when('/topSecurityReport',{
+			templateUrl:'app/template/report/topSecurity.html',
+			controller:'topSecurityReportCtrl'
+		}).when('/securityReport',{
+			templateUrl:'app/template/report/security.html',
+			controller:'securityReportCtrl'
+		}).when('/serverReport',{
+			templateUrl:'app/template/report/server.html',
+			controller:'serverReportCtrl'
+		}).when('/complexReport',{
+			templateUrl:'app/template/report/complex.html',
+			controller:'complexReportCtrl'
+		}).when('/node',{
+			templateUrl:'app/template/cluster/node.html',
+			controller:'nodeCtrl'
+		}).when('/clusterDetail/:param',{
+			templateUrl:'app/template/cluster/detail.html',
+			controller:'detailCtrl'
+		}).when('/docsAndIndex',{
+			templateUrl:'app/template/mornitor/docAndIndex.html',
+			controller:'docsAndIndexCtrl'
+		}).when('/cluster',{
+			templateUrl:'app/template/cluster/cluster.html',
+			controller:'clusterCtrl'
+		}).when('/trendLine',{
+			templateUrl:'app/template/report/trendLine.html',
+			controller:'trendLineCtrl'
+		}).otherwise({
+			redirectTo: '/'
+		});
+	}]);
+});

@@ -1,0 +1,279 @@
+<div id="content">
+	<div id="conf_datasource">
+		<div class="theme"><i class="fa-fw fa fa-comments-o" style="margin-right:10px;"></i>修改数据源配置</div>
+		<div class="usermanager">
+			<div class="panelboard">
+				<form name="myForm">
+				<div><b>1、数据源类型</b></div>
+				<fieldset>
+				 <div class="row">
+		          
+			          <div class="col-sm-5" style="width:50%;">
+			          <label class="col-md-3 control-label"><div style="float:right;">数据源名称</div></label>
+							<div class="col-sm-7">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-database fa-fw"></i></span>
+										<input class="form-control input-sm" value ="{{datasource.datasourceName}}"id ="datasourceName"  type="text" name="datasourceName" ng-model="datasource.datasourceName"  ng-change="dNChange(datasource.datasourceName)" required>
+								</div>
+							</div>
+			          </div>
+			           <div class="col-sm-5" style="width:50%;" ng-show ="1 == dataCategory">
+			          <label class="col-md-3 control-label"><div style="float:right;">日志名称</div></label>
+							<div class="col-sm-7">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-database fa-fw"></i></span>
+										<input class="form-control input-sm" value ="{{datasource.category}}"id ="category"  type="text" name="category" ng-model="datasource.category"  ng-change="catChange(datasource.category)" required>
+								</div>
+							</div>
+			          </div>
+		          </div>
+				<div class="row">
+					<div class="col-sm-5" style="width:50%;">
+						<label class="col-md-3"><div style="float:right;">数据源类型</div></label>
+						<div class="col-sm-7">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="fa fa-database fa-fw"></i></span>
+								 <select name="category" class="form-control input-sm" 
+								 ng-model="datasource.categoryId" ng-options="m.id as m.name for m in category " ng-change="selChange(datasource.categoryId)">
+										<option value="" onmouseover="style.backgroundColor='#CCCCFF';"
+								onmouseout="style.backgroundColor=''">--请选择---</option>
+							 </select> 
+							</div>
+						</div>
+					</div>
+						<div class="col-sm-5" style="width:50%;">
+						<label class="col-md-3"><div style="float:right;">日志类型</div></label>
+						<div class="col-sm-7">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-comment-o   fa-fw"></i></span>
+								<select align="center" class="form-control input-sm" id="type" name="type" ng-model="datasource.type"  ng-change="typeChange(datasource.type)">
+								   <option value="" onmouseover="style.backgroundColor='#CCCCFF';" onmouseout="style.backgroundColor=''">--请选择---</option>
+								   <option>log</option>
+								   <option>event</option>
+								</select>
+					   </div>
+					   </div>
+					</div>
+					</div>
+		          </fieldset>
+		          <div><b>2、数据源信息</b></div>
+		          <fieldset>
+<!-- 		           <h3><strong>(2)、数据源信息 </strong> </h3> -->
+		          <div class="row">
+		          
+			          <div class="col-sm-5" style="width:50%;">
+			          <label class="col-md-3 control-label"><div style="float:right;">协议</div></label>
+							<div class="col-sm-7">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-code-fork fa-fw"></i></span>
+										<select class="form-control input-sm" id="protocol" name="protocol" ng-model="datasource.protocol" ng-change="proChange(datasource.protocol)">
+											<option value=""  onmouseover="style.backgroundColor="#CCCCFF";" onmouseout="style.backgroundColor=''">--请选择---</option>
+											<option>file</option>
+											<option>hdfs</option>
+											<option>tcp</option>
+											<option>udp</option>
+										</select>
+								</div>
+							</div>
+			          </div>
+		          </div>
+		           <div class="row">
+			           <div class="col-sm-5" style="width:50%;">
+			           		<label class="col-md-3 control-label"><div style="float:right;">日志分格</div></label>
+							<div class="col-sm-7">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-cogs fa-fw"></i></span>
+										<select align="center" id="agentParser" name="agentParser" class="form-control input-sm"  ng-model="datasource.agentParser"  ng-change="agentParserChange(datasource.agentParser)">
+										   <option value="" onmouseover="style.backgroundColor='#CCCCFF';" onmouseout="style.backgroundColor=''">--请选择---</option>
+										   <option ng-show ="1==agentSelect">line</option>
+										   <option ng-show ="1==agentSelect">winevt</option>
+										   <option ng-show ="1==agentSelect">json</option>
+										   <option ng-show ="2==agentSelect">syslog</option>
+										   <option ng-show ="2==agentSelect">snmp</option>
+										</select>
+									</div>
+							</div>
+						</div>
+						<div class="col-sm-5" style="width:50%;">
+							<label class="col-md-3 control-label"><div style="float:right;">解析器</div></label>
+											<div class="col-sm-7">
+												<div class="input-group">
+													<span class="input-group-addon"><i class="fa fa-share-square-o fa-fw"></i></span>
+														<select align="center" id="forwarderParser" name="forwarderParser" class="form-control input-sm"  ng-model="datasource.forwarderParser"  ng-change="forwarderParserChange(datasource.forwarderParser)">
+							                                 <option value="" onmouseover="style.backgroundColor='#CCCCFF';" onmouseout="style.backgroundColor=''">--请选择---</option>
+							                                 <option>regex</option>
+							                                 <option>xml</option>
+							                                 <option>json</option>
+							                                 <option>delimit</option>
+							                                 <option>cef</option>
+													    </select>
+												</div>
+											</div>
+						</div>
+									
+		           </div>
+		            </fieldset>
+		            <div><b>3、预定义</b></div>
+<!-- 		              <h3><strong>(3)、添加预定义 </strong> </h3> -->
+		           <fieldset ng-show ="1 == show">
+		            <div class="row">
+		            	<div class="col-sm-5" style="width:50%;">
+			            <label class="col-md-3 control-label"><div style="float:right;">解析规则</div></label>
+								<div class="col-sm-7">
+									<div class="input-group">
+									 	<textarea   id="pattern" type="text" value="{{cdatasource.pattern}}" name="pattern" value="正则"  ng-model="datasource.pattern"  ng-change="patternChange(datasource.pattern)"  placeholder="正则" cols="50" rows="3" style="float:left; margin:2px; font-size:12px;"></textarea>
+									 </div>
+								</div>
+								
+			           </div>
+			          
+			            <div class="col-sm-5" style="width:50%;">
+			            	<label class="col-md-3 control-label" ><div style="float:right;">路径</div></label>
+							<div class="col-sm-7">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-square-o fa-fw"></i></span>
+									<input class="form-control input-sm" id="url" value ="路径"  type="text" name="url" ng-model="datasource.url" placeholder="路径"  ng-change="urlChange(datasource.url)" placeholder="路径">
+							   </div>
+							</div>
+			           </div>
+<!-- 			           <div class="col-sm-5" style="width:50%;"> -->
+<!-- 			           		<label class="col-md-3 control-label"><div style="float:right;">编码</div></label> -->
+<!-- 							<div class="col-sm-7"> -->
+<!-- 								<div class="input-group"> -->
+<!-- 									<span class="input-group-addon"><i class="fa fa-dot-circle-o fa-fw"></i></span> -->
+<!-- 										<select align="center" id="encoding" name="encoding" class="form-control input-sm"  ng-model="datasource.encoding"  required ng-change="encodingChange(datasource.encoding)">  -->
+<!-- 	 							            <option value="" onmouseover="style.backgroundColor="#CCCCFF";" onmouseout="style.backgroundColor=""">--请选择---</option> -->
+<!-- 											<option >utf-8</option> -->
+<!-- 											<option >gbk</option> -->
+<!-- 										</select> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 			           </div> -->
+<!-- 		           </div> -->
+<!-- 		           <div class="row"> -->
+			            
+		           </div>
+		           </fieldset>
+		          <fieldset ng-show ="2 == show">
+		           
+<!-- 		           <h3><strong>(3)、添加预定义 </strong> </h3> -->
+		          <div class="row" >
+			          <div class="col-sm-5" style="width:50%;">
+			          <label class="col-md-3 control-label"><div style="float:right;">主机</div></label>
+						<div class="col-sm-7">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-desktop fa-fw"></i></span>
+									<input class="form-control input-sm" id="host" value="ipv4" type="text" name="host" ng-model="datasource.host" placeholder="ipv4" ng-change="hostChange(datasource.host)">
+								</div>
+							</div>
+			          </div>
+			           <div class="col-sm-5" style="width:50%;">
+			                <label class="col-md-3 control-label"><div style="float:right;">端口</div></label>
+							<div class="col-sm-7">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-adjust fa-fw"></i></span>
+									<input class="form-control input-sm" id="port" value="80"  type="text" name="port" ng-model="datasource.port" placeholder="数字" ng-change="portChange(datasource.port)">
+								</div>
+							</div>
+						</div>
+		          </div>
+		          <div class="row">
+<!-- 			           <div class="col-sm-5" style="width:50%;"> -->
+<!-- 				           		<label class="col-md-3 control-label"><div style="float:right;">编码</div></label> -->
+<!-- 								<div class="col-sm-7"> -->
+<!-- 									<div class="input-group"> -->
+<!-- 										<span class="input-group-addon"><i class="fa fa-dot-circle-o fa-fw"></i></span> -->
+<!-- 											<select align="center" id="encoding" name="encoding" class="form-control input-sm"  ng-model="datasource.encoding"  required ng-change="encodingChange(datasource.encoding)">  -->
+<!-- 		 							            <option value="" onmouseover="style.backgroundColor="#CCCCFF";" onmouseout="style.backgroundColor=""">--请选择---</option> -->
+<!-- 												<option >utf-8</option> -->
+<!-- 												<option >gbk</option> -->
+<!-- 											</select> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 				           </div> -->
+			           </div>
+		          <div class="row">
+			            <div class="col-sm-5" style="width:50%;">
+			            <label class="col-md-3 control-label"><div style="float:right;">解析规则</div></label>
+								<div class="col-sm-7">
+									<div class="input-group">
+									 	<textarea   id="pattern" type="text" name="pattern" value="正则"  ng-model="datasource.pattern"  ng-change="patternChange(datasource.pattern)"  placeholder="正则" cols="50" rows="3" style="float:left; margin:2px;"></textarea>
+									 </div>
+								</div>
+			           </div>
+		           </div>
+		           
+		          </fieldset>
+		            <div><b>4、采集器和编码</b></div>
+		          <fieldset>
+		          <div class="row">
+			          <div class="col-sm-5" style="width:50%;">
+			        	 <label class="col-md-3 control-label"><div style="float:right;">采集器</div></label>
+						<div class="col-sm-7">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-cogs fa-fw"></i></span>
+				                <select id ="agent2" name="agent" class="form-control input-sm"  ng-model="datasource.agentId" ng-options="m.id as m.name for m in agent " ng-change="agentChange2(datasource.agentId)">
+									<option value="" onmouseover="style.backgroundColor="#CCCCFF";" onmouseout="style.backgroundColor=""">--请选择---</option>
+								</select> 
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-5" style="width:50%;">
+					<span id="datasourceNameError"></span>
+					<span id="categoryError"></span><br>
+					<span id="typeError"></span><br>
+					<span id="agent2Error"></span><br>
+					 <span id="agentParserError"></span><br>
+					<span id="forwarderParserError"></span><br>	
+					<span id="protocolError"></span>
+					</div>	
+					</div>
+					 <div class="row">
+						 <div class="col-sm-5" style="width:50%;">
+					           		<label class="col-md-3 control-label"><div style="float:right;">编码</div></label>
+									<div class="col-sm-7">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-dot-circle-o fa-fw"></i></span>
+												<select align="center" id="encoding" name="encoding" class="form-control input-sm"  ng-model="datasource.encoding"  required ng-change="encodingChange(datasource.encoding)"> 
+			 							            <option value="" onmouseover="style.backgroundColor="#CCCCFF";" onmouseout="style.backgroundColor=""">--请选择---</option>
+													<option >utf-8</option>
+													<option >gbk</option>
+												</select>
+										</div>
+									</div>
+					           </div>
+<!-- 						  <div class="col-sm-5" style="width:50%;"> -->
+<!-- 				        	 <label class="col-md-3 control-label"><div style="float:right;">转发器</div></label> -->
+<!-- 								<div class="col-sm-7"> -->
+<!-- 											<span ng-repeat="item in forwarder"> -->
+<!-- 												<input  name="forwarderId"  type="checkbox" value="{{item.id}}" ng-checked="confDsForwarderList.indexOf(item.id) > -1"  ng-click="forIdChange(item.id,item.name)" />&nbsp;{{item.name}}&nbsp;&nbsp;<br> -->
+<!-- 											</span> -->
+<!-- 				        	 	 </div> -->
+<!-- 			        	  </div> -->
+			        	  <div class="col-sm-5" style="width:50%;">
+			        	   <span id="patternError"></span>
+			        	   <span id="urlError"></span><br>
+			        	  <span id="forwarderIdError"></span><br>
+			        	   <span id="encodingError"></span><br>
+			        	    <span id="portError"></span><br>
+							 <span id="hostError"></span><br>
+						 </div>
+		        	  </div>
+		          
+		          </fieldset>
+		    <input class="form-control" value={{datasource.id}} type="hidden" name="id" ng-model="datasource.id" placeholder="id">  
+		     <input class="form-control" value={{datasource.state}} type="hidden" name="state" ng-model="datasource.state" placeholder="state"> 
+		      <input class="form-control" value={{datasource.createDate}} type="hidden" name="createDate" ng-model="datasource.createDate" placeholder="createDate">        
+		       <input class="form-control" value={{datasource.config}} type="hidden" name="config" ng-model="datasource.config" placeholder="config">               
+		     <fieldset>
+		      <div id = "datasourceError" style="float:left;"></div>
+		      <div style="float:right; padding-left: 15px;s margin:2px;">
+		          <button class="btn btn-default btn-xs" type="submit" ng-click="datasourceEdit(datasource)"> 修改</button >
+		           <button class="btn btn-default btn-xs" type="button" ng-click="datasourceList()"> 取消</button >
+		   	  </div>
+		    </fieldset>   
+		    </form >
+			</div>
+		</div>
+	</div>
+</div>

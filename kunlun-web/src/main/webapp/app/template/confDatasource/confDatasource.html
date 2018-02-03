@@ -1,0 +1,142 @@
+<div id="content">
+	<div id="conf_datasource">
+		<div class="theme"><i class="fa fa-database" style="margin-right:10px;"></i>数据源配置</div>
+		<div class="pagination" style="text-align:left;"><button type="button" class="btn btn-default"  ng-click="addDatasource()">添加</button></div>
+			<div id="cluster_indices" class="hs_block"><div id = "datasourceError" style="text-align:right;"></div>
+				<table class="table table-bordered">
+				<thead>
+					<tr  class="indices_title">
+						<th width="5%" style="text-align:center;">序号</th>
+						<th width="15%" style="text-align:center;">数据源名称</th>
+						<th width="15%" style="text-align:center;">类别</th>
+						<th width="10%" style="text-align:center;">日志类型</th>
+						<th width="10%" style="text-align:center;">协议</th>
+						<th width="15%" style="text-align:center;">状态</th>
+						<th width="15%" style="text-align:center;">配置是否成功</th>
+						<th width="15%" style="text-align:center;">操作</th>
+					</tr>
+					</thead>
+					<tbody  ng-repeat="item in datasource.list" class="event_list"  ng-class="{event_list_selected : $index == selectedRow}">
+					<tr id="indices_txt"  ng-click="tog($index,$event)" onmouseover="style.cursor='pointer'" onmouseout="style.backgroundColor=''">
+						<td width="5%" style="text-align:center;">{{$index+1+events.offset}}</td>
+						<td width="15%">{{item.datasourceName}}</td>
+						<td width="15%">{{item.category}}</td>
+						<td width="10%">{{item.type}}</td>
+						<td width="10%">{{item.protocol}}</td>
+<!-- 						<td width="15%">{{item.state}}</td> -->
+						<td width="15%" ng-if="item.state == 'UNKNOWN' "><font color="#888">未知</font></td>
+						<td width="15%" ng-if="item.state == 'STOPED' "><font color="red">停止</font></td>
+						<td width="15%" ng-if="item.state == 'PENDING' "><font color="purple">初始化</font></td>
+						<td width="15%" ng-if="item.state == 'RUNNING' "><font color="green">正常</font></td>
+<!-- 						<td width="15%">{{item.config}}</td> -->
+						<td width="15%" ng-if="item.config == 'UNKNOWN' "><font color="#888">未知</font></td>
+						<td width="15%" ng-if="item.config == 'FAIL' "><font color="red">失败</font></td>
+						<td width="15%" ng-if="item.config == 'PENDING' "><font color="purple">初始化</font></td>
+						<td width="15%" ng-if="item.config == 'SUCCESS' "><font color="green">成功</font></td>
+						<td width="15%" style="text-align:center;">
+						<button type="button"  class="btn btn-default btn-xs" ng-click="delDatasource(item.id,$event)">删除</button>
+						<button type="button" class="btn btn-default btn-xs"  ng-click="editDatasource(item.id,$event)">修改</button>
+						</td>  
+					</tr>
+				 	<tr class="ng-scope" ng-show="$index == showLineNum">
+						<td  colspan="8"width="100%">
+						<span>
+							<table class="table table-bordered "  style="height:100% ; width:100%;">
+								<thead>
+									<tr>
+									<th width="20%" class="table-details-field" >字段名</th>
+									<th width="30%"class="table-details-value" >属性值</th>
+									<th width="20%" class="table-details-field" >字段名</th>
+									<th width="30%"class="table-details-value" >属性值</th>
+									</tr>
+								</thead>
+									<tbody>
+									<tr>
+										<td >数据源ID</td>
+										<td >{{item.id}}</td>
+										<td >数据源名称</td>
+										<td >{{item.datasourceName}}</td>
+									</tr>
+									<tr>
+										<td >采集器ID</td>
+										<td>{{item.agentId}}</td>
+										<td>日志类型</td>
+										<td>{{item.type}}</td>
+									</tr>
+									<tr>
+										<td>日志分格</td>
+										<td>{{item.agentParser}}</td>
+										<td >解析器</td>
+										<td >{{item.forwarderParser}}</td>
+									</tr>
+									<tr>
+										<td>编码</td>
+										<td >{{item.encoding}}</td>
+										<td >协议</td>
+										<td >{{item.protocol}}</td>
+									</tr>
+									<tr>
+										<td>状态</td>
+										<td>{{item.state}}</td>
+										<td >配置状态</td>
+										<td>{{item.config}}</td>
+									</tr>
+									<tr>
+										<td >配置信息</td>
+										<td colspan="3" ><div  style='word-wrap:break-word; word-break:break-all;display:block;width:100%;'>{{item.configInfo}}</div></td>
+									</tr>
+									<tr>
+										<td>解析规则</td>
+										<td  colspan="3"><div  style='word-wrap:break-word; word-break:break-all;display:block;width:100%;'>{{item.pattern}}</div></td>
+									</tr>
+									<tr>
+										<td >采集器</td>
+										<td  colspan="3"  >{{item.agentName}}</td>
+<!-- 										<td>转发器</td> -->
+<!-- 										<td>{{item.forwarderName}}</td> -->
+									</tr>
+									<tr>
+									<td >路径</td>
+										<td >{{item.url}}</td>
+										<td >日志名称</td>
+										<td >{{item.category}}</td>
+									</tr>
+									<tr>
+										<td>主机</td>
+										<td>{{item.host}}</td>
+										<td>端口</td>
+										<td>{{item.port}}</td>
+									</tr>
+									
+									</tbody>
+								</table>
+						</span> 
+						</td>
+						
+					</tr>
+								
+					<tr ng-if="!datasource">
+						<td colspan="5" height="120" align="center">无数据</td>
+					</tr>
+					</tbody>
+				</table>
+				 
+				
+			<div id="searchList">
+			
+				<ul class="pagination">
+					<li ng-if="datasource.currentPage > 1"> 
+ 						<a href="javascript:" ng-click="queryPage(datasource.currentPage> 1 ? datasource.currentPage-1 : 1)" title="上一页">&laquo;</a> 
+ 					</li> 
+ 					<li ng-repeat="page in datasource.pageNum">
+ 						<a href="javascript:" title="第{{page}}页" ng-show="page==datasource.currentPage" style="color:#000">{{page}}</a> 
+ 						<a href="javascript:" ng-click="queryPage(page)" title="第{{page}}页" ng-show="page!=datasource.currentPage">{{page}}</a> 
+ 					</li> 
+ 					<li ng-if="datasource.currentPage < datasource.totalPages"> 
+ 						<a href="javascript:" ng-click="queryPage(datasource.currentPage < datasource.totalPages ? datasource.currentPage+1:datasource.totalPages)" title="下一页">&raquo;</a> 
+ 					</li> 
+ 				</ul>   
+				</div>
+			</div>
+	</div>
+</div>

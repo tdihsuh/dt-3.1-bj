@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title> 招商银行安全大数据平台</title>
+<link rel="stylesheet" type="text/css" media="screen" href="vendor/font-awesome-4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="vendor/bootstrap-3.2.0-dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/jquery-ui-1.10.4.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/tooltipster.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/tooltipster-shadow.css">
+
+<link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/dashboard_style.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/analyse_style.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/search_style.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/detail_style.css">
+
+<link rel="stylesheet" type="text/css" media="screen" href="css/usermng_style.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/assets_style.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/report_style.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/cluster_style.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/trendLine_style.css">
+
+<link rel="stylesheet" type="text/css" media="screen" href="css/agentConfList_style.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/panel_style.css">
+
+<link rel="stylesheet" type="text/css" media="screen" href="css/report_style.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/demo.css">
+
+<link rel="stylesheet" type="text/css" media="screen" href="css/conf_datasource.css"> 
+<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-skins.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production.css"> 
+
+<link rel="stylesheet" type="text/css" media="screen" href="css/systemlog_style.css">
+
+<link rel="stylesheet" type="text/css" media="screen" href="css/conf_warning.css"> 
+<link rel="stylesheet" type="text/css" media="screen" href="vendor/spectrum/spectrum.css"> 
+
+<script src="vendor/require.js"></script>
+<script src="app/components/require.config.js"></script>
+<style type="text/css">
+  #winpop { width:120px; height:0px; position:fixed; right:0; bottom:0; border:1px solid #999999; margin:0; padding:1px; overflow:hidden; display:none; background:#FFFFFF}
+  #winpop .title { width:100%; height:20px; line-height:20px; background:#C2C2C2; font-weight:bold; text-align:center; font-size:12px;}
+  #winpop .con { width:100%; height:80px; line-height:30px; font-weight:bold; font-size:12px; color:#FF0000; }
+.close { position:absolute; right:4px; top:-1px; color:#FF3333; cursor:pointer}
+</style>
+</head>
+<body id="cmbbody">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" id="layout_bar">
+<tr>
+    <!-- <td class="layout_left_1"><div ng-controller="userCtrl" ng-include="'app/template/loginInfo.html'" id="layout_user" ></div></td>-->
+    <td class="layout_left_1"><div id="layout_vendor">KUNLUN</div></td>
+    <td class="layout_right_1">
+	<div id="layout_nav" ng-bind="app_nav"><i class="fa fa-refresh hs_cursor" onclick='location.reload();'></i></div>
+    </td>
+    <td class="layout_right_3">
+	<div ng-controller="userCtrl" ng-include="'app/template/loginInfo.html'" id="layout_user"></div>
+    </td>
+    <td class="layout_right_5">
+	<span><a href="j_spring_security_logout" title="退出"><i class="fa fa-sign-out hs_cursor"></i></a></span>&nbsp;&nbsp;
+    </td>
+	
+</tr>
+</table>
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" id="layout_main" height="100%">
+<tr>
+	<td id="layout_menu" class="layout_left_1" valign="top" height="100%"><div ng-controller="menuCtrl" ng-include="'app/template/menu.html'"></div></td>
+	<td class="layout_right_1" id="layout_panel" valign="top"><div id="view_main" ng-view=""></div></td>
+</tr>
+</table>
+
+<div id="winpop" ng-controller="informationCtrl">
+ <div class="title"><i class="fa fa-exclamation-triangle" ></i><font color=red>警告信息</font><span class="close" ng-click="close()"><i class='fa fa-times' ></i></span></div>
+ <div id="myorder" class="con"></div>
+</div>
+</body>
+</html>

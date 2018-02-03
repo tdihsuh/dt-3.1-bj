@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+	<property name="appName" value="kunlun" />
+	<property name="encoderPattern"
+		value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+	<contextName>${appName}</contextName>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="UTF-8">
+			<pattern>${encoderPattern}</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="DAY_MANY_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>logs/${appName}-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+			<MaxHistory>10</MaxHistory>
+			<TimeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<MaxFileSize>1024MB</MaxFileSize>
+			</TimeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<Pattern>${encoderPattern}</Pattern>
+		</encoder>
+	</appender>
+	
+	<logger name="com.hansight" level="DEBUG" />
+	<root level="INFO">
+		<appender-ref ref="DAY_MANY_FILE" />
+	</root>
+</configuration>
+
+
+

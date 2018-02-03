@@ -1,0 +1,16 @@
+[
+	{
+		"privateIp":"10.0.10.11",
+		"publicIp":"211.160.235.17",
+		"longitude":116.395645,
+		"latitude":39.929986,
+		"city":"北京"
+	},
+	{
+		"privateIp":"10.0.10.10",
+		"publicIp":"211.160.235.17",
+		"longitude":112.979353,
+		"latitude":28.213478,
+		"city":"长沙"
+	}
+]

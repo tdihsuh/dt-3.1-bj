@@ -1,0 +1,65 @@
+<div class="editor-row">
+  <div class="section">
+    <h5>图表选项</h5>
+    <div class="editor-option">
+      <label class="small">可选择</label><input type="checkbox" ng-model="panel.interactive" ng-checked="panel.interactive">
+    </div>
+    <div class="editor-option">
+      <label class="small">X轴</label><input type="checkbox" ng-model="panel['x-axis']" ng-checked="panel['x-axis']"></div>
+    <div class="editor-option">
+      <label class="small">Y轴</label><input type="checkbox" ng-model="panel['y-axis']" ng-checked="panel['y-axis']"></div>
+    <div class="editor-option" ng-show="panel.lines">
+      <label class="small">线填充</label>
+      <select class="input-mini" ng-model="panel.fill" ng-options="f for f in [0,1,2,3,4,5,6,7,8,9,10]"></select>
+    </div>
+    <div class="editor-option" ng-show="panel.lines">
+      <label class="small">线宽</label>
+      <select class="input-mini" ng-model="panel.linewidth" ng-options="f for f in [0,1,2,3,4,5,6,7,8,9,10]"></select>
+    </div>
+    <div class="editor-option" ng-show="panel.points">
+      <label class="small">圆心</label>
+      <select class="input-mini" ng-model="panel.pointradius" ng-options="f for f in [1,2,3,4,5,6,7,8,9,10]"></select>
+    </div>
+    <div class="editor-option">
+      <label class="small">Y轴格式</label>
+      <select class="input-small" ng-model="panel.y_format" ng-options="f for f in ['none','short','bytes']"></select>
+    </div>
+  </div>
+</div>
+
+<div class="editor-row">
+  <div class="section">
+    <h5>面板头<h5>
+    <div class="editor-option">
+      <label class="small">缩放</label><input type="checkbox" ng-model="panel.zoomlinks" ng-checked="panel.zoomlinks" />
+    </div>
+    <div class="editor-option">
+      <label class="small">查看</label><input type="checkbox" ng-model="panel.options" ng-checked="panel.options" />
+    </div>
+  </div>
+  <div class="section">
+    <h5>图例<h5>
+    <div class="editor-option">
+      <label class="small">图例</label><input type="checkbox" ng-model="panel.legend" ng-checked="panel.legend">
+    </div>
+    <div ng-show="panel.legend" class="editor-option">
+      <label class="small">查询 <tip>如果查询没设置别名, 在图例上显示查询语句</tip></label><input type="checkbox" ng-model="panel.show_query" ng-checked="panel.show_query">
+    </div>
+    <div ng-show="panel.legend" class="editor-option">
+      <label class="small">计数</label><input type="checkbox" ng-model="panel.legend_counts" ng-checked="panel.legend_counts">
+    </div>
+  </div>
+
+  <div class="section">
+    <h5>表格<h5>
+    <div class="editor-option">
+      <label class="small">最小 / <a href='' ng-click="panel.grid.min = _.toggle(panel.grid.min,null,0)">自动 <i class="icon-star" ng-show="_.isNull(panel.grid.min)"></i></a></label>
+      <input type="number" class="input-small" ng-model="panel.grid.min"/>
+    </div>
+    <div class="editor-option">
+      <label class="small">最大 / <a ref='' ng-click="panel.grid.max = _.toggle(panel.grid.max,null,0)">自动 <i class="icon-star" ng-show="_.isNull(panel.grid.max)"></i></a></label>
+      <input type="number" class="input-small" ng-model="panel.grid.max"/>
+    </div>
+  </div>
+
+</div>

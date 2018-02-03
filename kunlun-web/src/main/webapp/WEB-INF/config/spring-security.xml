@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:sec="http://www.springframework.org/schema/security"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.2.xsd
+           http://www.springframework.org/schema/jdbc
+           http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd">
+           
+    <sec:http pattern="/css/**" security="none" />
+    <sec:http pattern="/vendor/**" security="none" />
+    <sec:http pattern="/wizardCss/**" security="none" />
+    <sec:http pattern="/map/**" security="none" />
+    <sec:http pattern="/js/**" security="none" />
+    <sec:http pattern="/images/**" security="none" />
+    <sec:http pattern="/common/**" security="none" />
+    <sec:http auto-config="true" use-expressions="true" access-denied-page="/accessDenied.hs">
+    	<sec:intercept-url pattern="/login.hs" access="permitAll"/>
+    	<sec:intercept-url pattern="/index.jsp" access="isAuthenticated()"/>
+    	<sec:intercept-url pattern="/index.html" access="isAuthenticated()"/>
+    	<sec:form-login login-page="/login.hs" default-target-url="/"/>
+    	
+    	<sec:logout invalidate-session="true" logout-success-url="/login.hs" logout-url="/j_spring_security_logout"/>
+    	<sec:custom-filter ref="customSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR"/>
+    </sec:http>
+    
+    <sec:authentication-manager alias="authenticationManager">
+			<sec:authentication-provider user-service-ref="userDetailsService">
+				<sec:password-encoder ref="passwordEncoder">
+					<sec:salt-source ref="saltSource"/>
+				</sec:password-encoder>
+			</sec:authentication-provider>
+    </sec:authentication-manager>
+    
+    <bean id="userDetailsService" class="com.hansight.kunlun.web.base.security.userdetails.CustomUserDetailsService" />
+    <bean class="org.springframework.security.authentication.encoding.ShaPasswordEncoder" id="passwordEncoder"/>
+    <bean class="org.springframework.security.authentication.dao.ReflectionSaltSource" id="saltSource">
+			<property name="userPropertyToUse" value="username"/>
+		</bean>
+		
+		<bean id="customSecurityInterceptor" class="com.hansight.kunlun.web.base.security.interceptor.CustomSecurityInterceptor">  
+	    <property name="accessDecisionManager" ref="accessDescisionManager"/>
+	    <property name="securityMetadataSource" ref="securityMetadataSource"/>
+	    <property name="authenticationManager" ref="authenticationManager"/>
+	  </bean>
+	  <bean id="accessDescisionManager" class="com.hansight.kunlun.web.base.security.custom.CustomAccessDecisionManager"/>
+	  <bean id="securityMetadataSource" class="com.hansight.kunlun.web.base.security.custom.CustomSecurityMetadataSource">
+	  	<constructor-arg name="tRoleService" ref="tRoleService"/>
+	  	<constructor-arg name="tRequestmapService" ref="tRequestmapService"/>
+	  	<constructor-arg name="tAuthorityRequestmapService" ref="tAuthorityRequestmapService"/>
+	  	<constructor-arg name="tRoleAuthorityService" ref="tRoleAuthorityService"/>
+	  </bean>
+	  <bean id="tRoleService" class="com.hansight.kunlun.web.base.user.service.TRoleService"/>
+	  <bean id="tRequestmapService" class="com.hansight.kunlun.web.base.user.service.TRequestmapService"/>
+	  <bean id="tAuthorityRequestmapService" class="com.hansight.kunlun.web.base.user.service.TAuthorityRequestmapService"/>
+	  <bean id="tRoleAuthorityService" class="com.hansight.kunlun.web.base.user.service.TRoleAuthorityService"/>
+	  
+	  <bean id="captchaService" class="com.octo.captcha.service.image.DefaultManageableImageCaptchaService">   
+        <property name="captchaEngine">   
+            <bean class="com.hansight.kunlun.web.base.jcaptcha.engine.JcaptchaEngine" />   
+        </property>
+    </bean>
+	  
+</beans>

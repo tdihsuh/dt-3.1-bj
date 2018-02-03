@@ -1,0 +1,47 @@
+<div id="content" style="margin:0px 15px;" >
+	<div class="row">
+		<div class="hs_theme">
+			<i class="fa fa-calendar" style="margin-right:10px;"></i>集群监控
+		</div>
+	</div>
+	<div class="row">
+		<div class="hs_title" style="margin: 10px 0;">
+			<div class="hs_title_txt">
+				<i class="glyphicon glyphicon-stats" style="margin-right:10px;"></i>Worker状态
+			</div>
+		</div>
+		<div>
+			<table class="table table-bordered hs_bg_white">
+				<tr >
+					<th width="5%" height="28" style="text-align:center;">序号</th>
+					<th width="35%"style="text-align:center;">节点</th>
+					<th width="20%"style="text-align:center;">负载</th>
+					<th width="20%"style="text-align:center;">CPU</th>
+					<th width="20%"style="text-align:center;">内存</th>
+				</tr>
+				<tr ng-repeat="node in master.nodes" align="center"
+					ng-class="{node_list_sel : $index%2 == 1}"
+					onmouseover="style.backgroundColor='#f7ebe3';style.cursor='pointer'"
+					onmouseout="style.backgroundColor='';">
+					<td height="30">{{($index+1)}}</td>
+					<td align="left">{{node.name}}</td>
+					<td>
+						<div easypiechart options="options" percent="node.load">
+							<span class="cluster_percent" ng-bind="node.load"></span>
+						</div>
+					</td>
+					<td>
+						<div easypiechart options="options" percent="node.cpu">
+							<span class="cluster_percent" ng-bind="node.cpu"></span>
+						</div>
+					</td>
+					<td>
+						<div easypiechart options="options" percent="node.mem">
+							<span class="cluster_percent" ng-bind="node.mem"></span>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>

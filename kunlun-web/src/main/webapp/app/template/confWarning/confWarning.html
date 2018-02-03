@@ -1,0 +1,70 @@
+<div id="content">
+	<div id="conf_datasource">
+			<div class="theme"><i class="fa fa-exclamation-triangle" style="margin-right:10px;"></i>预警配置</div>
+			<div class="input-group-m hidden-mobile" id="conf_datasource_search_group" style="margin-bottom:10px;">
+			<input class="form-control" type="text" placeholder="请输入名称或描述信息..." ng-model="total.fuzzy" value="total.fuzzy" id="fuzzy">
+			<div class="input-group-btn">
+				<button type="submit" class="btn btn-default" ng-click="search(total.fuzzy)">
+					&nbsp;&nbsp;&nbsp;<i class="fa fa-fw fa-search fa-lg"></i>&nbsp;&nbsp;&nbsp;
+				</button>
+			</div>
+		   </div>
+		   <div class="pagination" style="float: left;"><button type="button" class="btn btn-default" ng-click="editReduction()">初始化</button></div>
+		<div id="cluster_indices" class="hs_block">
+				<table class="table table-bordered" >
+				<thead>
+					<tr class="indices_title" >
+						<th width="5%"  style="text-align:center;">序号</th>
+						<th width="10%" style="text-align:center;">名称</th>
+						<th width="13%" style="text-align:center;">邮箱</th>
+						<th width="27%" style="text-align:center;">描述</th>
+						<th width="6%" style="text-align:center;">值</th>
+						<th width="7%" style="text-align:center;">默认值</th>
+						<th width="15%" style="text-align:center;">更新时间</th>
+						<th width="12%" style="text-align:center;">操作</th>
+					</tr>
+					</thead>
+					
+					<tbody>
+					
+					 <tr  ng-repeat="item in total.cws" class="event_list" 
+							ng-class="{event_list_selected : $index == selectedRow}"
+							onmouseover="style.backgroundColor='#FAFAFA';style.cursor='pointer'"
+						onmouseout="style.backgroundColor='';" >
+						<td style="text-align:center;">{{$index+1+events.offset}}</td>
+						<td style="text-align: center;">{{item.name}}</td>
+						<td id="email_{{$index+1+events.offset}}" style="text-align: center;">{{item.email}}</span>
+						<td style="text-align: center;">{{item.description}}</td>
+						<td id="value_{{$index+1+events.offset}}" style="text-align: center;">{{item.value}}</td>
+						<td  style="text-align: center;">{{item.defaultValue}}</td>
+						<td  style="text-align: center;">{{item.updateTime}}</td>
+						<td style="text-align: center;" id={{item.id}}>
+						<!-- <i class='fa fa-pencil-square-o'></i> -->
+					        <button id={{$index+1+events.offset}} type="button"   class="btn btn-default btn-xs" ng-click="editConfWarning(item.id,$event.target)" ng-show=true >编辑</button>
+				            <button id="button1_{{$index+1+events.offset}}"  class="btn btn-default btn-xs" type="button"  ng-click="confWarningEdit($event.target)" ng-show=false>确定</button>&nbsp;&nbsp;
+				            <button id="button2_{{$index+1+events.offset}}"  class="btn btn-default btn-xs" type="button"  ng-click="confWarningEditCancel($event.target)" ng-show=false>取消</button>
+					 </td>
+					 </tr>  
+					
+					</tbody>
+					
+				</table>
+			
+			<div class="paginationdiv">
+			
+			<ul class="pagination">
+				<li ng-if="total.currentPageNum > total.showPagesMax">
+					<a href="javascript:" ng-click="queryByShowOrder(total.showPagesOrder > 1 ? total.showPagesOrder-1 : 1)" title="上{{total.showPagesMax}}页">&laquo;</a>
+				</li>
+				<li ng-repeat="page in total.showPagesNum">
+					<a href="javascript:" title="第{{page}}页" ng-show="page==total.currentPageNum" style="color:#000">{{page}}</a>
+					<a href="javascript:" ng-click="queryByShowNum(page)" title="第{{page}}页" ng-show="page!=total.currentPageNum">{{page}}</a>
+				</li>
+				<li ng-if="total.showPagesMax * total.showPagesOrder < total.totalPages">
+					<a href="javascript:" ng-click="queryByShowOrder(total.showPagesOrder * total.showPagesMax < total.totalPages ? total.showPagesOrder+1:total.showPagesOrder)" title="下{{total.showPagesMax}}页">&raquo;</a>
+				</li>
+			</ul></div>
+			
+			</div>
+		</div>
+</div>

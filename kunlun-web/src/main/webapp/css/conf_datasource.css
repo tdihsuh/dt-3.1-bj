@@ -1,0 +1,119 @@
+#conf_datasource .theme{
+	width:50%;
+	font-size:20px;
+	font-weight:bold;
+	height:40px;
+	color:#666;
+}
+#conf_datasource .table{
+	margin-top:1px;
+	border-left:1px solid #C2C2C2;
+	border-top:1px solid #C2C2C2;
+}
+#conf_datasource #cluster_indices table{
+	margin-top:1px;
+	border-left:1px solid #C2C2C2;
+	border-top:1px solid #C2C2C2;
+	border-right-color: #CCC!important;
+	border-bottom-color: #CCC!important;
+	border-left-color: #CCC!important;
+	padding: 13px 13px 0;
+	overflow: visible;
+	background-color:#fff;
+}
+#conf_datasource #cluster_indices td{
+	/**border-bottom:1px solid #C2C2C2;
+	border-left:1px solid #C2C2C2;**/
+}
+#conf_datasource #indices_txt:hover{
+	background-color:#FAFAFA;
+}
+#conf_datasource #indices_txt td{
+	height:40px;
+	text-align:left;
+	padding-right:5px;
+}
+#conf_datasource .indices_title{
+	height:40px;
+	text-align:center;
+	font-weight:bold;
+	background-color:#FAFAFA;
+}
+#conf_datasource .panelboard{
+	float: left;
+	width: 100%;
+	position: relative;
+	font-size: 13px;
+	-moz-border-radius: 0;
+	-khtml-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	margin: 0;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #CCC!important;
+	padding: 13px 13px 0;
+	overflow: visible;
+	background-color:#fff;
+}
+#conf_datasource .title{
+	font-size:14px;
+	border-bottom:1px dotted #999;
+	margin-bottom:10px;
+}
+#conf_datasource footer{
+	display: block;
+	padding: 7px 14px 15px;
+	border-top: 1px solid rgba(0,0,0,.1);
+	background: rgba(248,248,248,.9);
+}
+#conf_datasource .pagination{
+	float:left;
+	margin-right:8px;
+	margin-top:5px;
+}
+#conf_datasource .row{
+	margin-left:10px;
+	height:50px;
+	width: 100%;
+}
+#conf_datasource fieldset{
+	display: block;
+	padding: 25px 14px 5px;
+	border: 0;
+	background: rgba(255,255,255,.9);
+	position: relative;
+	border-bottom:1px solid #CCC;
+	width: 100%;
+}
+#conf_datasource .input-group{
+	width:300px;
+	float:left;
+	margin-right:20px;
+}
+#conf_datasource .input-group-m {
+	display: table;
+	margin-top: 8px;
+}
+
+#conf_datasource .form-control-m {
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 6px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 0px;
+	opacity: 1;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}

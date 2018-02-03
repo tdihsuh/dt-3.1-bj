@@ -1,0 +1,56 @@
+<div id="content">
+	<div id="conf_datasource">
+			<div class="theme"><i class="fa fa-cogs" style="margin-right:10px;"></i>采集器配置</div>
+			<div class="pagination" style="text-align:left;"><button type="button" class="btn btn-default"  ng-click="add()">添加</button></div>
+		<div id="cluster_indices" class="hs_block"><div id = "confAgentError" style="text-align:right;"></div>
+				<table class="table table-bordered">
+				<thead>
+					<tr class="indices_title" >
+						<th width="5%"  style="text-align:center;">序号</th>
+						<th width="20%" style="text-align:center;">名称</th>
+						<th width="20%" style="text-align:center;">ip</th>
+						<th width="20%" style="text-align:center;">描述</th>
+						<th width="15%" style="text-align:center;">状态</th>
+						<th width="20%" style="text-align:center;">操作</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr id="indices_txt" ng-repeat="item in agent.list" class="event_list" 
+							ng-class="{event_list_selected : $index == selectedRow}">
+						<td width="5%" style="text-align:center;">{{$index+1+events.offset}}</td>
+						<td width="20%">{{item.name}}</td>
+						<td width="20%">{{item.ip}}</span></td>
+						<td width="20%">{{item.description}}</td>
+<!-- 						<td width="15%">{{item.state}}</td> -->
+						<td width="15%" ng-if="item.state == 'UNKNOWN' "><font color="#888">未知</font></td>
+						<td width="15%" ng-if="item.state == 'STOPED' "><font color="red">停止</font></td>
+						<td width="15%" ng-if="item.state == 'PENDING' "><font color="purple">初始化</font></td>
+						<td width="15%" ng-if="item.state == 'RUNNING' "><font color="green">正常</font></td>
+						<td width="20%" style="text-align:center;">
+					<button type="button"  class="btn btn-default btn-xs" ng-click="del(item.id)">删除</button>
+					<button type="button" class="btn btn-default btn-xs"  ng-click="edit(item.id)">修改</button>
+					<button type="button" class="btn btn-default btn-xs"  ng-click="agentLoad(item.id)">下载</button>
+					</td>  
+					<tr ng-if="!agent">
+						<td colspan="5" height="120" align="center">无数据</td>
+					</tr>
+					</tbody>
+				</table>
+				
+			<div id="searchList">
+				<ul class="pagination">
+					<li ng-if="agent.currentPage > 1"> 
+ 						<a href="javascript:" ng-click="queryPage(agent.currentPage> 1 ? agent.currentPage-1 : 1)" title="上一页">&laquo;</a> 
+ 					</li> 
+ 					<li ng-repeat="page in agent.pageNum">
+ 						<a href="javascript:" title="第{{page}}页" ng-show="page==agent.currentPage" style="color:#000">{{page}}</a> 
+ 						<a href="javascript:" ng-click="queryPage(page)" title="第{{page}}页" ng-show="page!=agent.currentPage">{{page}}</a> 
+ 					</li> 
+ 					<li ng-if="agent.currentPage < agent.totalPages"> 
+ 						<a href="javascript:" ng-click="queryPage(agent.currentPage < agent.totalPages ? agent.currentPage+1:agent.totalPages)" title="下一页">&raquo;</a> 
+ 					</li> 
+ 				</ul>   
+				</div>
+			</div>
+		</div>
+</div>

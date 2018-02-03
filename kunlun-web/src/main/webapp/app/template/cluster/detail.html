@@ -1,0 +1,78 @@
+<div id="content">
+	<div id="detail">
+		<div class="theme" style="width:100%;">
+			<i class="fa-fw fa fa-home"></i>{{nodeDetail.name}}节点详情<span class="btn btn-default btn-sm" style="display:block; float:right" ng-click="back()"><i class="fa fa-arrow-circle-left"></i>后退</span>
+		</div>
+		<div id="img-os">
+			<span class="title">OS状态</span>
+			<div id="img-os-state" class="state"></div>
+		</div>
+		<div id="img-jvm">
+			<span class="title">JVM状态</span>
+			<div id="img-jvm-state" class="state"></div>
+		</div>
+		<div id="img-index">
+			<span class="title">索引状态</span>
+			<div id="img-index-state">
+				<table class="table table-bordered">
+					<tr id="title">
+						<th width="15%">文档数</th>
+						<th width="15%">存储</th>
+						<th width="15%">索引</th>
+						<th width="15%">搜索</th>
+						<th width="15%">归并</th>
+						<!-- <th width="20%">分片</th> -->
+					</tr>
+					<tr class="index_list">
+						<td>{{indices.docs.count}}</td>
+						<td>{{indices.store.size_in_bytes}}</td>
+						<td>{{indices.indexing.index_total}}</td>
+						<td>{{indices.search.query_current}}</td>
+						<td>{{indices.merges.current_size_in_bytes}}</td>
+						<!-- <td>{{indices.segments.count}}</td> -->
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="img-disk">
+			<span class="title">磁盘状态</span>
+			<div id="img-disk-state" class="state">
+				<table class="table table-bordered">
+					<tr id="title">
+						<th width="20%">总共</th>
+						<th width="20%">空闲</th>
+						<th width="20%">可用</th>
+						<th width="20%">读（次）</th>
+						<th width="20%">写（次）</th>
+					</tr>
+					<tr class="index_list">
+						<td width="20%">{{fs.total_in_bytes}}</td>
+						<td width="20%">{{fs.free_in_bytes}}</td>
+						<td width="20%">{{fs.available_in_bytes}}</td>
+						<td width="20%">{{fs.disk_reads}}</td>
+						<td width="20%">{{fs.disk_writes}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="img-network">
+			<span class="title">网络状态</span>
+			<div id="img-network-state" class="state">
+				<table class="table table-bordered">
+					<tr id="title">
+						<th width="25%">接收（次数）</th>
+						<th width="25%">接收（大小）</th>
+						<th width="25%">发送（次数）</th>
+						<th width="25%">发送（大小）</th>
+					</tr>
+					<tr class="index_list">
+						<td width="25%">{{network.rx_count}}</td>
+						<td width="25%">{{network.rx_size_in_bytes}}</td>
+						<td width="25%">{{network.tx_count}}</td>
+						<td width="25%">{{network.tx_size_in_bytes}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

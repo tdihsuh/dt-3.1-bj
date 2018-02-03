@@ -1,0 +1,17 @@
+<div id="subPanel">
+	<div class="panel_txt">标题<i class="fa fa-question-circle" ng-show="panel.title.description" title="{{panel.title.description}}"></i>：</div>
+	<div class="panel_val"><input type="text" ng-model="panel.form.title" class="form-control" placeholder="请输入面板标题" required/></div>
+	<div class="panel_txt">宽度<i class="fa fa-question-circle" ng-show="panel.columns.description" title="{{panel.columns.description}}"></i>：</div>
+	<div class="panel_val">
+		<select ng-options="c.value for c in panel.columns.value" ng-model='panel.form.column' class="form-control" required>
+			<option value="">请选择列数</option>
+		</select>
+	</div>
+	<div class="panel_txt">高度</div>
+	<div class="panel_val"><input type="text" ng-model="panel.form.height" class="form-control" required/></div>
+	<div class="panel_txt">字号<i class="fa fa-question-circle" ng-show="panel.fontsize.description" title="{{panel.fontsize.description}}"></i>：</div>
+	<div class="panel_val">
+		<select ng-options="f.value for f in panel.fontsize.value" ng-model='panel.form.fontsize' class="form-control" required>
+		</select>
+	</div>
+</div>

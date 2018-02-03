@@ -1,0 +1,16 @@
+2014-11-27
+    修改 spark.AnomalyDetection  启动参数 为 index/type method
+        其中method 是:
+	    1. kmeans
+	    2. 404
+	    3. rate
+	    4. querystring
+	    404的采用aggregations 还是使用spark写es
+	脚本:#!/bin/sh
+       ./spark/bin/spark-submit --executor-memory 8g  --master spark://yzh:7077  --class com.hansight.kunlun.analysis.statistics.spark.AnomalyDetection kunlun/kunlun-analysis-1.0-jar-with-dependencies.jar  logs_*/log_iis kmeans
+    新增 single.Modeling404 启动参数为 indices types [threshold]
+     其中 threshold 非必填 指的是大于多大数量的 url 数量不认为是异常
+     启动脚本: java -cp conf:kunlun-analysis-1.0-jar-with-dependencies.jar com.hansight.kunlun.analysis.statistics.single.Modeling404 logs_* log_iis 100
+
+     single版本需要 global.properties 脚本 放到conf下,
+     spark版本的 编辑jar包里的这个文件,修改对应的es配置

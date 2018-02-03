@@ -1,0 +1,88 @@
+<div id="content">
+	<div id="assets">
+		<div class="theme"><i class="fa-fw fa fa-home"></i>资产管理</div>
+		
+		<div class="assetsList">
+			<article>
+				<header>
+					<span class="widget-icon"><i class="fa fa-map-marker"></i></span>
+					<span>资产管理</span>
+				</header>
+				<div class="panelboard">
+					<table id="highevent" class="table table-hover" style="background-color: white;">
+						<thead>
+							<tr>
+								<th></th>
+								<th><i class="fa fa-building"></i>&nbsp;资产名称</th>
+								<th><i class="glyphicon glyphicon-send"></i>&nbsp;FQDN</th>
+								<th><i class="fa fa-calendar"></i>&nbsp;端口</th>
+								<th><i class="fa fa-calendar"></i>&nbsp;资产值</th>
+								<th><i class="fa fa-calendar"></i>&nbsp;描述</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="asset in assets">
+								<td><span class="label label-info">{{$index+1}}</span></td>
+								<td>{{asset.name}}</td>
+								<td>{{asset.fqdn}}</td>
+								<td>{{asset.port}}</td>
+								<td>{{asset.num}}</td>
+								<td>{{asset.description}}</td>
+								<td><a href="javascript:associate('assetid')" title="点击回溯">关联事件</a></td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</article>
+		</div>
+		
+		<div class="assetsModify">
+			<article>
+					<header>
+						<span class="widget-icon"><i class="fa fa-map-marker"></i></span>
+						<span>增加新的资产</span>
+					</header>
+
+					<div class="panelboard">
+						<div class="title">资产信息录入</div>
+						<fieldset>
+							<div class="row">
+								<div class="input-group ele">
+								  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+								  <input class="form-control" type="text" placeholder="资产名称">
+								</div>
+								<div class="input-group ele">
+								  <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
+								  <input class="form-control" type="text" placeholder="FQDN">
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="input-group ele">
+								  <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+								  <input class="form-control" type="text" placeholder="端口">
+								</div>
+								<div class="input-group ele">
+								  <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+								  <input class="form-control" type="text" placeholder="资产值">
+								</div>
+							</div>
+							<section>
+								<div class="input-group ele1">
+								  <span class="input-group-addon"><i class="fa fa-comment"></i></span>
+								  <textarea class="form-control" placeholder="资产描述"></textarea>
+								</div>
+							</section>
+						</fieldset>
+						<footer>
+							<button type="submit" class="btn btn-primary">
+								保存
+							</button>
+						</footer>
+					</div>
+			</article>
+		</div>
+	</div>
+</div>

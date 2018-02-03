@@ -1,0 +1,10 @@
+#use regex  line by line parser log data
+regex=com.hansight.kunlun.collector.lexer.RegexLogLexer
+#parser log it`s struct is xml ,now known only parser thant agent send .evt or .evtx log file
+xml=com.hansight.kunlun.collector.lexer.XMLLogLexer
+#parser log it`s struct is JSON ,now known  parser snmp
+json=com.hansight.kunlun.collector.lexer.JSONLogLexer
+#parser log it`s value separate by delimit like csv
+delimit=com.hansight.kunlun.collector.lexer.DelimiterLogLexer
+#parser log it`s values format with arcSight CEF
+cef=com.hansight.kunlun.collector.lexer.CEFLogLexer

@@ -1,0 +1,2 @@
+.*\.(jpg$|gif$|png$|bmp$|ico$|htc$|css$)
+^/CmbBank_GenShell/UI/GenShellPC(_EN)?/Login/.*

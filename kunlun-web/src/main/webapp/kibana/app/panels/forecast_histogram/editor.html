@@ -1,0 +1,30 @@
+<div class="editor-row">
+  <div class="section">
+    <h5>值</h5>
+    <div class="editor-option" ng-show="panel.mode != 'count'">
+      <label class="small">值字段 <tip>此字段必须为数值</tip></label>
+        <input ng-change="set_refresh(true)" placeholder="Start typing" bs-typeahead="fields.list" type="text" class="input-medium" ng-model="panel.value_field">
+    </div>
+  </div>
+  <div class="section">
+    <h5>序列转换</h5>
+    <div class="editor-option">
+      <label class="small">填零 <tip>空缺处填零</tip></label><input type="checkbox" ng-model="panel.zerofill" ng-checked="panel.zerofill" ng-change="set_refresh(true)">
+    </div>
+  </div>
+  <div class="section">
+  <h5>时间选项</h5>
+    <div class="editor-option">
+      <label class="small">时间字段</label>
+        <input ng-change="set_refresh(true)" placeholder="Start typing" bs-typeahead="fields.list" type="text" class="input-small" ng-model="panel.time_field">
+    </div>
+    <div class="editor-option">
+      <label class="small">时间矫正</label>
+      <select ng-model="panel.timezone" class='input-small' ng-options="f for f in ['browser','utc']"></select>
+    </div>
+    <div class="editor-option" ng-hide='panel.auto_int'>
+      <label class="small">间隔 <tip>使用Elasticsearch时间格式（比如 1m, 5m, 1d, 2w, 1y）</tip></label>
+      <input type="text" class='input-mini' ng-model="panel.interval" ng-change='set_refresh(true)'/>
+    </div>
+  </div>
+</div>

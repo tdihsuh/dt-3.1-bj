@@ -1,0 +1,59 @@
+#hs_role .theme{
+	width:50%;
+	font-size:20px;
+	font-weight:bold;
+	height:40px;
+	color:#666;
+}
+#hs_role header{
+	color: #333;
+	border: 1px solid #C2C2C2;
+	background: #fafafa;
+	height: 34px;
+	padding: 0;
+	line-height: 40px;
+	font-size:14px;
+	padding-left:10px;
+}
+#hs_role .rolemng,#hs_role .role_list_ul{
+	background-color:#FFF;
+	border-left:1px solid #C2C2C2;
+	border-right:1px solid #C2C2C2;
+	border-bottom:1px solid #C2C2C2;
+	overflow:auto;
+}
+#hs_role .role_add_txt{
+	margin-top:17px;
+	margin-left:20px;
+	height:40px;
+}
+#hs_role .role_add_form{
+	width:20%;
+	margin-top:10px;
+	margin-left:10px;
+	height:40px;
+}
+#hs_role .role_list_ul{
+	list-style:none;
+	line-height:30px;
+}
+#hs_role .role_list_ul li{
+	clear:both;
+	margin-left:-40px;
+}
+#hs_role .role_list_ul li div{
+	float:left;
+}
+#hs_role .role_list_name{
+	width:20%;
+	background-color:inherit;
+	padding-left:10px;
+}
+#hs_role .role_list_description{
+	width:60%;
+	background-color:inherit;
+}
+#hs_role .role_list_operater{
+	width:20%;
+	background-color:inherit;
+}

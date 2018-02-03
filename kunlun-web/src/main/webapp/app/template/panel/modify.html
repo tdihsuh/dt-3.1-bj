@@ -1,0 +1,28 @@
+<div id='panel_popup' style='height:100%;width:100%;overflow-y:auto;'>
+	<div id="panel_popup_">
+		<form ng-submit="savePanel()">
+		<div class="panel_title">新增面板</div>
+		<!--<div class="panel_type">
+			<div class="panel_txt">选择面板类型：</div>
+			<div class="panel_val">
+				<select class='form-control' ng-model='panel.form.type' ng-options="t.value for t in panel.type.value" name="panelType" required>
+					<option value="">请选择面板类型</option>
+				</select>
+			</div>
+		</div>-->
+		<div style="clear:both;width:15%;font-weight:bold;font-size:20px;padding-left:9px;padding-top:16px">选择面板类型</div>
+		<div class="panel_txt1">
+				<select class='form-control' ng-model='panel.form.type' ng-options="t.value for t in panel.type.value" name="panelType">
+					<option value="">请选择面板类型</option>
+				</select>
+		</div>
+		<div ng-include="panel.form.type.url"></div>
+		<div class="panel_operater">
+			<button class='btn btn-default' type='submit'>&nbsp;保&nbsp;存&nbsp;</button>
+			&nbsp;&nbsp;
+			<button class='btn btn-default' type='button' ng-click='cancelPanel(hideLayers)'>&nbsp;取&nbsp;消&nbsp;</button>
+		</div>
+		</form>
+	</div>
+</div>
+<div id="panel_layer" style="display:none;"></div>

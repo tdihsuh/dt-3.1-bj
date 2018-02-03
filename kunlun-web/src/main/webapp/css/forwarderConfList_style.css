@@ -1,0 +1,118 @@
+#forwarderConf #forwarderConf_nav .theme{
+	width:50%;
+	font-size:20px;
+	font-weight:bold;
+	height:40px;
+	color:#666;
+}
+#forwarderConf .container1{
+	float:right;
+	margin-right:10px;
+}
+#forwarderConf .container1 td{
+	text-align:center;
+	padding-left:5px;
+	padding-right:5px;
+}
+#forwarderConf .container1 .txt1,#forwarderConf .container1 .txt2,#forwarderConf .container1 .txt3{
+	color:#999;
+}
+#forwarderConf .container1 .num1{
+	color: #57889C;
+	font-size:16px;
+	font-weight:bold;
+}
+#forwarderConf .container1 .num2{
+	color: #6E587A;
+	font-size:16px;
+	font-weight:bold;
+}
+#forwarderConf #forwarderConf_pannel{
+	clear:both;
+	width:100%;
+}
+#forwarderConf #webserver{
+	clear:both;
+	width:18%;
+	float:left;
+}
+#forwarderConf .title_{
+	font-size:14px;
+	color:#666;
+	margin-bottom:5px;
+}
+#forwarderConf #forwarderConf_pannel #webserver .title{
+	font-weight:bold;
+	border:1px solid #C2C2C2;
+	height:39px;
+	background-color:#CCC;
+	font-size:14px;
+	text-align:center;
+}
+#forwarderConf #forwarderConf_pannel #webserver .event_type{
+	border-left:1px solid #C2C2C2;
+	border-right:1px solid #C2C2C2;
+	border-bottom:1px solid #C2C2C2;
+	height:39px;
+	background-color:#fafafa;
+	padding-left:5px;
+	cursor:pointer;
+}
+#forwarderConf #forwarderConf_pannel #webserver a{
+	color:#000;
+	text-decoration: none;
+}
+#forwarderConf #forwarderConf_pannel #webserver span{
+	margin-right:5px;
+}
+#forwarderConf #securityContainer{
+	margin:0px;
+	height:250px;
+}
+#forwarderConf #event_{
+	width:99%;
+	float:left;
+}
+#forwarderConf #event_ table{
+	width:98%;
+	background-color:#fafafa;
+	border:1px solid #C2C2C2;
+}
+#forwarderConf #event_ .table_title{
+	height:40px;
+	text-align:center;
+	border-bottom:1px solid #C2C2C2;
+	font-size:14px;
+}
+#forwarderConf #event_ .event_list td{
+	height:30px;
+	padding-left:2px;
+	word-wrap:break-word;
+	word-break:break-all;
+	cursor:pointer;
+}
+#forwarderConf #event_ .event_list_selected{
+	background-color:#CCCCFF;
+}
+#forwarderConf #event_ .log_list td{
+	padding:5px;
+	word-wrap:break-word;
+	word-break:break-all;
+}
+#forwarderConf_pannel .pagination{
+	float:right;
+	margin-right:8px;
+	margin-top:5px;
+}
+#forwarderConf_pannel table{
+	clear:both;
+}
+#forwarderConf #forwarderConf_health{
+	height:20px;
+}
+#forwarderConf footer{
+	display: block;
+	padding: 7px 14px 15px;
+	border-top: 1px solid rgba(0,0,0,.1);
+	background: rgba(248,248,248,.9);
+}

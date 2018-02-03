@@ -1,0 +1,65 @@
+#usermng .theme{
+	width:50%;
+	font-size:24px;
+	font-weight:bold;
+	height:50px;
+	color:#666;
+}
+#usermng header{
+	color: #333;
+	border: 1px solid #C2C2C2;
+	background: #fafafa;
+	height: 34px;
+	padding: 0;
+	line-height: 40px;
+	font-size:14px;
+	padding-left:10px;
+}
+#usermng .panelboard{
+	float: left;
+	width: 100%;
+	position: relative;
+	font-size: 13px;
+	-moz-border-radius: 0;
+	-khtml-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	margin: 0;
+	border-width: 1px 1px 2px;
+	border-style: solid;
+	border-top: 0;
+	border-right-color: #CCC!important;
+	border-bottom-color: #CCC!important;
+	border-left-color: #CCC!important;
+	padding: 13px 13px 0;
+	overflow: visible;
+	background-color:#fff;
+}
+#usermng .title{
+	font-size:14px;
+	border-bottom:1px dotted #999;
+	margin-bottom:10px;
+}
+#usermng .row{
+	margin-left:10px;
+	height:50px;
+}
+#usermng fieldset{
+	display: block;
+	padding: 25px 14px 5px;
+	border: 0;
+	background: rgba(255,255,255,.9);
+	position: relative;
+	border-bottom:1px solid #CCC;
+}
+#usermng .input-group{
+	width:300px;
+	float:left;
+	margin-right:20px;
+}
+#usermng footer{
+	display: block;
+	padding: 7px 14px 15px;
+	border-top: 1px solid rgba(0,0,0,.1);
+	background: rgba(248,248,248,.9);
+}

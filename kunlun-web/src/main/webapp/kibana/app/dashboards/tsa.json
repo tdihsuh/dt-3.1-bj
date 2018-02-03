@@ -1,0 +1,189 @@
+{
+    "title": "tsa",
+    "services": {
+        "query": {
+            "list": {
+                "1": {
+                    "id": 1,
+                    "color": "#1F78C1",
+                    "alias": "日志",
+                    "pin": true,
+                    "type": "lucene",
+                    "enable": true,
+                    "query": "_type:plannedpethoodrockymount"
+                }
+            },
+            "ids": [
+                1
+            ]
+        },
+        "filter": {
+            "list": {
+                "0": {
+                    "type": "time",
+                    "from": "2013-07-21T12:03:23.450Z",
+                    "to": "2013-12-01T16:47:39.866Z",
+                    "field": "@timestamp",
+                    "mandate": "must",
+                    "active": true,
+                    "alias": "",
+                    "id": 0
+                }
+            },
+            "ids": [
+                0
+            ]
+        }
+    },
+    "rows": [{
+        "title": "dummy",
+        "height": "450px",
+        "editable": true,
+        "collapse": false,
+        "collapsable": true,
+        "panels": [{
+            "span": 12,
+            "editable": true,
+            "type": "forecast_histogram",
+            "loadingEditor": false,
+            "mode": "count",
+            "time_field": "@timestamp",
+            "value_field": null,
+            "x-axis": true,
+            "y-axis": true,
+            "scale": 1,
+            "y_format": "none",
+            "grid": {
+                "max": null,
+                "min": 0
+            },
+            "queries": {
+                "mode": "selected",
+                "ids": [
+                    1
+                ]
+            },
+            "resolution": 100,
+            "interval": "1d",
+            "intervals": [
+                "auto",
+                "1s",
+                "1m",
+                "5m",
+                "10m",
+                "30m",
+                "1h",
+                "3h",
+                "12h",
+                "1d",
+                "1w",
+                "1y"
+            ],
+            "lines": false,
+            "fill": 0,
+            "linewidth": 3,
+            "points": false,
+            "pointradius": 5,
+            "bars": true,
+            "stack": false,
+            "spyable": true,
+            "zoomlinks": true,
+            "forecast": false,
+            "options": true,
+            "legend": true,
+            "show_query": true,
+            "interactive": true,
+            "legend_counts": true,
+            "timezone": "browser",
+            "zerofill": true,
+            "tooltip": {
+                "value_type": "cumulative",
+                "query_as_alias": true
+            },
+            "title": "histogram"
+        }],
+        "notice": false
+    }],
+    "editable": true,
+    "failover": false,
+    "index": {
+        "interval": "day",
+        "pattern": "[logs_]YYYYMMDD",
+        "default": "_all",
+        "warm_fields": false
+    },
+    "style": "light",
+    "panel_hints": true,
+    "pulldowns": [{
+        "type": "query",
+        "title": "查询",
+        "collapse": false,
+        "notice": false,
+        "enable": true,
+        "query": "*",
+        "pinned": true,
+        "history": [
+            "_type:plannedpethoodrockymount",
+            "_type:weblogs",
+            "_type:anormal",
+            "*",
+            "eventType:*",
+            "sc_bytes:*"
+        ],
+        "remember": 10
+    }, {
+        "type": "filtering",
+        "title": "过滤",
+        "collapse": false,
+        "notice": true,
+        "enable": true
+    }],
+    "nav": [{
+        "type": "timepicker",
+        "collapse": false,
+        "notice": false,
+        "enable": true,
+        "status": "Stable",
+        "time_options": [
+            "5分钟",
+            "15分钟",
+            "1小时",
+            "6小时",
+            "12小时",
+            "24小时",
+            "2天",
+            "7天",
+            "30天"
+        ],
+        "refresh_intervals": [
+            "5秒",
+            "10秒",
+            "30秒",
+            "1分钟",
+            "5分钟",
+            "15分钟",
+            "30分钟",
+            "1小时",
+            "2小时",
+            "1天"
+        ],
+        "timefield": "@timestamp",
+        "now": false,
+        "filter_id": 0
+    }],
+    "loader": {
+        "save_gist": false,
+        "save_elasticsearch": true,
+        "save_local": true,
+        "save_default": true,
+        "save_temp": true,
+        "save_temp_ttl_enable": true,
+        "save_temp_ttl": "30d",
+        "load_gist": false,
+        "load_elasticsearch": true,
+        "load_elasticsearch_size": 20,
+        "load_local": false,
+        "hide": false
+    },
+    "refresh": false
+}
